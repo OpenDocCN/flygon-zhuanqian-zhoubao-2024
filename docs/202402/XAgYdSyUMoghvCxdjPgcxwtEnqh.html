@@ -1,0 +1,80 @@
+<h1>RPA+视频号无人直播涨粉保姆级教程</h1>
+<blockquote>来源：<a href="https://ev0ft8k60w2.feishu.cn/docx/XAgYdSyUMoghvCxdjPgcxwtEnqh">https://ev0ft8k60w2.feishu.cn/docx/XAgYdSyUMoghvCxdjPgcxwtEnqh</a></blockquote>
+<p>最近大家可能都从各个渠道发现了一个小风口，那就是视频号对视频号新号推流力度很大，很多人通过视频号疯狂涨粉。</p>
+
+<p>我实操了两遍，大概理解了其中的原理，并且所有人都可以直接复制，快速实现涨粉。自从有幸担任了航海教练后，经常会思考RPA如何结合场景发挥作用，本文介绍如何通过 RPA 实现无人直播，实现睡后涨粉。</p>
+
+<p>首先简单介绍视频号涨粉的原理及操作</p>
+<h1>一、视频号涨粉原理与 SOP</h1>
+<h2>一）准备钩子</h2>
+<p>要准备什么样的钩子主要跟自身领域相关，例如我是 AI 博主，那么我的钩子就是领取 AI 资料。</p>
+<p><img src="img/a3dc578db242e344882470f015152312.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FUjWbfRjtooQaQxUWb0cDnm9nwh/"/></p>
+<h2>二）设置直播内容</h2>
+<ol><li>设置封面：带有钩子的封面</li></ol>
+<ol><li>主题：例如领取 AI 资料</li></ol>
+<p><img src="img/e7ef190b85176295f5d7bc58c1ba160f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ZHxLb3vLpoWUBixAjUzcsZ2ynOd/"/></p>
+<ol><li>根据自己喜欢关闭摄像头，如果是无人直播就关闭摄像头，背景用做好的钩子图片。</li></ol>
+<ol><li>开播后可点击【文件演示】设置高清背景。</li></ol>
+<ol><li>设置背景音乐，选择自己喜欢的就可以。</li></ol>
+
+<h2>三）设置抽奖</h2>
+<p>设置福袋抽奖可以大大增加与用户的互动。下文会详细介绍如何采用RPA实现自动设置福袋，实现无人直播涨粉。</p>
+<p>设置配置可参考：</p>
+<p>1、礼物分配选择：拼手气</p>
+<p>2、总礼物：可自行选择（注意：是总礼物数，不是单个！！！）</p>
+<p>3、中奖名额：1 - 5 个，看热度与在线人数。</p>
+<p>4、开奖时间：设置 1 - 5 min</p>
+<p>5、用户参与方式：关注主播</p>
+<p>6、兑换并发起</p>
+<p>经过测试，1-2分钟抽一个福袋效果是比较好的。</p>
+<p><img src="img/cb6c1f3562d3886c1ead7e5307f3ff85.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MudobO7Ekowg9ZxLQfcc3ZIInug/"/></p>
+
+<h2>四）如何涨人气</h2>
+<p>数据 = 点亮灯牌 + 刷礼物 + 评论 + 引导评论关注点灯牌 + 全平台转发直播间 + 停留时长等</p>
+<p>可以加入一些互助群一起做数据。</p>
+<p>开播后，可发到群里，发个红包，互相上灯牌+点赞+停留 3 - 5 分钟，这样可以让视频号更好地推流。</p>
+
+<p>同时，新号记得用一下官方送的流量券。</p>
+<p><img src="img/f27ca2347d4ab3e63234446f893d530a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QDzEb4cdIowHJbxhVFFcXxCBnVc/"/></p>
+<p><img src="img/e71850b56cd44b6d0c8559d043b491b6.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ClAKbib5noYQTwxgSqOcwFnMnsd/"/></p>
+<h1/>
+<h1>二、RPA 自动设置福袋</h1>
+<p>接下来详细介绍怎么用 7 行 RPA 代码实现无人设置福袋，非常简单，有手就能操作。</p>
+
+<h2>一）提前准备</h2>
+<p>这一步需要手动操作，在手机上创建好视频号直播内容，并点击开始。同时手动设置好福袋抽奖规则。例如：</p>
+<p><img src="img/9cb00d45d44b96ad55c60390ac02724f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Td2UbqQLaose1hxFLZ5cvL3lnNd/"/></p>
+<h2>二）影刀连接手机</h2>
+<p>打开影刀的【手机管理器】，连接好手机。</p>
+<p>要求安卓手机，打开USB调试，部分手机需要打开禁止权限监控</p>
+<p><img src="img/0af7c0b5295d105eda4e5773f8f1fc9e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/JtApbcZ7Oo8ecAx6ozAc1XVanSe/"/></p>
+<p><img src="img/96655b72f665b9a2b4d39e44d363606b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AUGPb9w8joCY8QxaHaxcMfpWnbc/"/></p>
+<p><img src="img/52feff4d1ccf61bf00074a8c46ee8a58.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CbR7bYWWpo3PSmx04SEcoDqInme/"/></p>
+
+<h2>三）创建影刀手机应用</h2>
+<p><img src="img/6645c6b24359c6d57764d9b09208da5b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/KfVIbILtYo2ni2xplbmc5RPtn9c/"/></p>
+<h2>四）拖入【连接手机】指令</h2>
+<p><img src="img/88275bdd03985a55035411dc0946e664.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NHjgbK1VMoZyjDxMmejcM4hVnyg/"/></p>
+<p><img src="img/65e3f8abe11716daa7e6389ea3cb8aab.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EkqEb4KwkoWv0GxPkXxcpEXHnUg/"/></p>
+<h2>五）拖入【无限循环】指令，实现重复运行。</h2>
+<p><img src="img/a993fb7a696569ba5ca2b283b74cee9d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/POd9b5bhloMOONx1jDlcB821nzc/"/></p>
+<h2>六）拖入【点击屏幕（手机）】指令，通过识别图形的方式，点击福袋按钮。</h2>
+<p><img src="img/7ea67ffa90160f0a4c6c331a4048d221.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LxxBbrieyoJYanxjRItcm7IwnwD/"/></p>
+<h2>七）拖入【点击屏幕（手机）】指令，通过识别图形的方式，点击支付按钮。</h2>
+<p><img src="img/04bd1d4d237aaa8421c99c2744e34aa7.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Kzg9bsuIeoaVcrxgr1bceGlonqb/"/></p>
+<h2>八）拖入【点击屏幕（手机）】指令，通过识别图形的方式，点击兑换按钮。</h2>
+<p><img src="img/9ebc45e023d91ec710b3946e0f2a7fe7.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Yz3Eb1Bkroms5OxhUTjchGZ9naf/"/></p>
+<h2>九）添加一个【等待】指令，例如设置了1分钟开奖，可以设置等待70秒后继续操作。</h2>
+<p><img src="img/b6fa67bf34d56ede18dd7abb53a6ff6a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Lho4bY4EhoDJaDx0UCVclcpKnXe/"/></p>
+<h2>十）由于抽奖后会弹窗显示中奖名单，因此添加一个【点击屏幕】指令，点击窗口以外的地方，关闭抽奖。</h2>
+<p><img src="img/32f8540ba052d0d90392096a688d6d09.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/O6txbIqL7o35Wfx7qrmcEZ62nMO/"/></p>
+<p>坐标可以在手机管理器中用鼠标移动获取。</p>
+
+<p>以上就是RPA自动设置福袋抽奖全过程，看看视频操作。</p>
+
+
+<p>最后附上影刀操作全流程。</p>
+<p><img src="img/577a8716b00ac1d5b3d949a6dc355047.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IwKmb4jMHoT8J5xznWEcLBNfnUd/"/></p>
+
+<p>最后，如果有疑问，欢迎提问。</p>
+
