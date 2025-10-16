@@ -1,0 +1,228 @@
+<h1>我用 Cursor 花了不到5分钟找到了头像</h1>
+<blockquote>来源：<a href="https://ktnwm6ohjn.feishu.cn/docx/NqmkdxL5Zo1Ih8xGBKfcIpLAnOh">https://ktnwm6ohjn.feishu.cn/docx/NqmkdxL5Zo1Ih8xGBKfcIpLAnOh</a></blockquote>
+<p>https://t.zsxq.com/R3nuz</p>
+<p><img src="img/4cc5b80b4b1e952ed54703b380463a76.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UDR4brkgUo9PCXxKClNcgZpgnOb/"/></p>
+<p>鱼丸发了一个找头像活动，5000人生财墙找到自己的头像，真有意思，找了快15分钟眼都看花了，仍是没找到圈友的头像😂（对，不是我自己的，因为我的被找到了，而我找不到她的）</p>
+
+<p>@Rice</p>
+<p><img src="img/b9ae879ed970ead40888aa386e16aef3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CA6CbskRYoO03vxKPn7cOuUInex/"/></p>
+
+<p>既然如此，这种事情不交给程序干？立马就上！！！</p>
+<p>等等？听说有人不会用 Cursor? 指路@阿紫的帖子 https://scys.com/articleDetail/xq_topic/1525488422112812</p>
+<h3>1 确认自己的需求</h3>
+<p>要解决的问题是：在大图中找到自己的头像？</p>
+<p>考虑到找图涉及到算法，算法基本都是python实现，所以我一开始就用了python去尝试，如果换其他的代码可能实现会有些困难。</p>
+<p>帮我用python写个图像匹配的代码，在一个 14173 x 3701 的许多头像的图片上，匹配到 大约是 64x64 一张头像。我会提供一张自己的不同分辨率的头像图片，然后用这张图片取 大图里面查找，找到就返回头像范围的截图。能实现么？</p>
+
+<p>把大图像下载下来，发现图像大小为 14173 x 3701 ，然后与 Cursor 对话</p>
+<p><img src="img/2295d5e8c8271cd2c9f800e10b048adc.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/JUUCbt3ekomN02xBO6hcRx2nnEd/"/></p>
+<p><img src="img/258e6b2e811c1b5cad62281fecaa600b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LrN7bMSErolLKzxNsWacDOxHnme/"/></p>
+
+<h3>2 添加命令行调用</h3>
+<p>一下子就实现了！！！ 只用用起来不方便。我告诉 Cursor，用命令行调用。</p>
+<p><img src="img/b4258ab3c32865e29b51d237ff541740.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LEfrbgNyho2evMxMbROcBkoGnXe/"/></p>
+<p><img src="img/48a3760211182b4882df123a59ffa8a2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/OHarbd0NnoXFMKxew8jczvgNnfd/"/></p>
+<h3>3 测试效果并改进</h3>
+<p>测试发现图像是找到了，但是给出的图片只有一个图标大小</p>
+<p><img src="img/373974c935d9c596259942386fac9bfb.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XlmEbLjEQoY4YgxrGkrcCRlDnKf/"/></p>
+<p><img src="img/736033defe03de6567eacb102e8c890f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/U1j9b1hvyoPMxjx6aumcWHPenme/"/></p>
+<p>而且发现会匹配到8个结果，继续优化</p>
+<p><img src="img/1a3362072d7515047baf98d24c348b8a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Xmb2bVCmyoPZ3qxjYu1c5vUunje/"/></p>
+<p><img src="img/1eb6a06896f4e541e065b81f85db312e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SQMgbH4E8o5aGKxCCkzcZ18fnae/"/></p>
+
+<h3>4 放大图片</h3>
+<p>最后在调整下细节：</p>
+<p><img src="img/42de4201ee939689aa882482fb3189bc.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FoIFbgW53o1bz5x6lnwcWLmnnYc/"/></p>
+<p><img src="img/39c2ca067ac9b6b93f2fdaa275c0a77b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/BsopbNltNo92R8xsXkMcpkVhnic/"/></p>
+
+<h3>5 结果图</h3>
+<p>出来的结果图</p>
+<p><img src="img/66f46e9dc6f13de46d80ec0346cddaca.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MRGhbIGUUoB2kCxk8vlcmsOxnWh/"/></p>
+<p><img src="img/d3f54a95acf7c3373e80df176cebac77.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NsFwbC7GPoXZx2xUKlhcOcSRnI4/"/></p>
+<p><img src="img/5210bb97088400468dc1ecbff6487191.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/F0mebgEpUohzSKxwpnWcIIoBnid/"/></p>
+<p>第二个不用猜就知道是 @佳文 吧hhh（佳文，快来学😉）</p>
+<p><img src="img/993ec76c7910b0ea097ad23c914e69e5.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/U8N8b4crnoyhB4x6q8bcz7ien1c/"/></p>
+<p><img src="img/4654674e3a7730f43830eb947664b6d1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/USdUbkfdZo5nWexcxcic79Ofnoe/"/></p>
+<p><img src="img/66ff56c94f2f2cfb58cbe92c243b6c38.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MemJbx1cSoL4TEx7wDFcHaecnoh/"/></p>
+<h3>7 遇到bug</h3>
+<p>这里还出现小插曲，找 @Time 的头像没找到</p>
+<p><img src="img/3b0b803f7ad7d9eb7826cf9571c15d5d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NG7Db4fW2oJbcjxc1KBcKj7xnLb/"/></p>
+<p>没找到原因就是阈值太高了，把默认的0.8调整为0.7</p>
+<p>或者使用命令 python .\find_me.py .\images\scys.jpg --threshold 0.7</p>
+<p><img src="img/fd744d2b1482df3617788bc657cfc22c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QRDgb9rE0ot3zRxvN4RcsWC5nnd/"/></p>
+<p>再试一下就可以了！</p>
+<p><img src="img/84f81acd059da38de66c8c1638c3a253.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AbZQbYppAozM5sxyOG9cbv1snMe/"/></p>
+<p><img src="img/e9420f374f70d78803ded7a06524e51e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UnjpbRnHUoT7UrxxY71cbIhEnIc/"/></p>
+<p><img src="img/039da561d5ed16ee040168db8b98b980.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Cd8Rbi4kDojS4wxqzkrc0A86nMh/"/></p>
+
+<h3>6 代码</h3>
+<p>最后附上代码</p>
+<p>使用方式</p>
+<p>安装库：pip install opencv-python numpy</p>
+<p>运行：python .\find_me.py 大图路径 头像路径</p>
+<pre>import cv2
+import numpy as np
+import argparse
+
+def non_max_suppression(matches, overlap_thresh=0.3):
+    """
+    对重叠的匹配结果进行非极大值抑制
+    
+    参数:
+        matches: 匹配结果列表，每个元素为 (x, y, w, h, conf)
+        overlap_thresh: 重叠阈值，超过此阈值的重叠区域将被抑制
+    """
+    if not matches:
+        return []
+    
+    # 将匹配结果转换为numpy数组
+    boxes = np.array([[x, y, x + w, y + h] for x, y, w, h, _ in matches])
+    scores = np.array([conf for _, _, _, _, conf in matches])
+    
+    # 计算面积
+    area = (boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])
+    
+    # 按照匹配度排序
+    idxs = np.argsort(scores)[::-1]
+    
+    keep = []
+    while len(idxs) &gt; 0:
+        # 保留当前最高分数的框
+        current = idxs[0]
+        keep.append(current)
+        
+        if len(idxs) == 1:
+            break
+            
+        # 计算其他框与当前框的IoU
+        xx1 = np.maximum(boxes[current, 0], boxes[idxs[1:], 0])
+        yy1 = np.maximum(boxes[current, 1], boxes[idxs[1:], 1])
+        xx2 = np.minimum(boxes[current, 2], boxes[idxs[1:], 2])
+        yy2 = np.minimum(boxes[current, 3], boxes[idxs[1:], 3])
+        
+        w = np.maximum(0, xx2 - xx1)
+        h = np.maximum(0, yy2 - yy1)
+        
+        overlap = (w * h) / area[idxs[1:]]
+        
+        # 删除重叠度高的框
+        idxs = np.delete(idxs, np.concatenate(([0], np.where(overlap &gt; overlap_thresh)[0] + 1)))
+    
+    return [matches[i] for i in keep]
+
+def find_avatar(large_image_path, template_path, threshold=0.8):
+    """
+    在大图中查找目标头像
+    
+    参数:
+        large_image_path: 包含多个头像的大图路径
+        template_path: 要查找的单个头像图片路径
+        threshold: 匹配阈值，越高要求越严格
+    
+    返回:
+        找到的头像图片列表，每个元素为(x, y, w, h)和匹配度
+    """
+    # 读取图片
+    large_image = cv2.imread(large_image_path)
+    template = cv2.imread(template_path)
+    
+    # 将模板图片调整为64x64
+    template = cv2.resize(template, (64, 64))
+    
+    # 获取模板尺寸
+    h, w = template.shape[:2]
+    
+    # 模板匹配
+    result = cv2.matchTemplate(large_image, template, cv2.TM_CCOEFF_NORMED)
+    
+    # 找到匹配位置
+    locations = np.where(result &gt;= threshold)
+    matches = []
+    
+    # 获取所有匹配位置
+    for pt in zip(*locations[::-1]):
+        matches.append((pt[0], pt[1], w, h, result[pt[1], pt[0]]))
+    
+    # 应用非极大值抑制
+    matches = non_max_suppression(matches)
+    
+    return matches
+
+def draw_matches(image_path, matches):
+    """
+    在原图上标记匹配位置并保存结果，并保存扩大范围的截图
+    """
+    image = cv2.imread(image_path)
+    for x, y, w, h, conf in matches:
+        # 画红色矩形框，扩大框的范围，增加线条粗细
+        padding = 20  # 框的扩展范围
+        thickness = 5  # 线条粗细
+        
+        # 计算扩展后的框的坐标
+        box_x1 = max(0, x - padding)
+        box_y1 = max(0, y - padding)
+        box_x2 = min(image.shape[1], x + w + padding)
+        box_y2 = min(image.shape[0], y + h + padding)
+        
+        # 在原图上画扩展后的红色框
+        cv2.rectangle(image, (box_x1, box_y1), (box_x2, box_y2), (0, 0, 255), thickness)
+        
+        # 计算扩展区域的坐标（3000x3000）
+        extend_size = 3000
+        half_extend = extend_size // 2
+        center_x = x + w // 2
+        center_y = y + h // 2
+        
+        # 计算扩展区域的边界，确保不超出原图范围
+        x1 = max(0, center_x - half_extend)
+        y1 = max(0, center_y - half_extend)
+        x2 = min(image.shape[1], center_x + half_extend)
+        y2 = min(image.shape[0], center_y + half_extend)
+        
+        # 截取扩展区域
+        extended_avatar = image[y1:y2, x1:x2]
+        
+        # 在扩展区域图片上也画扩展后的红色框
+        relative_x = x - x1
+        relative_y = y - y1
+        box_relative_x1 = max(0, relative_x - padding)
+        box_relative_y1 = max(0, relative_y - padding)
+        box_relative_x2 = min(extended_avatar.shape[1], relative_x + w + padding)
+        box_relative_y2 = min(extended_avatar.shape[0], relative_y + h + padding)
+        
+        cv2.rectangle(extended_avatar, 
+                     (box_relative_x1, box_relative_y1), 
+                     (box_relative_x2, box_relative_y2), 
+                     (0, 0, 255), thickness)
+        
+        # 保存扩展区域截图
+        cv2.imwrite(f'matched_avatar_{x}_{y}.png', extended_avatar)
+    
+    # 保存标记后的大图
+    cv2.imwrite('result.png', image)
+
+# 使用示例
+def main():
+    # 创建命令行参数解析器
+    parser = argparse.ArgumentParser(description='在大图中查找指定头像')
+    parser.add_argument('large_image', help='包含多个头像的大图路径')
+    parser.add_argument('template', help='要查找的头像图片路径')
+    parser.add_argument('--threshold', type=float, default=0.7,
+                      help='匹配阈值 (0-1 之间，默认: 0.8)')
+    
+    # 解析命令行参数
+    args = parser.parse_args()
+    
+    # 查找匹配
+    matches = find_avatar(args.large_image, args.template, args.threshold)
+    
+    if matches:
+        print(f"找到 {len(matches)} 个匹配结果")
+        # 绘制结果
+        draw_matches(args.large_image, matches)
+        print("结果已保存")
+    else:
+        print("未找到匹配结果")
+
+if __name__ == "__main__":
+    main()</pre>
