@@ -1,0 +1,99 @@
+<h1>公众号爆文全自动化代码分享</h1>
+<blockquote>来源：<a href="https://tjhy5ng53f.feishu.cn/docx/EaSSd0KJsoHDysxItnFc3xsgnAh">https://tjhy5ng53f.feishu.cn/docx/EaSSd0KJsoHDysxItnFc3xsgnAh</a></blockquote>
+<p>大家好，我是毛韩，第五期圈友，编号21985。</p>
+<p>上一次分享公众号爆文的复盘，收获了不少圈友的点赞和鼓励，在此感谢大家的认可。</p>
+<p>同时，也有不少圈友希望能用到我写的全自动化软件，于是我花了两天时间，将软件代码全部解耦，并编写了现在这个使用文档，希望能给还在做公众号爆文的圈友们提供一些帮助。</p>
+<p>注意，因为代码量比较多且繁杂（屎山）所以脚本配置起来比较费时间。</p>
+<p>对于有编程经验的圈友来说，整套配置下来需要2h</p>
+<p>对于无编程经验的圈友来说，可能5h以上</p>
+<p>整套脚本配置分为三个部分：</p>
+<ol><li>Python代码部分：爬取对标账号文章并使用GPTAPI生成文章、存入本地文件夹</li></ol>
+<ol><li>飞书部分：整套脚本的控制中心，包括各项参数调整、收益计算等</li></ol>
+<ol><li>影刀部分：控制悦互联浏览器，负责从本地文件夹将文章发布到公众号平台</li></ol>
+<p>文档分为三个部分的教程：</p>
+<ol><li>配置环境</li></ol>
+<ol><li>修改参数</li></ol>
+<ol><li>Q&amp;A（后面圈友遇到问题后，会实时更新到此）</li></ol>
+<hr/>
+<h1>1、配置环境</h1>
+<ol><li>下载Python自动生成脚本</li></ol>
+<ol><li>下载影刀脚本</li></ol>
+<ol><li>下载悦互联浏览器https://kj.chinafic.com</li></ol>
+<ol><li>配置环境</li></ol>
+<ol><li>下载Python（自行百度）</li></ol>
+<ol><li>安装Python包（如何安装自行百度）</li></ol>
+<ol><li>pip install openai</li></ol>
+<ol><li>pip install requests</li></ol>
+<ol><li>pip install selenium</li></ol>
+<ol><li>pip install beautifulsoup4</li></ol>
+<ol><li>pip install python-docx</li></ol>
+<ol><li>pip install pillow</li></ol>
+<ol><li>复制飞书文档模板</li></ol>
+<ol><li>点击打开 </li></ol>
+<ol><li>右上角点击创建副本</li></ol>
+<ol><li>创建飞书应用并配置到表格中（自行百度）</li></ol>
+<ol><li>参考教程：https://open.feishu.cn/community/articles/7298446935350231044</li></ol>
+<ol><li>创建本地文件夹</li></ol>
+<ol><li>在本地创建文件夹，并和Python-&gt;main.py-&gt;#16行对应（尽量和我一样使用D:\BaiduSyncdisk\文章存档，减少出错率）</li></ol>
+<ol><li>每个领域文件夹中要再新建三个文件夹，分别是：爆文文章、待发布、历史文章</li></ol>
+<h1>2、修改参数</h1>
+<ol><li>在Python文件中，搜索Todo，将所有带有Todo标识的参数全都改成你自己的（Todo后面有写要填写的内容）</li></ol>
+<p><img src="img/4bbb716703710d1393138be957e8ddd3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NyRzbYqCMokwRAx6KUuchwkAnTg/"/></p>
+<ol><li>同样的，在影刀RPA脚本中，一样需要搜索Todo、按照提示将参数填写进去</li></ol>
+<ol><li>在飞书表格-&gt;账号配置中，修改配置</li></ol>
+<p><img src="img/4c394f80a2ba3cdf23cad9b320932852.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CA7YbKXWRoYRRfxANzBcJV6FnEb/"/></p>
+<ol><li>账号名称：公众号名称</li></ol>
+<ol><li>平台：默认公众号</li></ol>
+<ol><li>领域：要和本地文件夹中的领域以及「素材配置」文档页的领域相对应，否则会出错；</li></ol>
+<ol><li>天数：（公式）无需更改但不可删除</li></ol>
+<ol><li>主体：无需在意，不可删除</li></ol>
+<ol><li>启动日期：该账号的发布第一篇的日期，无需在意但不可删除</li></ol>
+<ol><li>更新日期：默认为昨天。如果是今天，则脚本会认为今天已经发过文章了，不再重复发送。如果非今天，则会启动发布</li></ol>
+<ol><li>发布数量：每次发布的发布数量，最高数为8，也就是公众号一次最多发8篇文章</li></ol>
+<ol><li>发布次数：每天发布几次文章，没有上限。但该账号当天总发布文章数为（发布次数x发布数量）</li></ol>
+<ol><li>爆文重发：默认为1，如果该账号过去x天内有爆文，且符合素材配置文档中的领域规则，且爆文重发=1时，会优先使用此前的爆文重复发布，如果爆文数量数量不够再补充新文章。如果爆文重发为0则代表当天已经发过爆文。</li></ol>
+<ol><li>公益广告。用于和「自动关闭公益广告RPA配合」关闭后可提升CPM。如果为1则代表已关闭、为0代表未关闭。</li></ol>
+<ol><li>总收益、月度收益、每天收益，用于统计每个账号及总收益情况。可使用「自动查询收益」RPA获取收益</li></ol>
+<ol><li>在飞书表格-&gt;素材配置中，修改配置</li></ol>
+<p><img src="img/feacd2488c8b70bf8f8713d0c2f0c060.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/P9yYbK4auoTjyJxvnNdcaaeLnY2/"/></p>
+<p><img src="img/47f499516360310fb9e4b28d0c6d14da.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DTd0bKhA9o4SioxtDQ9cYS5Dn3e/"/></p>
+<ol><li>领域名称：和账号配置中的领域相对应</li></ol>
+<ol><li>排序/阅读量/时间/是否原创/易撰领域，等参数均为易撰上的参数，不使用易撰素材可不用填写</li></ol>
+<ol><li>RPAing，填写「教育ing」的表格ID</li></ol>
+<ol><li>Prompt，填写「教育APIpro」的表格ID</li></ol>
+<ol><li>原创发布分类，填写公众号发布时，选择的领域第一分类（现已弃用但不可删除）</li></ol>
+<ol><li>原创发布子分类，同上</li></ol>
+<ol><li>素材来源：可选头条/飞书/易撰</li></ol>
+<ol><li>如选择头条，默认从「对标账号库」中寻找该领域的对标账号进行爬取；</li></ol>
+<ol><li>飞书，默认从「教育ing」中爬取已导入的素材（一般不用）</li></ol>
+<ol><li>易撰，默认从易撰中采集当前领域的素材（目前易撰操作需要一直识别验证码，容易卡顿，尽量不要用）</li></ol>
+<ol><li>发布数量：该领域默认的发布数量，如果账号配置中已经填写，则使用账号配置中的发布数量，如果账号配置中未填写，则使用该参数</li></ol>
+<ol><li>最早发布时间：单位为小时。有的领域晚上18点后发比较好、就填18</li></ol>
+<ol><li>是否启用：1为启用，0为不启用；如果为0，脚本不会生成和发布该领域的文章</li></ol>
+<ol><li>是否原标题：1为原标题，0则使用最后一行指令让AI重新生成的标题</li></ol>
+<ol><li>分钟内阅读量：筛选头条文章时使用，意思是60分钟内满足x阅读量</li></ol>
+<ol><li>小时、小时阅读量：筛选头条文章时使用，意思是x小时内满足x阅读量</li></ol>
+<ol><li>大时、大时阅读量：筛选头条文章时使用，意思是x小时内满足x阅读量</li></ol>
+<ol><li>创造来源：弃用</li></ol>
+<ol><li>发布次数：同发布数量意思</li></ol>
+<ol><li>昨天阅读量、前天阅读量、10天量均为筛选头条文章时使用</li></ol>
+<ol><li>天数差、天数差阅读量：筛选头条文章时使用，意思是在x天内的文章，阅读量满足x</li></ol>
+<ol><li>历史爆文周期：单位数字。意思是每天用RPA爬取收益时会自动将该领域x天内的爆文统计出来，并放入「爆文记录」文档，并在发布时使用。如热点类的爆文周期一般设置为1，意思是1天内产生的爆文可再发，超出1天就不发。非实时类领域可设置的多一些，如情感故事类可设置为30，意思是30天内的爆文都可以再发。</li></ol>
+<ol><li>在飞书文档-&gt;key配置中，将GPT4.0直连Key填入</li></ol>
+<ol><li>在飞书文档-&gt;教育APIPro中，将指令按行填入</li></ol>
+<ol><li>其他飞书文档无需配置</li></ol>
+<ol><li>悦互联配置</li></ol>
+<ol><li>将公众号账号添加到悦互联</li></ol>
+<p><img src="img/c5e85a10c52d132921a63e89fc119d8d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/E9njbYyZho9t6jxsko3cXWFTnBe/"/></p>
+<ol><li>打开对应账号网页，将公众号登陆上</li></ol>
+<ol><li>微信配置：运行脚本前需要先登陆一个微信到电脑上，并打开与文件传输助手或其他好友的聊天框。
+脚本运行期间，遇到未登陆或掉登陆的账号，会自动将账号名称发送到微信当前聊天框</li></ol>
+
+<p>将以上注意点全部配置完毕后，就可以尝试运行</p>
+<h1>3、Q&amp;A</h1>
+<ol><li>问：代码中为何有许多重复的代码，不可以精简吗？</li></ol>
+<ol><li>答：可以但比较耗精力，在汽车能跑的时候，即使轮胎上有屎也尽量不要碰，但如果你有兴趣有时间可以自行探索。</li></ol>
+<ol><li>问：为什么我的脚本运行不成功？</li></ol>
+<ol><li>答：90%的可能是你参数不正确</li></ol>
+<ol><li>5%可能是飞书配置有问题。如果是就找飞书客服或自行百度如何使用Python链接飞书文档</li></ol>
+<ol><li>问：</li></ol>
