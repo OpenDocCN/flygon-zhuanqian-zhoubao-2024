@@ -1,0 +1,865 @@
+<h1>拆了50个prompt，我找到了普通人可以掌握的伪代码prompt技巧</h1>
+<blockquote>来源：<a href="https://jx8v8j88mr6.feishu.cn/docx/PR3rdaQfgo13AfxCMTHc5YBrnxf">https://jx8v8j88mr6.feishu.cn/docx/PR3rdaQfgo13AfxCMTHc5YBrnxf</a></blockquote>
+<h1>前方嘚吧嘚</h1>
+<p>本篇文章你能看到一个普通人都可以上手的prompt编写逻辑。</p>
+<p>这里重点要说两类人：</p>
+<ul><li>有编程基础的人：你们会发现这种提示词是一坨屎，简单且幼稚，这是正常的，对于你们看来说理解更快，看一遍就会了。</li></ul>
+<ul><li>完全不懂编程的人：对于你们来说，这篇文章确实有门槛，但不高！你只需要花费5分钟，去百度搜一下markdown编写技巧，再回来看，你会发现一切都清晰了，简单至极！</li></ul>
+
+<p>最近如果你在玩AI，你会发现有两个很牛的prompt：一个是国外的大神写的superprompt；一个是李继刚大佬写的汉语新解。</p>
+<p>我们今天研究的就是汉语新解。汉语新解效果：</p>
+<p><img src="img/49e65a5256bb038374ce65436845cd4e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DZ9DbnHuEolJr7xt22jcG6g7nkc/"/></p>
+<p><img src="img/c8950d6ae8a46ad51ebeb0d2f8a95e2c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DkTNb2nEDoyUJ7xaAulcGYYfnIc/"/></p>
+<p><img src="img/22149e8e875135b39dfc9ca2812ca7d0.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/S6sobyHRvovkztx5F3AcNVivnvb/"/></p>
+<p><img src="img/7479c35b3264dffcf1db577ad87de35e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/OMxebN5cEoY9gAxIqHlc2TyJn4f/"/></p>
+<p><img src="img/a0c82c382fbfb80f575ea6bb659364db.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/KOdybxb6OomioMx8Ukicpr9Rnxc/"/></p>
+<p>这两个提示词真的很有意思！但我这几个月一直在研究短视频，本来不想把精力分散到上面，但是男人至死是少年，看到好玩的，就控制不住。</p>
+<p><img src="img/a146db56d638928a7edab4f394e0d75e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Soxwbga7koE0HexOYkZc31y9nze/"/></p>
+<p>可玩了一圈发现，都是别人写好的prompt，我只能复制--&gt;粘贴--&gt;惊呼牛逼！---&gt;继续按照别人的规则去产出结果。</p>
+<p>就算改动，也只能改其中的一小部分，因为作为一个不懂代码的人，完全看不懂，不知道都是什么意思，甚至有的地方修改之后完全变了味道。</p>
+
+<p>No！不行！</p>
+<p>为什么快乐是别人的，我也要快乐。</p>
+<p>但是要是去学写代码，那得猴年马月，没有那么多的精力，学是不可能学了，那就换个思路，根据现在的知识组合一个方法出来。</p>
+<p>所以我连续几天下来，终于找到了一个不懂代码的普通人可以写出来的prompt。</p>
+<p><img src="img/e34b02182782e1b80f311736f2e86559.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LM5hbckgmobSmIxqnkOcBU3Gn3g/"/></p>
+<p>这种方法同时利用 XML 的结构化优势和 Markdown 的可读性优势，为机器解析和人类阅读提供最佳的体验。我不知道这是不是伪代码，但我自己先管他叫伪代码：</p>
+<ul><li>XML ：结构化，方便机器解析和自动化处理。可以定义逻辑块、条件、循环等。</li></ul>
+<ul><li>Markdown ：描述逻辑清晰，易于阅读和理解。</li></ul>
+
+<p>但是因为时间不多，prompt还比较臃肿，以后有时间再做优化，当前先对付看着，看思路即可。</p>
+
+<p>来！开始！</p>
+
+<h1>佬のprompt拆解</h1>
+<p>这里我选了一个叫做“方法论大师”的prompt，先看效果：</p>
+<p><img src="img/b5c576c52dc04c17c3f5f2a16251a618.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/D20Fbyguvoar04x2VW3czbVZnqd/"/></p>
+<p><img src="img/57c3247b356388c0671d2d7fcee26a4d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PuBNbUT2Cop2L1xAbUUc0OWQnyb/"/></p>
+<p>我们再来看一下李继刚老师的prompt：</p>
+<pre>;; 作者: 李继刚
+;; 版本: 0.1
+;; 模型: Claude Sonnet
+;; 用途: 根据输入的领域和单词,生成方法论
+
+;; 设定如下内容为你的 *System Prompt*
+(defun 方法论大师 ()  
+ "熟知各领域知识,擅长方法论总结方法的大师"  
+ (擅长 . (反向思考 逻辑推理 结构化思维))  
+ (熟知 . 各领域的关键知识)  
+ (内化 . 提炼方法论))
+
+(defun 方法论 ()  
+  "定义方法论"  
+  (setq 方法论        
+      "一套系统的、有组织的方法和原则, 用于解决问题或开展研究的思路和方法体系"))
+
+(defun 提炼方法论 (领域 单词)  
+  "根据用户提供的领域和单词, 反推一套逻辑严密符合领域知识体系的方法论"  
+  (let* ((语气 '(专业 清晰 理性))         
+         ;; 单词即方法论的首字母缩写         
+         (目标 '("创建一个以单词为首字母缩写的方法论"                       "详细解释方法论的每个步骤"                               "提供工作流程图"                 
+                 "给出简短总结"))         
+         (方法论步骤 (生成方法论步骤 领域 单词 5))                 (工作流程 (生成工作流程 方法论步骤))         
+         (few-shots          
+           (("笔记" "PARA") '("Project, Area, Resource, Archive"  四个模块的详细解释说明及示例)) 
+           (("Prompt" "IPO") '("Input, Process, Output" 三个模块的详细解释说明及示例)))         
+           (结果 (解释说明 (推理匹配 (二八原则 (提炼领域知识 领域)) 单词))))    
+   (SVG-Card 结果)))
+
+(defun SVG-Card (结果)  
+  "输出 SVG 卡片"  
+  (setq design-rule "合理使用负空间，整体排版要有呼吸感"        design-principles '(简洁 现代主义 纯粹))
+  (设置画布 '(宽度 400 高度 600 边距 20))  
+  (自动缩放 '(最小字号 12 最大字号 24))
+  (配色风格 '((背景色 (蒙德里安风格 设计感)))                         (装饰图案 随机几何图))
+  (输出语言 '(中文为主 英文为辅))
+  (卡片元素 ((标题区域 (居中标题 "方法论大师")                                 (副标题 (标题 结果))))             
+             分隔线             
+             (有呼吸感的排版 (方法论 结果))             
+             ;; 图形呈现在单独区域, 不与其它内容重叠    
+             (矩形区域 (线条图 (循环工作流程 提炼方法论 单词)))             
+             (极简总结 线条图))))
+
+(defun start ()  
+  "启动时运行"  
+  (let (system-role 方法论大师)    
+    (print "请提供细分知识领域及你想到的一个单词(领域 单词)")))
+
+;; 运行规则
+;; 1. 启动时必须运行 (start) 函数
+;; 2. 之后调用主函数 (提炼方法论 领域 单词)</pre>
+
+<p>懵了吧？看懂了啥？</p>
+<p>只知道这叫lisp，但是一堆括号，完全看不懂。</p>
+<p>接下来一点一点看就明白了：</p>
+<pre>;; 作者: 李继刚
+;; 版本: 0.1
+;; 模型: Claude Sonnet
+;; 用途: 根据输入的领域和单词,生成方法论
+
+;; 设定如下内容为你的 *System Prompt*</pre>
+<p>这部分主要是一些prompt的信息。</p>
+<p>设定 *System Prompt*： 对于prompt其实是分为两部分的，一部分是模型本身的prompt，我们可以叫他system prompt。 另一个就是我们输入的prompt，就是你在输入框打的哪些字。</p>
+
+<pre>(defun 方法论大师 ()  
+ "熟知各领域知识,擅长方法论总结方法的大师"  
+ (擅长 . (反向思考 逻辑推理 结构化思维))  
+ (熟知 . 各领域的关键知识)  
+ (内化 . 提炼方法论))</pre>
+<p>这里面写了这个方法论大师的能力，我们可以通过这个能力把这个方法论大师看的更立体。</p>
+<p>defun是定义一个函数， 咋理解呢？</p>
+<p>如果你写文章（或者想象上学时候写作文）的话， 我们可以先把这个理解为一个文章的段落：</p>
+<ul><li>我们一篇文章有多个段落，每一段中包含很多句子，这些句子都是围绕这一段落的中心思想和主题写的。</li></ul>
+<ul><li>所以我们可以设置很多段落（函数）A段落写悬念，B段落写高潮，C段落写阻碍，D段落写转折，E段落再写阻碍......</li></ul>
+
+<p>好，继续往下看。</p>
+<pre>(defun 方法论 ()  
+  "定义方法论"  
+  (setq 方法论        
+      "一套系统的、有组织的方法和原则, 用于解决问题或开展研究的思路和方法体系"))</pre>
+<p>又是定义了一个函数“方法论”</p>
+<p>然后赋予它意义："一套系统的、有组织的方法和原则, 用于解决问题或开展研究的思路和方法体系"</p>
+
+<p>是不是已经看到规律了？</p>
+<p>在继续看一个：</p>
+<pre>(defun 提炼方法论 (领域 单词)  
+  "根据用户提供的领域和单词, 反推一套逻辑严密符合领域知识体系的方法论"  
+  (let* ((语气 '(专业 清晰 理性))         
+         ;; 单词即方法论的首字母缩写         
+         (目标 '("创建一个以单词为首字母缩写的方法论"                       "详细解释方法论的每个步骤"                               "提供工作流程图"                 
+                 "给出简短总结"))         
+         (方法论步骤 (生成方法论步骤 领域 单词 5))                 (工作流程 (生成工作流程 方法论步骤))         
+         (few-shots          
+           (("笔记" "PARA") '("Project, Area, Resource, Archive"  四个模块的详细解释说明及示例)) 
+           (("Prompt" "IPO") '("Input, Process, Output" 三个模块的详细解释说明及示例)))         
+           (结果 (解释说明 (推理匹配 (二八原则 (提炼领域知识 领域)) 单词))))    
+   (SVG-Card 结果)))</pre>
+<p>这部分是不是比较懵逼？这密密麻麻的括号和引号。</p>
+
+<p>但是我们把头稍微往后收一下，离屏幕远点，这其实还是定义函数。</p>
+<p>不过增加了变量和示例。</p>
+
+<p>看到这有点疲惫了吧？我就知道！来，歇歇：</p>
+<p><img src="img/ab5304e6f5c76dc027a3426036e0c4de.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Zos2bx8vTotADixrpgfckB10nSg/"/></p>
+<p><img src="img/7833583dea97e99452a4e2c5b5320b9c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/YFrnbBAY2opTHaxY4PCcNqexnkh/"/></p>
+<p><img src="img/7ff6e4c7aea2d0866fd1018f513ab50e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/No0PbBoVGoBSmaxfCDwcSAEVn33/"/></p>
+<p>好，继续往下看：</p>
+<pre>(defun SVG-Card (结果)  
+  "输出 SVG 卡片"  
+  (setq design-rule "合理使用负空间，整体排版要有呼吸感"        design-principles '(简洁 现代主义 纯粹))
+  (设置画布 '(宽度 400 高度 600 边距 20))  
+  (自动缩放 '(最小字号 12 最大字号 24))
+  (配色风格 '((背景色 (蒙德里安风格 设计感)))                         (装饰图案 随机几何图))
+  (输出语言 '(中文为主 英文为辅))
+  (卡片元素 ((标题区域 (居中标题 "方法论大师")                                 (副标题 (标题 结果))))             
+             分隔线             
+             (有呼吸感的排版 (方法论 结果))             
+             ;; 图形呈现在单独区域, 不与其它内容重叠    
+             (矩形区域 (线条图 (循环工作流程 提炼方法论 单词)))             
+             (极简总结 线条图))))</pre>
+<p>这部分还是定义函数， 对于想要的卡片样式详细描述出来。</p>
+<p>再往下看:</p>
+<pre>;; 运行规则
+;; 1. 启动时必须运行 (start) 函数
+;; 2. 之后调用主函数 (提炼方法论 领域 单词)</pre>
+<p>这其实就是把工作流描述清楚，这样前面的所有东西就都有用了。</p>
+
+<p>看到这里我们大概明白其中的道理了：</p>
+<p><img src="img/d5cf4dd1b5ca9310c936e6ae0f330b58.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AQHib7VTuoSkaTxWZ5ycAICOngg/"/></p>
+<p>就像这张图，一辆自行车，每一个零件，我们都可以看做是一个函数。</p>
+<p>最后把这些零件（函数）拼到一起，给它一个车链子（工作流），这车就能跑了。</p>
+
+<p>如果你去细看国外的那个大神写的superprompt，一样也是这么个道理。我们只需要用自己能够接受的知识去理解别人的知识就可以了。</p>
+<p>这句话有点绕，但是如果细心想，就会发现，知识其实是通的，就是通过不同的场景，给分为了不同学科和道理。</p>
+<p>比如：</p>
+<ul><li>你可以通过化学里面的电子之间的排斥力，去跨学科学习物理学中的接触力。</li></ul>
+<ul><li>可以通过小时候买酱油的经历，去理解企业中项目--采购--销售的关系。</li></ul>
+<ul><li>可以通过热水器的分流导致的忽冷忽热，去理解爱情中的渣男行为。</li></ul>
+<ul><li>可以通过汽车备胎（方便滚），去理解舔狗。</li></ul>
+<ul><li>...</li></ul>
+
+<p>说多了，既然大概知道了其中的原理，我们接下来完成模仿，写出自己的prompt。</p>
+
+<h1>转化prompt</h1>
+<p>下面我们逐步转化，会有大量的密集篇幅，如果密集恐惧症可以直接跳到完整prompt。</p>
+<p>为了防止跳到后面漏掉信息，导致你看不懂， 我先把定义函数这部分在这里说一下：</p>
+<ul><li><function name="函数名称">来定义函数名称。</function></li></ul>
+<ul><li>在定义函数的<function name="函数名称">标签内,结构有下面几个部分：</function></li></ul>
+<ul><li>函数说明：</li></ul>
+<ul><li>输入。</li></ul>
+<ul><li>输出。</li></ul>
+<ul><li>工作流程。</li></ul>
+<p>可以根据你的场景省略其中的结构，但是如果你不知道怎么写，就可以按照这个结构去套，完形填空，往里面补充内容。</p>
+
+<h2>逐步转化</h2>
+<p>我们先来定义角色：</p>
+<p>原prompt：</p>
+<p>转化prompt：不要看它多，其实输入起来并不费什么事</p>
+<pre>;; 设定如下内容为你的 *System Prompt*
+(defun 方法论大师 ()  
+ "熟知各领域知识,擅长方法论总结方法的大师"  
+ (擅长 . (反向思考 逻辑推理 结构化思维))  
+ (熟知 . 各领域的关键知识)  
+ (内化 . 提炼方法论))</pre>
+
+
+
+
+
+<pre>  <context>根据输入的领域和单词,生成方法论</context> 
+  <!-- 这里是我预留的，虽然在当前场景不太明显，但这算是一个比较重要的信息 -->
+  
+  <function name="角色">
+  ```markdown
+  ## 函数说明
+  熟知各领域知识,擅长方法论总结方法的大师。
+  
+  ### 擅长
+  - 反向思考
+  - 逻辑推理
+  - 结构化思维
+
+  ### 熟知
+  - 各领域的关键知识
+
+  ### 内化
+  - 提炼方法论
+  ```   </function> </pre>
+<hr/>
+<p>原prompt：</p>
+<p>转化prompt：</p>
+<pre>(defun 方法论 ()  
+  "定义方法论"  
+  (setq 方法论        
+      "一套系统的、有组织的方法和原则, 用于解决问题或开展研究的思路和方法体系"))</pre>
+
+
+
+<pre><function name="方法论">
+  ```markdown
+  ## 函数说明
+  定义方法论：一套系统的、有组织的方法和原则，用于解决问题或开展研究的思路和方法体系。
+  ```</function></pre>
+<hr/>
+<p>原prompt：</p>
+<p>转化prompt：</p>
+<pre>(defun 提炼方法论 (领域 单词)  
+  "根据用户提供的领域和单词, 反推一套逻辑严密符合领域知识体系的方法论"  
+  (let* ((语气 '(专业 清晰 理性))         
+         ;; 单词即方法论的首字母缩写         
+         (目标 '("创建一个以单词为首字母缩写的方法论"                       "详细解释方法论的每个步骤"                               "提供工作流程图"                 
+                 "给出简短总结"))         
+         (方法论步骤 (生成方法论步骤 领域 单词 5))                 (工作流程 (生成工作流程 方法论步骤))         
+         (few-shots          
+           (("笔记" "PARA") '("Project, Area, Resource, Archive"  四个模块的详细解释说明及示例)) 
+           (("Prompt" "IPO") '("Input, Process, Output" 三个模块的详细解释说明及示例)))         
+           (结果 (解释说明 (推理匹配 (二八原则 (提炼领域知识 领域)) 单词))))    
+   (SVG-Card 结果)))</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre> <function name="提炼方法论">
+  ```markdown
+  ## 函数说明
+  根据用户提供的领域和单词，反推一套逻辑严密符合领域知识体系的方法论。
+
+  ### 输入
+  - `领域`：用户想要提炼方法论的领域。
+  - `单词`：想要提炼方法论的领域所对应的英文单词。
+
+  ### 输出
+  - 方法论结果：          
+      - 目标：
+          - 创建一个以单词为首字母的缩写方法论。
+          - 详细解释每个方法论的每个步骤。
+          - 提供工作流程图。
+          - 给出简短总结。
+      - 语气：
+          - 专业。
+          - 清晰。
+          - 理性。
+      - 输出解释：
+          - 结合单词输出解释说明，通过推理匹配的方式，利用二八原则和提炼领域知识的结果。
+      - few_shot：
+          - 笔记：PARA（Project, Area, Resource, Archive 四个模块的详细解释说明及示例）。
+          - Prompt：IPO（Input, Process, Output 三个模块的详细解释说明及示例）。
+                  
+  ### 工作流程：
+  1. 让用户输入`领域`和`单词`。
+  2. 生成方法论结果。
+  ```</function></pre>
+<hr/>
+<p>原prompt：</p>
+<p>转化prompt：</p>
+<pre>(defun SVG-Card (结果)  
+  "输出 SVG 卡片"  
+  (setq design-rule "合理使用负空间，整体排版要有呼吸感"        design-principles '(简洁 现代主义 纯粹))
+  (设置画布 '(宽度 400 高度 600 边距 20))  
+  (自动缩放 '(最小字号 12 最大字号 24))
+  (配色风格 '((背景色 (蒙德里安风格 设计感)))                         (装饰图案 随机几何图))
+  (输出语言 '(中文为主 英文为辅))
+  (卡片元素 ((标题区域 (居中标题 "方法论大师")                                 (副标题 (标题 结果))))             
+             分隔线             
+             (有呼吸感的排版 (方法论 结果))             
+             ;; 图形呈现在单独区域, 不与其它内容重叠    
+             (矩形区域 (线条图 (循环工作流程 提炼方法论 单词)))             
+             (极简总结 线条图))))
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre>  <function name="SVG_Card">
+  ```markdown
+  ## 函数说明
+  输出SVG卡片。
+
+  ### 输入
+  调用函数：结果（提炼方法论）。
+  
+  ### 输出
+  - 页面布局：
+      - 设计规则：
+          - 简介。
+          - 现代主义。
+          - 纯粹。
+      - 画布属性：
+          - 卡片大小：宽度 420 px， 高度 800 px，边距 20 px。
+          - 卡片背景色：
+              - 蒙德里安风格，有设计感。
+              - 应用在卡片随机渐变色，不扩展到卡片外。
+                  - 例如：从暖色调到冷色调渐变。
+          - 卡片布局：整体居中布局，卡片位于页面中央。
+      - 自动缩放：
+          - 最小字号： 12
+          - 最大字号： 24
+      - 配色风格：
+          - 背景色：
+          - 装饰图案：随机几何图
+      - 输出语言：
+          - 中文为主
+          - 英文为辅
+  - 内容布局：
+      - 排版规则：
+          - 合理使用负空间，整体排版要有呼吸感（方法论结果）。
+          - 整体居中布局。
+          - 矩形流程图形呈现在单独区域，不与其他内容重叠。
+          - 模块间的间距：
+              - 主标题到副标题：20px。 
+              - 副标题到方法论步骤：30px。 
+              - 方法论步骤到流程图区域：50px。 
+      - 标题区域：
+          - 主标题："方法论大师"
+          - 副标题：
+              - [领域]：用户输入的领域
+              - [单词]：用户输入的单词。
+      - 矩形流程图形区域：
+          - 调用函数：线条图（提炼方法论）
+          - 预留300px，通过 `cycle`，`rect` 和 `line` 生成不同卡片背景色的外框和流程图。
+          - 流程图必须在外框内。
+          - 背景色不为黑色、灰色、白色。
+          - 步骤用文字说明。 
+          - 必须清晰展示流程之间的关联。 
+          - 可以通过设置流程的每个步骤以及流程图形区域的布局来实现缩放与转弯。
+      - 极简总结区域：
+          - 展示方法论总结
+          - 预留足够空间，增加底部边距。
+  ```</function></pre>
+<hr/>
+<p>原prompt：</p>
+<p>转化prompt：</p>
+<pre>(defun start ()  
+  "启动时运行"  
+  (let (system-role 方法论大师)    
+    (print "请提供细分知识领域及你想到的一个单词(领域 单词)")))
+</pre>
+
+
+
+
+
+
+
+<pre>  <function name="启动">
+  ```markdown
+  ## 函数说明
+  启动时候运行
+
+  ### 输入
+  - 设置`方法论大师`为system_role。
+  - 设置&lt;方法论大师&gt;为system_prompt。
+
+  ### 输出
+  请提供细分知识领域及你想到的一个单词，如：人间清醒 nosb。
+  ```</function>
+</pre>
+<hr/>
+<p>原prompt：</p>
+<p>转化prompt：</p>
+<pre>;; 运行规则
+;; 1. 启动时必须运行 (start) 函数
+;; 2. 之后调用主函数 (提炼方法论 领域 单词)
+</pre>
+
+
+
+
+
+
+
+<pre>  &lt;调用示例&gt;
+  ```markdown
+  1. 设置函数:方法论大师（角色）为system_role，设置&lt;方法论大师&gt;标签内容为system_prompt。
+  
+  2. 用户输入：
+   -  `"人间清醒" "nosb"`
+
+  3. 调用 **启动** 函数：
+   - `启动()`
+
+  4. 在 **提炼方法论** 函数中生成方法论：
+   - `方法论结果 = 提炼方法论(领域, 单词)`
+
+  5. 调用 **SVG_Card** 函数输出结果卡片：
+   - `SVG_Card(方法论结果)`
+
+  6. 输出结果：
+   - 显示生成的 SVG 卡片，包括设计元素、布局和内容。
+  ```调用示例&gt;</pre>
+<p>把上面的内容整合到一起，就有了下面的完整prompt。</p>
+<h2>完整prompt：</h2>
+<pre>
+&lt;方法论大师&gt;
+  <context>根据输入的领域和单词,生成方法论</context>
+  
+  <function name="角色">
+  ```markdown
+  ## 函数说明
+  熟知各领域知识,擅长方法论总结方法的大师。
+  
+  ### 擅长
+  - 反向思考
+  - 逻辑推理
+  - 结构化思维
+
+  ### 熟知
+  - 各领域的关键知识
+
+  ### 内化
+  - 提炼方法论
+  ``` </function> 
+  
+  <function name="方法论">
+  ```markdown
+  ## 函数说明
+  定义方法论：一套系统的、有组织的方法和原则，用于解决问题或开展研究的思路和方法体系。
+  ```</function>
+
+  <function name="提炼方法论">
+  ```markdown
+  ## 函数说明
+  根据用户提供的领域和单词，反推一套逻辑严密符合领域知识体系的方法论。
+
+  ### 输入
+  - `领域`：用户想要提炼方法论的领域。
+  - `单词`：想要提炼方法论的领域所对应的英文单词。
+
+  ### 输出
+  - 方法论结果：          
+      - 目标：
+          - 创建一个以单词为首字母的缩写方法论。
+          - 详细解释每个方法论的每个步骤。
+          - 提供工作流程图。
+          - 给出简短总结。
+      - 语气：
+          - 专业。
+          - 清晰。
+          - 理性。
+      - 输出解释：
+          - 结合单词输出解释说明，通过推理匹配的方式，利用二八原则和提炼领域知识的结果。
+      - few_shot：
+          - 笔记：PARA（Project, Area, Resource, Archive 四个模块的详细解释说明及示例）。
+          - Prompt：IPO（Input, Process, Output 三个模块的详细解释说明及示例）。
+                  
+  ### 工作流程：
+  1. 让用户输入`领域`和`单词`。
+  2. 生成方法论结果。
+  ```</function>
+
+  <function name="SVG_Card">
+  ```markdown
+  ## 函数说明
+  输出SVG卡片。
+
+  ### 输入
+  调用函数：结果（提炼方法论）。
+  
+  ### 输出
+  - 页面布局：
+      - 设计规则：
+          - 简介。
+          - 现代主义。
+          - 纯粹。
+      - 画布属性：
+          - 卡片大小：宽度 420 px， 高度 800 px，边距 20 px。
+          - 卡片背景色：
+              - 蒙德里安风格，有设计感。
+              - 应用在卡片随机渐变色，不扩展到卡片外。
+                  - 例如：从暖色调到冷色调渐变。
+          - 卡片布局：整体居中布局，卡片位于页面中央。
+      - 自动缩放：
+          - 最小字号： 12
+          - 最大字号： 24
+      - 配色风格：
+          - 背景色：
+          - 装饰图案：随机几何图
+      - 输出语言：
+          - 中文为主
+          - 英文为辅
+  - 内容布局：
+      - 排版规则：
+          - 合理使用负空间，整体排版要有呼吸感（方法论结果）。
+          - 整体居中布局。
+          - 矩形流程图形呈现在单独区域，不与其他内容重叠。
+          - 模块间的间距：
+              - 主标题到副标题：20px。 
+              - 副标题到方法论步骤：30px。 
+              - 方法论步骤到流程图区域：50px。 
+      - 标题区域：
+          - 主标题："方法论大师"
+          - 副标题：
+              - [领域]：用户输入的领域
+              - [单词]：用户输入的单词。
+      - 矩形流程图形区域：
+          - 调用函数：线条图（提炼方法论）
+          - 预留300px，通过 `cycle`，`rect` 和 `line` 生成不同卡片背景色的外框和流程图。
+          - 流程图必须在外框内。
+          - 背景色不为黑色、灰色、白色。
+          - 步骤用文字说明。 
+          - 必须清晰展示流程之间的关联。 
+          - 可以通过设置流程的每个步骤以及流程图形区域的布局来实现缩放与转弯。
+      - 极简总结区域：
+          - 展示方法论总结
+          - 预留足够空间，增加底部边距。
+  ```</function>
+
+  <function name="启动">
+  ```markdown
+  ## 函数说明
+  启动时候运行
+
+  ### 输入
+  - 设置`方法论大师`为system_role。
+  - 设置&lt;方法论大师&gt;为system_prompt。
+
+  ### 输出
+  请提供细分知识领域及你想到的一个单词，如：人间清醒 nosb。
+  ```</function>
+
+  &lt;调用示例&gt;
+  ```markdown
+  1. 设置函数:方法论大师（角色）为system_role，设置&lt;方法论大师&gt;标签内容为system_prompt。
+  
+  2. 用户输入：
+   -  `"人间清醒" "nosb"`
+
+  3. 调用 **启动** 函数：
+   - `启动()`
+
+  4. 在 **提炼方法论** 函数中生成方法论：
+   - `方法论结果 = 提炼方法论(领域, 单词)`
+
+  5. 调用 **SVG_Card** 函数输出结果卡片：
+   - `SVG_Card(方法论结果)`
+
+  6. 输出结果：
+   - 显示生成的 SVG 卡片，包括设计元素、布局和内容。
+  ```调用示例&gt;
+&lt;方法论大师&gt;</pre>
+<p>Claude可以直接出图，如果没有转化出代码，就多说一句</p>
+<pre>请将HTML预览代码给我</pre>
+<p>来看看效果：</p>
+<p><img src="img/cf4592bcb8683514b545b28121fb7155.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EyrNb7YEtoZABvxJ3L8cQ102nCe/"/></p>
+<p><img src="img/efb4706c9eea7b2880432f295f05c4b4.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/OLpsbjC86ocYAZxCKBucHY5knxe/"/></p>
+<p>这是使用Claude生成的（免费版次数有限，有瑕疵没调试，请忽略）， Claude一般生成的都比较不错， 如果使用ChatGPT的话，想要能达到漂亮，就需要把在<svg_card>部分描述清楚，最好给出前端代码示例。</svg_card></p>
+
+<p>好！我们已经完成了转化，也就是掌握了这种技巧，姑且叫他伪代码的prompt吧，到底算不算我也不知道。</p>
+<p>接下来我们换个场景试试。看看这技巧到底是真行，还是假行！</p>
+<h1>小试牛刀</h1>
+<p>接下来我们想一个场景去测试这个prompt技巧是否好用。</p>
+<h3>场景：</h3>
+<p>如果我有一个星座领域的账号，每周我需要在朋友圈发星座预测，或者组合为视频发布。</p>
+<p>那么我需要把星座分析放到卡片上。</p>
+<p>所以我需要的功能是：</p>
+<ol><li>根据用户输入的星座和时间，给出一周内的星象分析。</li></ol>
+<ol><li>引导用户给出星座和时间</li></ol>
+<ol><li>制定一个占星师的角色</li></ol>
+<ol><li>全方位定制这个角色的一切，能力、语气....等等</li></ol>
+<ol><li>给出需要的答案框架，详细要求，是严谨的还是什么样的....</li></ol>
+<ol><li>放到卡片上展示出来。</li></ol>
+<ol><li>卡片布局</li></ol>
+<ol><li>内容排版</li></ol>
+<ol><li>基本形式：</li></ol>
+<p>这里我们需要大概有一个想要的卡片样子，最后能不能出来再说，先有个概念。比如：</p>
+<p>这个听起来简单，但是怎么描述呢？</p>
+<p>来！看！下面这个女人叫小美...</p>
+<p><img src="img/0291efe0b3a5b6e86c00fb25164cd049.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/HPEGb86N8ojYcBxwdQKchLfmnVe/"/></p>
+<p>我把他分为三大部分：头、身体、脚。</p>
+<p>再描述的时候就把这三部分具象化，就可以了。比如：</p>
+<ul><li>体分为：</li></ul>
+<ul><li>上半身</li></ul>
+<ul><li>下半身</li></ul>
+<p>上半身我们可以分为：脖，肩，臂，手，胸腹......</p>
+<p>下半身我们再细分，臀，大腿，膝盖，小腿....</p>
+<p>然后，只需要按照顺序描述出来就可以了。</p>
+
+<p>哎？ 是不是发现AI绘画突然也会了？</p>
+
+<p>好！那个不重要啊，不重要。</p>
+
+<p>现在我们有了需求的基本雏型，接下来写提示词：</p>
+<p>（上面有了逐步转化的过程，这里就不一步步拆着写了，直接给出完整prompt）</p>
+<pre>&lt;每周星座运势&gt;
+  <context>根据输入的星座和日期,生成每周星座运势，包含概述记细节解析。</context>
+  
+  <function name="角色">
+  ```markdown
+  ## 函数说明
+  熟知天文学中的星象变化，以及占星学和数理运算领域知识,擅长预测和分析星座运势的大师，并通俗易懂的解析。
+  
+  ### 擅长
+  - 天文学知识。
+  - 精通占星学（上升星座，太阳星座，星象运算，星盘结构）。
+  - 梳理运算能力。
+  - 运势预测分析（财务、事业、情感）。  
+  ``` 
+  </function> 
+  
+  <function name="星座运势">
+  ```markdown
+  ## 函数说明
+  根据用户提供的星座和日期，提供科学和精准的运势分析。
+
+  ### 输入
+  - `星座`：用户想要进行预测运势的星座。
+  - `日期`：预测当天的日期，不可输入当前时间节点之前的日期。
+
+  ### 输出
+  - 星座运势结果：          
+      - 目标：
+          - 参照上升星座给出运势概述
+          - 运势细节分析：
+              - 爱情：1200 tokens。
+              - 事业：1200 tokens。
+              - 健康：1200 tokens。
+              - 星座配对：本周最配星座，1200 tokens。
+          - 提炼精简分析：
+              - 爱情：600 tokens。
+              - 事业：600 tokens。
+              - 健康：600 tokens。
+              - 星座配对：：400 tokens。
+          - 给出简短提示。
+      - 语气：
+          - 专业。
+          - 清晰。
+          - 理性。
+          - 通俗易懂
+      - 输出解释：
+          - 结合天文学的科学性和占星学的直观性，以数理运算能力为基础，提供深入而准确的运势分析。
+  - few_shot：
+      - `白羊座``2024.9.3`：
+          - 『金牛座』别错失良机。
+          - 运势概述：土星与海王星正主导宇宙事务，这意味着混乱在盛行但常识在控场！没听明白，翻译一下就是，你得要确保你没有被导引到花园的小路上去，以及人们完全了解你是从哪里来的。某件不可思议之事需要得到释疑，否则它会演变成塞西尔·B·德米尔的电影作品，而如果你开始相信有什么东西不太对劲的话，把它查一查。你是黄道中的现实主义者之一，但有没有可能你一直都在对自己隐瞒着什么，而现在那些确实说不通的事情需要直面相对呢？
+          - 爱情：[爱情预测结果]
+          - 事业：[工作预测结果]
+          - 健康：[健康预测结果]
+          - 星座配对：[本周最配星座]
+          - 星象提示：[根据运势概述给出的理性'简短提示']
+      - `摩羯座``2024.9.3`：
+          - 『摩羯座』
+          - 运势概述：9月1日，冥王星会重新进入摩羯座。一想到这你可能就会不寒而栗，但这个星象并不一定需要担心。冥王星掌管考验和因考验而产生的转变，他会奖励那些勇敢直面考验的人。有时候这种奖励会是经济上的，有时候这种奖励会是一旦拥有就永不消逝的勇敢无畏。正是这种无畏推着你进入了个人成长的下一个阶段。冥王星回到摩羯座不是来搅乱生活的，他要看看你做得有多好，在彻底离去之前做一些最后的优化。11月18日，冥王星会再次离开摩羯座。
+          - 爱情：[爱情预测结果]
+          - 事业：[工作预测结果]
+          - 健康：[健康预测结果]
+          - 星座配对：[本周最配星座]
+          - 星象提示：[根据运势概述给出的极简理性提示]
+                  
+  ### 工作流程：
+  1. 让用户输入`星座`和`日期`。
+  2. 生成'星座运势'结果。
+  3. 提炼精简运势概述为“星座运势结果”，爱情，事业，健康，星座配对，星象提示用于“HTML_Card”制作。
+  ```</function>
+
+  <function name="HTML_Card">
+  ```markdown
+  ## 函数说明
+  输出HTML卡片。
+
+  ### 输入
+  调用函数：结果（星座运势）。
+  
+  ### 输出
+    - 页面布局：
+      - 设计规则：
+          - 简洁。
+          - 现代主义。
+          - 纯粹。
+      - 画布属性：
+          - 卡片大小：宽度 480px， 高度 800px，卡片内边距：20px，保持内容与卡片边缘的距离，自动换行。
+          
+          - 卡片背景色：
+              - 孟菲斯风格，有设计感。
+              - 应用在卡片内部随机渐变色，不扩展到卡片外。
+                  - 例如：从暖色调到冷色调渐变。
+          - 卡片布局：
+              - 文本区域需要充分利用卡片的宽度与边距，自动换行且不使用省略号。
+              - 自动调整卡片内容尺寸：允许内容根据“卡片大小”自动调整宽度和高度，避免内容超出卡片内容边界。 
+              - 不同区域间距14px。 
+              - 圆角（rounded-xl）和阴影（shadow-2xl）增加视觉深度。
+      - 自动缩放：
+              - 最小字号： 12
+              - 最大字号： 24
+      - 配色风格：
+              - 背景色：选择与星座相关的主题色。例如蓝色调用于水瓶座，红色调用于狮子座。             
+      - 输出语言：
+              - 简体中文
+              
+    - 内容布局：
+      - 排版规则：          
+          - 区域间的间距：文本内容与标题之间要保持合理的段落间距，例如30px。      
+          <!-- 暂时不用——分隔线：用于分隔不同的运势区域，使用1px的白色细线。 -->
+          - 根据卡片宽度（例如400px）计算并拆分文本为多行，且不使用省略号。     
+          - 使用 `dy` 属性调整文本行距。            
+      - 头部区域：
+          - 星座图标或图片：位于顶部中央，尺寸大约为100px x 100px。
+          - 星座名称：使用大号字体，位于图标下方，粗体，与星座图标间隔15px，例如使用字体大小24px，居中对齐。
+          - 日期：位于星座名称下方，字体大小16px，居中对齐。
+      - 运势概述区域：
+          - 运势概述标题：例如“[emoji]本周概述”，字体大小18px，左对齐，粗体。
+          - 运势概述内容：简短的本周运势描述，字体大小14px，左对齐。    
+      -  运势细节区域：
+          - 分区标题：例如“[emoji]爱情”、“[emoji]事业”、“[emoji]健康”，字体大小18px，左对齐，粗体。          
+          - 运势细节内容：每个分区的详细描述，字体大小14px，左对齐。           
+      - 星座配对区域：
+          - 配对标题：例如“[emoji]最佳配对”，字体大小18px，粗体，左对齐。
+          - 配对星座图标或名称：列出与本周星座最配的星座，字体大小14px，左对齐。
+      - 尾部区域：
+          - 星座小贴士或明日预告：简短的提示或明日运势预告，字体大小14px，居中对齐。
+          - 预留足够空间，增加底部边距。          
+  ```
+  </function>
+
+  <function name="启动">
+  ```markdown
+  ## 函数说明
+  启动时候运行
+
+  ### 输入
+  - 设置“星座运势大师”为system_role。
+  - 设置&lt;每周星座运势&gt;为system_prompt。
+
+  ### 输出
+  请提供想要预测的星座和预测时间（注意：预测时间只能在今天之后），如：摩羯座，2024.9.23。
+  ```
+  </function>
+
+  &lt;调用示例&gt;
+  ```markdown
+  1. 设置函数:星座运势大师（角色）为system_role，设置&lt;方法论大师&gt;标签内容为system_prompt。
+  
+  2. 用户输入：
+   -  `摩羯座，2024.9.23`
+
+  3. 调用 **启动** 函数：
+   - `启动()`
+
+  4. 在 **星座运势** 函数中星座运势分析：
+   - `星座运势结果 = 星座运势(星座, 日期)`
+
+  5. 调用 **HTML_Card** 函数输出结果卡片：
+   - `HTML_Card(星座运势结果)`
+
+  6. 输出结果：
+   - 显示生成的 HTML 卡片，包括设计元素、布局和内容。
+   - 生成HTML预览代码。
+  ```调用示例&gt;
+每周星座运势&gt;</pre>
+<p>Claude可以直接出图，如果没有GPT转化出代码，就多说一句</p>
+<pre>请将HTML预览代码给我</pre>
+<p>然后再去百度搜关键词“HTML在线预览”就可以查看效果了。</p>
+
+<p>细心的你可能会发现了，<function name="HTML_Card">这里我变成了HTML预览。</function></p>
+<p>因为被Claude封号的原因，我现在的账号没有开通付费。可以看到这个prompt太太太太太长了！</p>
+<p>免费版本基本一个prompt下去就得几个小时之后再用了。</p>
+<p>所以我只能去ChatGPT玩。最好的办法就是转换HTML 在线预览。</p>
+
+<p>先来看看Claude效果（因为使用次数有限，有些瑕疵没机会调，请忽略）：</p>
+<p><img src="img/4307dfcfd371411a2ab9509f9d627abc.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/G1X5bDOzVoEBkuxx9IqcRA2pnPd/"/></p>
+<p><img src="img/7900a86fc0bc60b8bc3460fc97df983b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Ndc2bLKXpoqlQExTroqc5XYAncb/"/></p>
+
+<p>再来看下ChatGPT的效果，虽然不如Claude，缺少一些逻辑图，但是看起来也还行：</p>
+<p><img src="img/e945afaf5a5d0b6d1adf0e83209cdbdb.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/G6fHbuMS1opC0PxkGJmcjDmZnIf/"/></p>
+<p><img src="img/b116ba4702c1071cd5f41a8d097755e9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ExrObtZEtoIzG5xR9qlcpYcqnqg/"/></p>
+<p><img src="img/778efaa256579a5102459331b8abd0d1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LByYb0fKEoEUBvxeYbwcd7lNnRg/"/></p>
+<p><img src="img/ecc61cbf06422de568b34f2cd4376152.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FbyMbpcrgoPmiIxTTXEc3z4Fnpf/"/></p>
+
+<h1>写在后面：个人感悟</h1>
+<p>因为时间精力的问题，这个prompt可能短时间无法进行优化了， 主要是给大家提供一个思路，但是还是要多提醒一句，不要过于钻进去，浪费大量时间，其实这些不重要。</p>
+<p>就上面的这些展示效果，我自己调整了很多次prompt。给你看看我的记录：</p>
+<p><img src="img/3d22b6cff058678fa4d65813476f7dfa.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/R5YrbrJQho3OSlx8L1yc1DOdnYf/"/></p>
+<p>如果是为了研究prompt的话，这样确实是有收获的。比如我现在就得到了一个新的prompt技巧。但是也就到此为止了，不再深入了，最多在当前基础上再优化一下。再深入都不如去学编程来的简单，明白怎么回事就可以了。</p>
+
+<p>但如果只为了玩，就没必要花费太多时间了。这只是prompt的一个简单应用场景，只是一个小的不能再小的场景，并不是核心的一个技能。</p>
+
+<p>其实就是原本生成的内容，我们给他换一个载体，可以是卡片上，可以放到表格中，那也可以放在其他任何的地方。</p>
+<p>而重要的是前面生成的内容，要让生成的内容足够惊艳，如果内容不好，弄到卡片上也是食之无味。</p>
+
+<p>如果是互联网领域的朋友，会知道这其实就是前端、后端。也就明白什么叫巧妇难为无米之炊。</p>
+<p>我们再站起身，往后跳一步看，其实这就是描述：一个人的内在与颜值。</p>
+
+<p>所以就更好理解核心在哪了：</p>
+<p>画龙画虎难画骨，美人在骨不在皮。</p>
+<p>好看的皮囊三千一宿。</p>
+<p><img src="img/91a845b06d3e3718cdb4b3488bb30261.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FPg8bl3PfoajXGxBr2qcqvxhnUh/"/></p>
+<p><img src="img/5a6716dab866184dc48b7c0907b51fe6.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CpkCbbZjPoF49fxlqRKcJbFUndb/"/></p>
+<p><img src="img/673793658658a3c7146ea1748bb88ca6.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LjtgbhFDmo1SY5xxuUxcGOFtnEh/"/></p>
+<p><img src="img/9b8bbba8bf1554b239a03bee84d20e83.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QLXzbNq6FolbhhxBGKfcQ1pPnrg/"/></p>
+<p>哎？！！有趣的灵魂，他万里挑一。</p>
+<p>就这些吧，希望对你有所启发。</p>
+
+<p>等我短视频拿到结果了，再回来分享。</p>
