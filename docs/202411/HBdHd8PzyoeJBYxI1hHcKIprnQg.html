@@ -1,0 +1,900 @@
+<h1>如何使用Cursor进行数据可视化和软件项目可视化</h1>
+<blockquote>来源：<a href="https://qsbog43f8e.feishu.cn/docx/HBdHd8PzyoeJBYxI1hHcKIprnQg">https://qsbog43f8e.feishu.cn/docx/HBdHd8PzyoeJBYxI1hHcKIprnQg</a></blockquote>
+<p>各位圈友好，我是Time，向大家展示一些使用cursor进行数据可视化和软件项目可视化的案例。</p>
+
+<h1>一、可视化的必要性</h1>
+<h2>（一）软件项目可视化的必要性</h2>
+<p>大家最近在做项目时，你有没有遇到这些烦恼：</p>
+<ul><li>新来的同事看代码一脸懵，解释半天还是不明白</li></ul>
+<ul><li>改完代码忘记更新文档，结果文档越来越不靠谱</li></ul>
+<ul><li>开会讨论架构，光靠说半天说不清楚</li></ul>
+<p>作为同时写过好几年文档和代码的开发者，我太理解这些痛点了。</p>
+
+<p>说实话，我们都知道项目需要文档和架构图，但现实是：</p>
+<ul><li>写文档特别耗时，写着写着就忘了</li></ul>
+<ul><li>画图要切换软件，没几个人愿意折腾</li></ul>
+<ul><li>代码改了文档没改，慢慢就没人信了</li></ul>
+
+<p>但是吧，不写文档不画图也不行，特别是项目越做越大的时候：</p>
+<ul><li>新人看不懂代码，接手困难</li></ul>
+<ul><li>团队沟通效率低，讨论费劲</li></ul>
+<ul><li>维护起来特别累，改bug都不知道从哪改起</li></ul>
+
+<p>前段时间，我发现了个特别实用的组合：Cursor + Mermaid。</p>
+<p>这套工具真的能帮我们：</p>
+<ul><li>写代码的时候顺手就把文档做了</li></ul>
+<ul><li>用简单的文本就能生成专业的图表</li></ul>
+<ul><li>再也不用担心文档和代码对不上了</li></ul>
+
+<p>听起来挺不错？来看看具体怎么用👇</p>
+
+<p>上面的内容是AI生成的，但是深得我心，而文字内容的gpt生成，大家都比较熟练了，这里我聚焦介绍软件或代码相关的可视化制图。</p>
+
+<p>同时为了避免受限个人经验而给出错误的展示，提前向一些圈友请教验证了这些图表确实都会用到。</p>
+<p><img src="img/518d18b29373b290eabbab3725b52550.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Gf4ObQa2joCJeixfF6RcjqQrnCc/"/></p>
+
+<h2>（二）数据可视化的必要性</h2>
+<p>最初，我只想写软件项目的可视化，但是后来经过圈友A和不愿透露姓名的阿紫老师的建议，补充应用范围更广的数据可视化应用案例/教程。</p>
+
+<p><img src="img/66174cf6cf4f0edf160405ce79f0d791.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XzvabJUWIozFwLxqdaFcePxbnWh/"/></p>
+<p><img src="img/f8a2870da8c442b610f7c8c5d3bf8bba.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ZMPWbMbSBoVRtuxLkLJckFsHnEb/"/></p>
+<p><img src="img/b267cd6521754a4d1ccc9d72c1f95292.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/GLPDbzA7Uon7x2xMF1hcEk21nMb/"/></p>
+
+<h2>（三）前置说明</h2>
+<p>本文默认大家已经具备cursor的基本使用，已经完成了cursor安装的前置步骤，并且会安装插件以及向cursor提问，如果对于cursor和编程是零基础朋友，可以阅读我9月份的帖子：0代码AI编程重塑你的编程体验：Cursor使用教程</p>
+<p>以及近期圈友@阿紫分享的帖子，阿紫通过探索0基础学员们的卡点，非常详细的展示了一个项目应该怎么从0开始，如何根据需求转化成cursor能够理解的软件需求，非常值得一读：如何让小白学会用Cursor完成复杂项目</p>
+<p>此外，对于专业程序员维护复杂项目的使用可以参考圈友@大铭的帖子：程序员视角下的Cursor软件深度使用与维护经验分享</p>
+
+<hr/>
+<h1>二、学习python数据可视化</h1>
+<p>不论代码项目大小，以及是自己编程或学习其他项目，学习思路相似。</p>
+
+<h2>（一）萌新初窥数据可视化</h2>
+<p>以完全不懂数据可视化的角度，先绘制一些图表，基于特定数据进行可视化处理的例子在（二）。</p>
+<p><img src="img/6f2ee1f7e3d3a8b676bc878afed3ed77.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DvtjbQGePooIqgxQTwocKQDRnZK/"/></p>
+<p><img src="img/cf5c796a79f4f87346d77617041676bd.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XGaRbbliBo3wMSxsRkxc6NAdn1f/"/></p>
+
+<p>先让cursor给我们编写几个示例代码，提示词如下：</p>
+<p>请给我编写 Matplotlib、Seaborn的示例数据可视化图表代码，分别创建python文件进行编写</p>
+<p><img src="img/98e574aca7e1aae61dab14d4a846a21c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QlRRbomTEo2PWhxZS6tclQ33nTh/"/></p>
+<p>下面是几个库仅限于示例，实际绘制时根据实际情况进行选择。</p>
+<h3>（1）Matplotlib图表</h3>
+<p><img src="img/f0bf401969696fa8b8724e90e17d60a8.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IEApbuc9Tov3XwxWjK3c0J77ngg/"/></p>
+
+<h3>（2）Seaborn可视化</h3>
+<p>下面让Cursor展示了10个最具代表性的Seaborn数据可视化图表</p>
+<p>第一次提问让它回答有哪些代表性的图表：Seaborn最典型的10种可视化图表是什么</p>
+<p>第二次提问让cursor写代码：请给我编写python代码，展示Seaborn这10种最具有代表性可视化图表，创建一个新的py文件</p>
+<p>第三次提问由于10个图表放在一张图上难以观看，于是重新组合排版：前10个图表，请分为每4个在一张图上展示</p>
+<p><img src="img/e685259a2580effc37f016673b989e34.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/RIb5bB9IvoXRdHx06DQcHi8tndg/"/></p>
+<p><img src="img/1ec4169c22d80771212948fe4693e43c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WThbbZAK9o4powx39fxc2sZXnGg/"/></p>
+
+<p>由于散点图、折线图、柱状图这些和前面Matplotlib绘制效果相似，于是手动让cursor移出了，并且凑了（条形图、箱线图、小提琴图、热力图）、（回归图、联合图、计数图、核密度图）组合展示了2张大图，以及额外展示了完整版联合图和成对关系图。</p>
+<p>当然，有些图表我目前也不懂是什么含义，现在看着酷就完了，而专业数据分析人员应该具备以下两个能力之一：</p>
+<ul><li>明确所需图表含义，然后使用cursor绘制目标图表，这样才能够向客户或领导解释图表所要表达的意思；</li></ul>
+<ul><li>对于不理解的图表，需要让cursor给出解释，理由同上。</li></ul>
+
+<p><img src="img/b50ca7b6a992faaaa61258c5c4d1b576.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UWQmbC4bCoSMq4xdKOWcgj9znNa/"/></p>
+<p><img src="img/bbb5acbf4c86b74b116862dac643b583.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EmPXbF7haorEPExHmhvcWJjKnKg/"/></p>
+
+<p><img src="img/34356a1ed99282f59fcb75228ae5ce76.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PppHbLeOeocX4KxqTyecVjFFnGh/"/></p>
+<p><img src="img/032c8cb325641c8413617be7a6f9322f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Y8hDbxe1HoUYUJxZvHHcQ3Q7n0e/"/></p>
+<p>下面是上述8个图表的代码文件，感兴趣的可以直接拿走跑一下。</p>
+
+
+<h3>（3）Plotly交互式数据可视化</h3>
+<p><img src="img/d1a6287704dd8b0f795986dc591973f5.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Hd6NbFrjrorEjrxoDqncA6hznVg/"/></p>
+
+<p><img src="img/10e887acc8dd3ff02a4ca59dc0d834f9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/GHaDbZYoDobwpQxiiHNcJ2pInDd/"/></p>
+<p><img src="img/242f6e073969cd26c79464f7c9205c0a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MgE8bNbETojWq2xTI2xcRqJCnag/"/></p>
+<p>下面是这5个Plotly交互图表的代码，大家可以拿走玩一下，其中鼠标放置在图表上时，会显示数据，3D散点图也可以放大缩小，不过现在我只是为了展示种类，所以没有进一步优化交互和美工处理。</p>
+
+<h2>（二）基于数据集进行数据可视化</h2>
+<p>上一小节展示了这些图表，但是从cursor生成的代码中看，每一个图表的绘制都只有不到10行的代码，这种展示用的代码显然无法应用于我们实际工作中，同时我也好奇示例图表的数据源是从哪里来的（假装没有看到代码中的注释）。</p>
+<pre>import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+from matplotlib import font_manager
+
+# 设置中文字体
+font_path = 'C:/Windows/Fonts/SimHei.ttf'  # Windows系统黑体路径
+chinese_font = font_manager.FontProperties(fname=font_path)
+
+# 设置图表风格
+sns.set_style("whitegrid")
+
+# 加载数据集
+tips = sns.load_dataset("tips")
+flights = sns.load_dataset("flights")
+iris = sns.load_dataset("iris")
+
+# 第一组图表
+plt.figure(figsize=(15, 15))
+
+# 1. 条形图
+plt.subplot(2, 2, 1)
+sns.barplot(data=tips, x="day", y="total_bill")
+plt.title("1. 条形图 (Bar Plot)", fontproperties=chinese_font)
+plt.xlabel("星期", fontproperties=chinese_font)
+plt.ylabel("平均账单", fontproperties=chinese_font)
+
+# 2. 箱线图
+plt.subplot(2, 2, 2)
+sns.boxplot(data=tips, x="day", y="total_bill")
+plt.title("2. 箱线图 (Box Plot)", fontproperties=chinese_font)
+plt.xlabel("星期", fontproperties=chinese_font)
+plt.ylabel("账单分布", fontproperties=chinese_font)</pre>
+
+<p><img src="img/098ebf6794f17cdb3d604a62e52caaf6.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Q3M3bWdOmoEEbxxt2wtc3GzEnHh/"/></p>
+<p>可以看到Seaborn库自带了tips、flights、iris数据集，注意上面回答的最后一句话“方便用户进行数据可视化的练习和演示”。</p>
+<p>于是追问怎么利用这些数据集进行数据可视化的学习：基于tips或flights或iris数据集，如何进行数据可视化的学习？</p>
+<p><img src="img/9d6fe40374c0c60cc6d84bb7ff51bf83.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Qg4VbZNDfonCfKxzpckc6TGtnTf/"/></p>
+<p>根据回答，就可以看到使用histplot就可以查看直方图、使用heatmap就可以查看矩阵数据，使用regplot就可以添加回归线，</p>
+<p>下面使用huggingface中的开源数据集进行演示，例如下面的fka/awesome-chatgpt-prompts，看起来像是ChatGpt的提示词，</p>
+<p><img src="img/5b27eeec0b9aaf62b6756a1c30e0066b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LSIeblUtzokdB7xR0YXclxNcnVc/"/></p>
+<p><img src="img/8ac6df493b439a77ae9ebef97024e8c1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/GUWobm4Aso3SEIx7bfAcnjvbnFb/"/></p>
+<p>点进去后不知道怎么用，于是继续让cursor干活，</p>
+<p>怎么下载@https://huggingface.co/datasets/fka/awesome-chatgpt-prompts?sql=--+The+SQL+console+is+powered+by+DuckDB+WASM+and+runs+entirely+in+the+browser.%0A--+Get+started+by+typing+a+query+or+selecting+a+view+from+the+options+below.%0ASELECT+*+FROM+train+LIMIT+10%3B 这里的数据集</p>
+<p><img src="img/dae594b32bc594ab019339cfe8fb2791.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DauhbGVvYoxhLnx7Bxyc9kOinlg/"/></p>
+<p>下面是安装过程（我是在虚拟环境中安装的，所以没有在cursor终端直接执行安装命令，初学者可以不必理会）</p>
+<p><img src="img/1031124074fd2170e1a6184a5916cb4c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/X5ktbg45vogJKKx1JbIcDZjon9b/"/></p>
+<p>安装完成后，在cursor中复制前面提示的加载数据集和访问数据代码，执行效果如下，说明加载成功了，下面开始使用这个数据集进行演示。</p>
+<p><img src="img/c44d75f93d03c68eeed34a1e2b13e1dd.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DwEBbTRSKo6XfPxPbWkcr1Nwnid/"/></p>
+
+<p>以非专业人士的角度，不知道拿到数据集后如何下手，问cursor：读取fka/awesome-chatgpt-prompts数据集，请推荐合适的数据可视化图表，以供专业人士进行分析，当前步骤只需要回答合适的图表类别以及图表意义</p>
+<p><img src="img/72ad1fc33185a389f4fe89a7a01c3ffe.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/B4EvbVyQ3ofafYxji5XcfZZ4nQf/"/></p>
+<p>下面挑选几个图表进行绘制</p>
+<h3>（1）词云图</h3>
+<p>由于这个数据集中都是句子，优先选择词云图，继续提问，让cursor绘制词云图</p>
+<p>请你首先绘制词云图，然后根据词云图表，给出分析结果</p>
+<p><img src="img/1f61f1b6f588f80d1c10d8e1aa9c2e42.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MiULbFTkSoVQAmxblxucYVT4nZe/"/></p>
+<p><img src="img/70f0b2fe7d831cd3b13f92ca684a1cf6.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EBb2baYKMoQmLixwpJJcrPfjnkc/"/></p>
+<p>其实从这里的回答，我们已经能够得到以下结果：</p>
+<ul><li>gpt使用者最常使用的词是help、write、explain、act、create，让gpt或写或解释或执行某些动作；</li></ul>
+<ul><li>gpt最常执行任务是：写作、定义角色、创造性任务和分析性任务；</li></ul>
+<ul><li>大量使用动词，让gpt执行这些写作或创造性动作；</li></ul>
+<ul><li>常用场景是教育学习、专业工作、创意写作和文件解决……</li></ul>
+<p>当然，这些是cursor读取数据进行分析的，下面绘制词云图然后看图能否得到这些信息。</p>
+
+<p>由于有些库我没有安装，于是让cursor给出安装命令</p>
+<p><img src="img/831a0af1733b378929158ce5350b9ad3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Gbbmbs4LxoM07dxhPAOcrZ0Ynze/"/></p>
+<p>安装完成后，执行代码：</p>
+<p><img src="img/5ae42b178bee5ae476dd5bb791d698ef.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FTQLbJOxIoEPLYxQ68lcFTx2ndg/"/></p>
+<p><img src="img/758fce33775282ee0cbfee953e0841cf.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Gp1Kb7zKRodn9fxYO8scxZFcnkb/"/></p>
+<p>下面是绘制的词云图，我来粗略的分析一下：</p>
+<ul><li>想(want)让gpt帮我们做某件事情，或者执行(act)某个动作</li></ul>
+<ul><li>让gpt向我们提供(provide）什么样的结果</li></ul>
+<ul><li>首先(first)做什么</li></ul>
+<p>大致意思是这样的，我分析的不专业，可以让cursor进一步的分析，在上面回答的基础上扩展，这里我就不再演示了。</p>
+<p><img src="img/f4ee6b406a7a6efefd1e6e545491f104.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/RC01b6j7YoCM5zxRX70cO8mznT5/"/></p>
+
+<h3>（2）条形图</h3>
+<p>继续绘制条形图</p>
+<pre>绘制形图 (Bar Plot)
+用途:展示角色(act)的分布情况
+意义:直观显示不同角色的出现频次，帮助理解数据集中最常见的角色类型</pre>
+<p><img src="img/637b2403305bdf3e966a3498db340b73.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Tj2DbeaE7oNsb0xyH2McVQp2nub/"/></p>
+
+<p>我无法理解这个条形图，请你解释，并且解释要和数据相符</p>
+<p><img src="img/b9f45d628f93e3f394f614ca6e1a4c17.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/VV7wb7t8WoITDDxvrdlcsQUmnIc/"/></p>
+<p><img src="img/5a5bb6b3ea609c463f5217f8b44eb627.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/GbClbm73Oo1VQNxtcAGcQ6Lenpd/"/></p>
+<p>根据他的提示，让cursor修改，修改后的图表如下：</p>
+<p><img src="img/16db16ea5198203784d750081fc41b19.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Ws81bWQjEoH6Cnxyw6UcHIL3nrg/"/></p>
+<p><img src="img/1db4f243470632b493a6e39f77ecc28b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/X18HbzxtDoYsCKxIAdYcTjoQnKf/"/></p>
+<p>由于数据量较少，所以很多角色出现频率是1，只有一个出现频率为2，结果是正确的。</p>
+
+<h3>（3）自由发挥吧</h3>
+<p>让cursor推荐合适的图表</p>
+<p><img src="img/4b9f8f08a0ace35d585686c5432ca7e3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EeupbOWt3oOXcNxzqwdccSWRneg/"/></p>
+<p><img src="img/35c06387865393432d2b0e4943b9787f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WbHKbIzoaoMFNXxmZjrcRXcbn1f/"/></p>
+<p><img src="img/ebbab1f2772c93bf40681266bb81bc18.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QRXxboiWuoN888xp6TNcN6ZunMf/"/></p>
+<p>其中条形图和词云图是刚才已经绘制的，说明这两类图表确实重要，而第一个和第三个的含义有重复，说明相同的数据可以使用不同的图表进行展示。</p>
+<p>而第二个提示词长度分布，可以看出大部分提示词分布在300~600个单词之间，其中450个左右单词频率最高。</p>
+
+<p>以上就是关于数据可视化的一个简单演示。</p>
+
+<hr/>
+<h1>三、软件项目可视化实战</h1>
+<h2>（一）Mermaid基础介绍</h2>
+<p>代码的可视化在很早前就有了，之前是使用UML直接绘制，而现在在UML的基础上，有了一些更加成熟的产品，Mermaid就是一个比较典型的项目。</p>
+<p>Mermaid是基于 JavaScript 的图表工具，可呈现 Markdown 启发的文本定义以动态创建和修改图表。</p>
+<p><img src="img/f77eddea981efad4da676d85954dace0.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DLbQbi9r4omkeAxG52LcrmAEnDc/"/></p>
+<p>Mermaid：代码即图表</p>
+<ul><li>使用文本定义图表</li></ul>
+<ul><li>支持多种图表类型</li></ul>
+<ul><li>易于版本控制</li></ul>
+<ul><li>实时渲染预览</li></ul>
+
+<p>建议插件：</p>
+<p>Markdown Preview Mermaid Support：Markdown中预览Mermaid</p>
+<p>Mermaid Markdown Syntax Highlighting：Markdown中Mermaid语法高亮</p>
+
+<p><img src="img/89135a8577fb3990283d1d7035770948.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/O1LHbxQk3okrWwxuafOc6roHnId/"/></p>
+<p><img src="img/fe4fe353a7271d5f7464ce9052a8ca41.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CBQEbpifCostZXxMixPcZCo7nlf/"/></p>
+
+<h2>（二）为什么需要绘制这些图表：更加专业的回答？</h2>
+
+<p>在文章开头，我笼统的解释了为什么需要给代码绘制诸如流程图、时序图、类图这些图表，这基本上能够解释了，不过咱们演示cursor的应用，为何不继续使用cursor进行优化呢？请看vcr：</p>
+
+<p>直接开问</p>
+<p>请解释，为什么要给代码绘制流程图、时序图、类图等各种图表</p>
+<p>回答如下：</p>
+<p><img src="img/f77a4b71fd357eab1b88e67f60b604ed.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FXs6bYB3NoWrnkxbuAacLIY3nLd/"/></p>
+<p><img src="img/7a6dc4125aee1c351b351e46bf9125e1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WQTDbpaokota39xtYGvcRdixnvh/"/></p>
+<p><img src="img/1b7cb867abda09f01470aedb1d4c8c47.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Y5z0bwihFo2jj7xYfCTcTiP8n2e/"/></p>
+
+<p>第一版回答格式我是比较满意的，但是cursor死板的只以我提问的流程图、时序图和类图进行回答，强迫症不能接受，后面继续追问，为了不占用太多篇幅和冗余，下面只贴Prompt过程，不再一一贴回答图。</p>
+<p><img src="img/074e8e0308ffdb077a6475a4c9b7d595.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Xm4qbQ4BIo00enxAw3ncmXrQn8g/"/></p>
+<p><img src="img/55d046a5277c9f08af55d306423b58f9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Ed2YbTyOmoh45Cxb7BIckNebnBh/"/></p>
+
+<p>最终，基于cursor回答，以及手动整合修改，下面展示效果。</p>
+<h3>基础图表展示</h3>
+<p>下面展示一些常用图表，图表左侧附带了Mermaid代码，大家看一下就可以，可以不必过于关注，本次重在演示如何使用cursor帮我们自动生成这些图表，而深度使用用户，建议去官网查看Mermaid或UML语法。</p>
+
+<h4>（1）流程图：展示业务逻辑和数据流</h4>
+<p>大家最常接触到的图片是流程图，首先以流程图进行展示，那么为什么要绘制流程图呢？</p>
+<p><img src="img/a0974447dd3cc11323b638a392bb6d00.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XGZGbYvMEo3yfGxDiq3ctdx7nXc/"/></p>
+<p>流程图由节点（几何形状）和边（箭头或线条）组成，可以辅助系统设计、提升代码的可理解性，并且能够促进团队协作。</p>
+
+<p>Mermaid 代码定义了如何制作节点和边，并适应不同的箭头类型、多方向箭头以及任何与子图的链接。</p>
+<pre>````mermaid
+flowchart TD
+    A[用户提问] --&gt; B{是否有缓存}
+    B --&gt;|是| C[返回缓存]
+    B --&gt;|否| D[查询向量库]
+    D --&gt; E[生成SQL]
+    E --&gt; F[执行查询]
+    F --&gt; G[返回结果]
+````</pre>
+<p><img src="img/eacc1c80eee73ef1cac1ea3d3f5924e7.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/D50Dbf17tot2OOxE9wJcDiQBnof/"/></p>
+
+<table><tr><th>详细用途</th><th>优点</th><th>适用场景</th><th>基本用法</th></tr><tr><td>清晰展示处理步骤</td><td>统一团队认知</td><td>业务流程</td><td>TB/TD——从上到下</td></tr></table>
+<p><img src="img/59dbcf47e734d869b195cc1bd62da36e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TdgIbbK8dojXKTx6lgRcDPj0noc/"/></p>
+
+<p>基本用法：</p>
+<ul><li>TB/TD——从上到下</li></ul>
+<ul><li>BT——从下到上</li></ul>
+<ul><li>RL——从右到左</li></ul>
+<ul><li>LR——从左到右</li></ul>
+
+<h4>（2）时序图：展示组件交互</h4>
+
+<p>序列图是一种交互图，显示进程如何彼此运行以及以什么顺序运行。</p>
+<pre>````mermaid
+sequenceDiagram
+    actor U as 用户
+    participant A as API
+    participant D as 数据库
+    U-&gt;&gt;+A: 发送请求
+    A-&gt;&gt;+D: 查询数据
+    D--&gt;&gt;-A: 返回数据
+    A--&gt;&gt;-U: 响应结果
+````</pre>
+<p><img src="img/7c04070c4284b06f1928e5084b1d4ec2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ZIUTb3u7Zo25rRxGsDUcQjaUn0A/"/></p>
+
+<p>详细用途：</p>
+<ul><li>展示交互顺序</li></ul>
+<ul><li>明确责任边界</li></ul>
+<ul><li>识别异步操作</li></ul>
+<ul><li>优化响应时间</li></ul>
+
+<p>适用场景：</p>
+<ul><li>组件交互</li></ul>
+<ul><li>API 调用</li></ul>
+<ul><li>消息传递</li></ul>
+
+<h4>（3）类图：展示系统架构</h4>
+
+<p>“在软件工程中，统一建模语言（UML）中的类图是一种静态结构图，它通过显示系统的类、它们的属性、操作（或方法）以及对象之间的关系来描述系统的结构”。-Wikipedia -维基百科</p>
+<p>类图是面向对象建模的主要构建块。它用于应用程序结构的一般概念建模，以及将模型转换为编程代码的详细建模。类图也可用于数据建模。类图中的类表示主要元素、应用程序中的交互以及要编程的类。</p>
+<pre>````mermaid
+classDiagram
+    class VannaBase {
+        &lt;<abstract>&gt;
+        +generate_sql()
+        +train()
+    }
+    class VectorStore {
+        &lt;<interface>&gt;
+        +add_data()
+        +query()
+    }
+    VannaBase &lt;|-- VectorStore
+````</interface></abstract></pre>
+<p><img src="img/4dcfed98e7092eaa5e8801af7a9779d7.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AsKAbrwASo4bFjxOXUycHxQRnIc/"/></p>
+<p>详细用途：</p>
+<ul><li>展示类的关系</li></ul>
+<ul><li>定义接口规范</li></ul>
+<ul><li>明确继承结构</li></ul>
+<ul><li>规划系统扩展</li></ul>
+
+<p>适用场景：</p>
+<ul><li>系统架构</li></ul>
+<ul><li>类关系</li></ul>
+<ul><li>接口定义</li></ul>
+
+<h4>（4）甘特图 (Gantt)：时间进度</h4>
+<p>甘特图是一种条形图，最初由 Karol Adamiecki 于 1896 年开发，并由 Henry Gantt 在 1910 年代独立开发，它说明了项目进度表以及任何一个项目完成所需的时间。甘特图显示了项目的终端元素和摘要元素的开始日期和完成日期之间的天数。</p>
+<pre>````mermaid
+gantt
+    title 项目计划
+    section 阶段1
+    任务1    :a1, 2024-01-01, 30d
+    任务2    :after a1, 20d
+````</pre>
+
+<pre>````mermaid
+gantt
+    title 项目里程碑
+    dateFormat  YYYY-MM-DD
+    section 开发
+    需求分析     :a1, 2024-01-01, 30d
+    架构设计     :a2, after a1, 20d
+    编码实现     :a3, after a2, 40d
+````</pre>
+<p><img src="img/72a538ad29c140bb94e27c75a0c380a9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/V5Z7biM3io0MZ8x34vmcGjdxnAd/"/></p>
+<p><img src="img/cf353c93fc19e818be9a5fb546906eb7.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TpkTbBvMvodLUgxlH9UchhFYnVd/"/></p>
+
+<p>适用场景：</p>
+<ul><li>项目管理</li></ul>
+<ul><li>时间规划</li></ul>
+<ul><li>进度跟踪</li></ul>
+
+<h4>（5）饼图 (Pie Chart)</h4>
+<p>饼图（或圆形图）是一种圆形统计图形，将其划分为多个切片以说明数字比例。在饼图中，每个切片的弧长（及其中心角和面积）与其表示的数量成正比。虽然它因其类似于切片的馅饼而得名，但它的呈现方式却有多种变化。已知最早的饼图通常归功于 William Playfair 于 1801 年出版的统计手册——维基百科</p>
+<pre>````mermaid
+pie
+    title 项目分布
+    "A" : 40
+    "B" : 30
+    "C" : 30
+````</pre>
+<p><img src="img/769fd113ef4ed32fa361ff949e02df43.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NQPIbnZBaoVqm8xGBFlc05sxn1b/"/></p>
+
+<p>适用场景：</p>
+<ul><li>数据分布</li></ul>
+<ul><li>占比分析</li></ul>
+<ul><li>统计展示</li></ul>
+
+<h4>（6）状态图 (State Diagram)</h4>
+<p>“状态图是计算机科学及相关领域中用于描述系统行为的一种图。状态图要求所描述的系统由有限数量的状态组成；有时确实如此，而在其他情况下有时这是一个合理的抽象。”——维基百科</p>
+<pre>````mermaid
+stateDiagram-v2
+    [] --&gt; Still
+    Still --&gt; Moving
+    Moving --&gt; Still
+    Moving --&gt; Crash
+*    Crash --&gt; [*]
+````</pre>
+<p><img src="img/c2b6cd89d00904f01ed71b661b0bf5fd.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XoCObQeu2otx57xgW2rcVsn8nee/"/></p>
+
+<p>适用场景：</p>
+<ul><li>状态机</li></ul>
+<ul><li>生命周期</li></ul>
+<ul><li>工作流程</li></ul>
+
+<h4>（7）ER 图 (Entity Relationship)</h4>
+
+<p>实体关系模型（或 ER 模型）描述特定知识领域中相关的感兴趣的事物。基本 ER 模型由实体类型（对感兴趣的事物进行分类）组成，并指定实体（这些实体类型的实例）之间可能存在的关系。——维基百科</p>
+<pre>````mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+````</pre>
+<p><img src="img/9033be3b6e3c7cd96e302c43f0d4edc4.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/D66cbgkcQo74F7xTClCcCJjvnHc/"/></p>
+
+<p>适用场景：</p>
+<ul><li>数据库设计</li></ul>
+<ul><li>实体关系</li></ul>
+<ul><li>系统建模</li></ul>
+
+<h4>（8）用户旅程图 (Journey)</h4>
+
+<p>用户旅程高度详细地描述了不同用户在系统、应用程序或网站内完成特定任务所采取的步骤。该技术显示当前（原样）用户工作流程，并揭示未来工作流程的改进领域。 ——维基百科</p>
+<pre>````mermaid
+journey
+    title 用户购物流程
+    section 浏览
+      找到商品: 5: Me
+    section 购买
+      下单: 3: Me
+      支付: 5: Me
+````</pre>
+<p><img src="img/73c1bb8c0a2275e3eea695176780e8ef.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/S21Fb0U3xogxHGxzIXMcVblqnDd/"/></p>
+
+<p>适用场景：</p>
+<ul><li>用户体验</li></ul>
+<ul><li>流程体验</li></ul>
+<ul><li>满意度分析</li></ul>
+
+<p>PS：可能是我接触的比较少，所以之前没画过这个图，不清楚实际业务场景这个图的作用是否大。</p>
+
+<h3>不同维度的需求</h3>
+
+<p>从不同业务场景和项目相关人员进行介绍，更加详细的介绍与示例，请查看文档最后附件章节。</p>
+<table><tr><th>业务阶段</th><th>需求</th><th>设计</th><th>开发</th><th>测试</th><th>管理</th><th>运营</th></tr><tr><td>角色</td><td>产品经理</td><td>程序员</td><td>程序员</td><td>测试工程师</td><td>项目经理</td><td>运营</td></tr><tr><td>关注图表</td><td>用户旅程图：用户体验</td><td>ER图：数据库设计</td><td>流程图：处理逻辑</td><td>状态图</td><td>甘特图：项目进度</td><td>饼图：分析数据</td></tr></table>
+
+<h3>解决不同问题</h3>
+
+<h4>（1）架构问题</h4>
+<pre>````mermaid
+flowchart TB
+    A[前端] --&gt; B[API网关]
+    B --&gt; C[服务1]
+    B --&gt; D[服务2]
+    C --&gt; E[(数据库)]
+    D --&gt; E
+````</pre>
+<p><img src="img/cc2a2270a8ef92850c870fd908a192ea.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Nouab0DmdoXXt5xe2fkcpjXmnsb/"/></p>
+<p>使用图表：</p>
+<ul><li>流程图：系统架构</li></ul>
+<ul><li>类图：模块关系</li></ul>
+<ul><li>ER图：数据结构</li></ul>
+
+<h4>（2）性能问题</h4>
+<pre>````mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+    participant R as Redis
+    participant D as DB
+    C-&gt;&gt;+S: 请求数据
+    S-&gt;&gt;+R: 查询缓存
+    R--&gt;&gt;-S: 缓存命中
+    alt 缓存未命中
+        S-&gt;&gt;+D: 查询数据库
+        D--&gt;&gt;-S: 返回数据
+        S-&gt;&gt;R: 更新缓存
+    end
+    S--&gt;&gt;-C: 返回结果
+````</pre>
+<p><img src="img/dffcfb545b0145d0616e67e636fbf800.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LEB3bA49ho6533xwckJcz2fWn2f/"/></p>
+
+<p>使用图表：</p>
+<ul><li>时序图：调用链路</li></ul>
+<ul><li>流程图：处理流程</li></ul>
+<ul><li>状态图：状态变化</li></ul>
+
+<h4>（3）协作问题</h4>
+<pre>````mermaid
+gantt
+    title 团队协作计划
+    dateFormat YYYY-MM-DD
+    section 前端
+    开发     :a1, 2024-01-01, 30d
+    section 后端
+    开发     :a2, 2024-01-15, 30d
+    section 测试
+    测试     :a3, 2024-02-01, 20d
+````</pre>
+<p><img src="img/5207eaceb2bd7579345b0f1dc08fc504.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IuoybqSH3owcNTxD4ROchEMHnHc/"/></p>
+
+<p>使用图表：</p>
+<ul><li>甘特图：进度同步</li></ul>
+<ul><li>流程图：工作流程</li></ul>
+<ul><li>时序图：协作流程</li></ul>
+
+<h3>总结：通过合理选择和组合这些图表，能够：</h3>
+<ol><li>提高沟通效率</li></ol>
+<ol><li>减少理解偏差</li></ol>
+<ol><li>优化开发流程</li></ol>
+<ol><li>提升项目质量</li></ol>
+
+<h2>（三）已有项目代码可视化操作</h2>
+<p>不论代码项目大小，以及是自己编程或学习其他项目，均可使用这种方式。</p>
+<h3> 项目介绍</h3>
+
+<p>vanna-ai项目为github本周410stars （总11.8kstars）的开源项目，其是 MIT 许可的开源 Python RAG（检索增强生成）框架，用于 SQL 生成和相关功能，下面是介绍视频与github链接。</p>
+
+
+
+<h3>梳理整个项目逻辑并且初步可视化</h3>
+<p>使用Chat梳理整个项目逻辑，并且使用mermaid对项目进行可视化。</p>
+<p><img src="img/7a6243a4c4d63d64fd36cd392eb281e0.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TQWnbVUAtomZAUx4sfpciRSZnzg/"/></p>
+<p>由于@Codebase ，所以会读取所有的文件，不仅仅是代码文件，过程如下图所示：</p>
+<p><img src="img/bc25c077c96f936e22b02124d6aa5c70.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/BFxWbEOe6oOrJExuWAGc8hWGnCh/"/></p>
+
+<p>下面是回答结果，能够初步对项目功能及架构进行说明，并且给出了工作流程、训练过程以及关键代码位置，非常棒：</p>
+<p><img src="img/5c19fb8c0b3b28fa07f938ccaaacb5b2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AryAbgHzWodmGDxspxNc1xIgnCe/"/></p>
+
+<p><img src="img/48ae519d155c6834411fbaa83b732c8f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AOBubf4KGol69IxPWvycDKm1nRg/"/></p>
+<p><img src="img/654604be6e38ecf2d3f055739492247c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EecbbYeUmoddRVxxXNMcwXoFnXe/"/></p>
+
+
+<h3>不同角度图表的绘制</h3>
+<h4>（1）绘制项目流程图</h4>
+
+<pre>梳理VANNA-MAIN的完整逻辑流程，创建 mermaid_flow.md文件到根目录，同时在mermaid_flow.md中使用绘制mermaid项目流程图</pre>
+<p><img src="img/fbfb8a66f35235fba9cfcbd46d8fb0e2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FZhmb5TGjo2mvNxZ45zc05Jhnrg/"/></p>
+<p>cursor回答后，点击Apply就可以自动创建对应的md文档，并且会将内容预写进该md文档中，继续点击Accept就可以完整的接受回答到md文档中。</p>
+<p>上面的Prompt有语法错误，但是完全不影响cursor的理解。</p>
+
+<p><img src="img/38e087ce8b8f351a84c881f6d566743c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FATgbkuEBobat2xclBkcljLEntf/"/></p>
+<p><img src="img/2360c11cb6b5b06bddb022345a67124d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/RhLjb7eoHoZir1xidd8cVfltnwb/"/></p>
+<p><img src="img/37a7673d1e9fb0bb7ac3ce37467650bd.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UX3LbtQEeoImBxxy13hc87ayn6b/"/></p>
+
+<p><img src="img/4fe6842f7dea6fd813fa491e37d4ebd2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Zf4XbEcABoBvt8x9c4Gca3Winhe/"/></p>
+<p><img src="img/ded247b4436d6af5b12890d89bd00e8b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SqpJbx8DFoXqDCxIVaPcmRVcn32/"/></p>
+<p><img src="img/184bf39dd645c73ca789b0f7d1729956.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MRmlbO8dCoZtnHxOKeTcw3x8nac/"/></p>
+<p><img src="img/f5c96baff47d30883588f0439974eaa1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LZ3wbawYeoRW3Qx26yEcJPlOnif/"/></p>
+
+<p>回答的很不错，但是这个回答是以广义上的流程来回答绘制的，在这里我想要的是mermaid的Flowchart，于是加上Flowchart限定，重新提问，提示词如下：</p>
+<pre>梳理VANNA-MAIN的完整逻辑流程，创建 mermaid flow,md文件到根目录，同时在mermaid flow.md中使用绘制mermaid项目流程图(Flowchart)</pre>
+<p><img src="img/8bd80b73810397583f7ad18ba17835e4.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XrPibqfznofYx0xT4OycwCmnnqf/"/></p>
+<p>这次只使用Flowchart绘制了核心流程、训练流程以及相关业务流程，还很贴心的给出了错误处理流程，非常nice！</p>
+<p><img src="img/2536aed2687c10bdd4a835ea6df50164.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TUtAbWWjLo43h0x3G9icwr1nnoc/"/></p>
+<p><img src="img/44135e0b86e56ecfef175f310347f867.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MIYtbsf6wokI1oxx4BYcH2NTnkd/"/></p>
+
+<pre>完整整理[苏苏]角色逻辑的时序图，用terminal帮我创建mermaid_sequence.md文件到根目录</pre>
+
+<h4>（2）绘制项目时序图</h4>
+
+<p>这里没有像绘制Flowchart一样，而是只让cursor绘制了一个全流程的时序图，使用Prompt如下：</p>
+<pre>@Codebase 完整梳理全流程的时序图，{只输出```mermaid.md```图表}，并帮我创建mermaid_sequence.md 文件到根目录 </pre>
+<p>cursor回答以及mermaid图表如下图所示：</p>
+<p><img src="img/f52e765b6b0e17839544a3439ddaaaab.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/BRfsb4R57oLfBJxPLsLcTxPCn7S/"/></p>
+<p><img src="img/a249225f1353ba28dd4c902e0b97e347.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NVOXbkTzLotFvPxPwEociebjnGg/"/></p>
+
+<p>其中，各个组件解释如下：</p>
+<table><tr><th>组件名称</th><th>User（用户）</th><th>Vanna Core（核心组件）</th><th>VS（Vector Store，向量存储）</th><th>LLM（Language Model，语言模型）</th><th>DB（Database，目标数据库）</th><th>Viz（Visualization，可视化组件）</th></tr><tr><td>说明</td><td>系统的最终用户</td><td>系统的主要控制器</td><td>存储训练数据的向量数据库</td><td>负责自然语言处理</td><td>存储实际业务数据的数据库</td><td>处理数据可视化</td></tr></table>
+<ul><li>ChromaDB</li></ul>
+<ul><li>Milvus</li></ul>
+<ul><li>OpenSearch</li></ul>
+<ul><li>等</li></ul>
+<ul><li>DDL</li></ul>
+<ul><li>文档</li></ul>
+<ul><li>SQL示例</li></ul>
+<ul><li>QianWenAI</li></ul>
+<ul><li>ZhipuAI</li></ul>
+<ul><li>等</li></ul>
+
+<h4>（3）绘制类图</h4>
+<p>仿照绘制Flowchart的Prompt绘制类图</p>
+<pre>梳理VANNA-MAIN的完整代码，创建 mermaid_classDiagrams.md文件到根目录，同时在mermaid_classDiagrams.md中绘制mermaid项目Class diagrams图</pre>
+<p><img src="img/e18255539d79c2d79c7d006e185e4214.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Z5wsbV1RCokH45xlMsRco1uin8T/"/></p>
+<p>结果如下：</p>
+<p><img src="img/69d73d1d8024a2314c5d91666d6d49a9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/GEFabGULuojVwYxZ9XbcA8hInAe/"/></p>
+<p><img src="img/5625e59f607fc92b2932410b8a7189cb.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Ei6Nbik1kot0Udxyam2c36gZnXg/"/></p>
+<p><img src="img/137e613410cd8372ea6e4d5fc8306db4.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/A51hb3UujodNLPxhr8xcCdsdnfc/"/></p>
+<p><img src="img/593410df7962830232dc1e1431a52a32.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Dm8jbVGhqoKGaDxIex5cYoxQnsh/"/></p>
+
+
+<h1>四、 使用建议——待更新</h1>
+
+<p>图表设计原则：保持简洁清晰、突出重点关系、合理使用颜色、注意布局美观。</p>
+
+<p>（1）图表要言简意赅</p>
+<p>Mermaid 的设计宗旨就是用最简洁的语法来表达信息。在创建图表时要注意:</p>
+<ul><li>节点内容尽量精简</li></ul>
+<ul><li>不要有过多的交叉线</li></ul>
+<ul><li>布局要整齐有序</li></ul>
+<ul><li>色彩要醒目但不花哨</li></ul>
+
+<p>（2）把图表用起来</p>
+<p>光画图表还不够,要学会在团队协作中充分利用它们:</p>
+<ul><li>设计阶段:用图表表达架构和流程</li></ul>
+<ul><li>代码评审:用图表解释关键逻辑</li></ul>
+<ul><li>新人培训:用图表辅助代码学习</li></ul>
+<ul><li>技术分享:用图表增强表现力</li></ul>
+
+<p>（3）持续打磨和优化</p>
+<p>图表的创建是一个持续迭代的过程:</p>
+<ul><li>及时更新图表内容</li></ul>
+<ul><li>根据反馈不断优化</li></ul>
+<ul><li>定期重构图表结构</li></ul>
+<ul><li>引入新的图表类型</li></ul>
+
+<hr/>
+<h1>附件：项目全生命周期可能涉及人员所使用图表</h1>
+
+<p>以下是从项目全生命周期的角度，分析不同角色可能使用的不同图表：</p>
+
+<h2>产品经理</h2>
+<pre>````mermaid
+journey
+    title 产品需求分析
+    section 调研
+      用户访谈: 5: PM
+      竞品分析: 4: PM
+    section 规划
+      需求梳理: 5: PM
+      原型设计: 4: PM
+    section 验证
+      用户测试: 3: PM
+      数据分析: 4: PM
+````</pre>
+<p><img src="img/b411181d73f373781b337f68d596696a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EaL4bmKGZo6yKBxbjJ0cSHM5nve/"/></p>
+<p>常用图表：</p>
+<ul><li>用户旅程图：用户体验</li></ul>
+<ul><li>流程图：业务流程</li></ul>
+<ul><li>饼图：需求优先级</li></ul>
+
+<h2> 项目经理</h2>
+<pre>````mermaid
+gantt
+    title 项目排期规划
+    dateFormat YYYY-MM-DD
+    section 规划
+    需求评审     :a1, 2024-01-01, 5d
+    section 开发
+    前端开发     :a2, after a1, 15d
+    后端开发     :a3, after a1, 20d
+    section 测试
+    系统测试     :a4, after a2 a3, 10d
+````</pre>
+<p><img src="img/54be719ab033c0a378100bec5bf493c2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NZ3qbNKEEoEKRMxKmIWc1IGInro/"/></p>
+
+<p>常用图表：</p>
+<ul><li>甘特图：项目进度</li></ul>
+<ul><li>流程图：工作流程</li></ul>
+<ul><li>饼图：资源分配</li></ul>
+
+<h2>架构师</h2>
+
+<p>常用图表：</p>
+<ul><li>类图：系统架构</li></ul>
+<ul><li>ER图：数据建模</li></ul>
+<ul><li>流程图：系统设计</li></ul>
+
+<pre>````mermaid
+flowchart TB
+    subgraph 前端层
+    A[Web] --&gt; B[Mobile]
+    end
+    subgraph 服务层
+    C[Gateway] --&gt; D[Service]
+    end
+    subgraph 数据层
+    E[(Database)] --&gt; F[Cache]
+    end
+    B --&gt; C
+    D --&gt; E
+````</pre>
+<p><img src="img/d67fb67e1f88b15f9cb5d38892d6cf94.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/BcfQbx54roQvfLx9o5PcSXghnec/"/></p>
+
+<h2>开发工程师</h2>
+<p>常用图表：</p>
+<ul><li>时序图：接口交互</li></ul>
+<ul><li>类图：代码结构</li></ul>
+<ul><li>状态图：状态流转</li></ul>
+
+<pre>````mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Service
+    participant D as Database
+    C-&gt;&gt;+S: 请求数据
+    S-&gt;&gt;+D: 查询
+    D--&gt;&gt;-S: 返回
+    S--&gt;&gt;-C: 响应
+````</pre>
+<p><img src="img/ce874141d920d3e40f4ce35bc8f4fcac.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XZwybmGCJoDnrpxM7RbcgN1PnWe/"/></p>
+
+
+
+
+<h2>测试工程师</h2>
+
+<p>常用图表：</p>
+<ul><li>状态图：测试流程</li></ul>
+<ul><li>流程图：测试用例</li></ul>
+<ul><li>时序图：接口测试</li></ul>
+
+<pre>````mermaid
+stateDiagram-v2
+    [] --&gt; 待测试
+    待测试 --&gt; 测试中
+    测试中 --&gt; 通过
+    测试中 --&gt; 失败
+    失败 --&gt; 修复中
+    修复中 --&gt; 待测试
+*    通过 --&gt; [*]
+````</pre>
+<p><img src="img/e3055fd54b86594f893a333b0d1cc78c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SAiebqgxSoXDThxnvyTcwyiMnMh/"/></p>
+
+
+<h2> 运维工程师</h2>
+
+<p>常用图表：</p>
+<ul><li>流程图：部署流程</li></ul>
+<ul><li>时序图：问题排查</li></ul>
+<ul><li>状态图：系统监控</li></ul>
+
+<pre>````mermaid
+flowchart LR
+    A[监控] --&gt;|告警| B{处理}
+    B --&gt;|自动| C[自愈]
+    B --&gt;|手动| D[干预]
+    C --&gt; E[恢复]
+    D --&gt; E
+````</pre>
+<p><img src="img/c91e8d2dd553421b461c5a41f11b38cd.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/GhGabWXCpoLpbSxQc1jcIXQgnAf/"/></p>
+
+
+
+<h2> UI/UX设计师</h2>
+
+<p>常用图表：</p>
+<ul><li>流程图：页面流转</li></ul>
+<ul><li>用户旅程图：交互设计</li></ul>
+<ul><li>状态图：界面状态</li></ul>
+
+<pre>````mermaid
+flowchart LR
+    A[首页] --&gt; B[列表页]
+    B --&gt; C[详情页]
+    C --&gt; D[购买页]
+    D --&gt; E[支付页]
+    style A fill:#f9f,stroke:#333
+    style E fill:#bbf,stroke:#333
+````</pre>
+<p><img src="img/ca1936f61df6d02bcb0a5fac5dcafb49.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DyHVbKwMsoi6OYxn4pRcxtGanxc/"/></p>
+
+<h2>产品运营：详细举例</h2>
+<p>运营人员通常关注数据分析、用户行为和业务流程，以下是他们最常用的 Mermaid 图表类型：</p>
+
+<p>图表的作用：</p>
+<ol><li>更直观地展示数据</li></ol>
+<ol><li>更清晰地规划工作</li></ol>
+<ol><li>更有效地沟通决策</li></ol>
+<ol><li>更科学地评估效果</li></ol>
+
+<h3>常用图表</h3>
+
+<h4>（1）用户旅程图 (Journey)</h4>
+<pre>````mermaid
+journey
+    title 用户转化漏斗
+    section 获客
+      浏览广告: 5: User
+      点击链接: 4: User
+    section 转化
+      注册账号: 3: User
+      首次购买: 2: User
+    section 留存
+      复购: 1: User
+      推荐他人: 1: User
+````</pre>
+<p><img src="img/cdecd094a9f7fab884e2cacb69c2a12a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/A3t9bKU8FoK4AFx1K3VcmPbMnpc/"/></p>
+
+<p>用途：</p>
+<ul><li>分析用户行为路径</li></ul>
+<ul><li>识别转化瓶颈</li></ul>
+<ul><li>优化用户体验</li></ul>
+
+<h4>（2）饼图 (Pie)</h4>
+<pre>````mermaid
+pie
+    title 用户来源分布
+    "自然搜索" : 35
+    "社交媒体" : 25
+    "付费广告" : 20
+    "直接访问" : 15
+    "其他渠道" : 5
+````</pre>
+<p><img src="img/a75ef267b52fd9f78222d811da94c6b0.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XsQlbwo2MoBGXPxXJeMcQlH4npf/"/></p>
+
+<p>用途：</p>
+<ul><li>渠道分析</li></ul>
+<ul><li>用户画像</li></ul>
+<ul><li>收入构成</li></ul>
+
+<h4>（3）流程图 (Flowchart)</h4>
+<pre>````mermaid
+flowchart TD
+    A[营销活动] --&gt; B{用户行为}
+    B --&gt;|注册| C[新用户]
+    B --&gt;|浏览| D[潜在用户]
+    B --&gt;|流失| E[流失用户]
+    C --&gt; F[转化策略]
+    D --&gt; G[触达策略]
+    E --&gt; H[召回策略]
+````</pre>
+<p><img src="img/9e99488e3f67eb8a0c3c2ab8a4ecd7b3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Tewbbi0vGorda9xEbTrcQymTnve/"/></p>
+
+<p>用途：</p>
+<ul><li>活动流程设计</li></ul>
+<ul><li>用户分层策略</li></ul>
+<ul><li>运营决策流程</li></ul>
+
+<h4>（4）甘特图 (Gantt)</h4>
+<pre>````mermaid
+gantt
+    title 运营活动排期
+    dateFormat YYYY-MM-DD
+    section 618活动
+    预热期     :a1, 2024-06-01, 7d
+    主活动     :a2, after a1, 10d
+    复盘总结   :a3, after a2, 3d
+    section 新品发布
+    物料准备   :b1, 2024-06-05, 5d
+    发布活动   :b2, after b1, 7d
+````</pre>
+<p><img src="img/5f2e5ed2060d9b3b682dabecf1559390.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/V49mbcG1lo9h2HxhPqGcZ7UXnib/"/></p>
+
+<p>用途：</p>
+<ul><li>活动排期</li></ul>
+<ul><li>资源规划</li></ul>
+<ul><li>里程碑管理</li></ul>
+
+<h4>（5）状态图 (State)</h4>
+<pre>````mermaid
+stateDiagram-v2
+    [*] --&gt; 潜在用户
+    潜在用户 --&gt; 新注册
+    新注册 --&gt; 首购用户
+    首购用户 --&gt; 复购用户
+    首购用户 --&gt; 流失用户
+    复购用户 --&gt; 忠实用户
+    复购用户 --&gt; 流失用户
+    流失用户 --&gt; 召回用户
+    召回用户 --&gt; 复购用户
+````</pre>
+<p><img src="img/148258282b2c6d2645aa1536ca25a29a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NMMIb5gQEooKzAxlUxYcgzkqnPf/"/></p>
+<p>用途：</p>
+<ul><li>用户生命周期</li></ul>
+<ul><li>会员等级变化</li></ul>
+<ul><li>商品状态流转</li></ul>
+
+<h3>运营场景应用</h3>
+
+<h4>（1）活动策划</h4>
+<pre>````mermaid
+flowchart LR
+    A[目标设定] --&gt; B[方案设计]
+    B --&gt; C[资源准备]
+    C --&gt; D[活动执行]
+    D --&gt; E[效果评估]
+    E --&gt; F[复盘优化]
+````</pre>
+<p><img src="img/79344778a75a91c85091f1e8cd9ae246.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LbWMb4o8Soim4KxujLncqOwQn3b/"/></p>
+
+<h4>（2）数据分析</h4>
+<pre>````mermaid
+pie
+    title 活动效果分析
+    "完成目标" : 45
+    "部分完成" : 30
+    "未达标" : 25
+````</pre>
+<p><img src="img/306f705eec23c20b329a2fb4b16f6105.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PFh5bv8P2oTToHxEfzacrQEJn2g/"/></p>
+
+<h4>（3）用户运营</h4>
+<pre>````mermaid
+journey
+    title 会员成长体系
+    section 新手期
+      注册: 5: Member
+      完善资料: 4: Member
+    section 成长期
+      首次消费: 3: Member
+      积分累积: 3: Member
+    section 成熟期
+      等级提升: 4: Member
+      权益使用: 5: Member
+````</pre>
+<p><img src="img/932b596401f6d2994dcbfca49c2dadc1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/C7Idb862aoYZFAxzERic6swOn9g/"/></p>
+
+
+<h3>运营决策支持</h3>
+<table><tr><th>渠道分析</th><th>用户分析</th><th>活动分析</th></tr><tr><td>投放效果评估</td><td>行为轨迹</td><td>参与度</td></tr></table>
+
+<h3>建议使用场景</h3>
+<table><tr><th>日常工作</th><th>战略规划</th><th>团队协作</th></tr><tr><td>活动策划：流程图</td><td>用户旅程：Journey图</td><td>任务分配：甘特图</td></tr></table>
+
+<hr/>
+
+<h1>结语</h1>
+<p>以上，仅涉及到数据可视化和Mermaid的基础用法，各个图表均可使用其语言/语法进行高级设置。</p>
+<p>希望这篇文章能帮助大家使用 Cursor 进行代码可视化的学习和应用。</p>
+<p>如果你有任何问题或建议，欢迎在评论区留言交流！</p>
+<p>欢迎大家交流链接，可以通过鱼丸找到我。</p>
+
+
+<h1>参考资源</h1>
+<ul><li>Cursor 官方文档</li></ul>
+<ul><li>Mermaid 官方文档</li></ul>
+<ul><li>VANNA-MAIN 项目</li></ul>
+<ul><li>huggingface.co</li></ul>
+<ul><li>Seaborn官方教程</li></ul>
