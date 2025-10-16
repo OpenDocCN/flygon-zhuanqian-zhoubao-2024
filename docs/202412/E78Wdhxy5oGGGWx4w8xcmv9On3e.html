@@ -1,0 +1,98 @@
+<h1>如何在10分钟内运行土豆君的代码找到自己的头像</h1>
+<blockquote>来源：<a href="https://ba9gvofzgow.feishu.cn/docx/E78Wdhxy5oGGGWx4w8xcmv9On3e">https://ba9gvofzgow.feishu.cn/docx/E78Wdhxy5oGGGWx4w8xcmv9On3e</a></blockquote>
+<p>大家好，我是林幻雨。</p>
+<p>昨天一直在忙没有顾上找头像，今天早上第一件事，先看看圈友土豆君的帖子。</p>
+<p>我发现群里面还有部分圈友不太会使用土豆君的代码，于是简单的做一个小小的教程。</p>
+<p>活动本身链接是：https://t.zsxq.com/QrzhX</p>
+<p>圈友帖子链接是：https://t.zsxq.com/pUGYs</p>
+<p>接下来正式开始</p>
+<h2>第一步：安装环境</h2>
+<p>首先还是安装一个cursor，他就相当于一个代码编辑器，有他就够了。</p>
+<h3>安装cursor</h3>
+<p>cursor管网：https://www.cursor.com/  直接点击 下载就可以啦</p>
+<p>cursor的安装可以根据圈友阿紫的帖子来：https://t.zsxq.com/gdAAI 帖子中安装软件的部分非常详细</p>
+
+<h3>与cursor对话</h3>
+<p>然后可以就可以直接和cursor开始对话了，因为我们在贴子里面可以看到，是使用的python语言，所以我们来问一下cursor ，pthon的环境怎么安装。</p>
+<p><img src="img/27593052f3d70aff91fd029e2e430dd3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Ck6lbJUOsosn2OxKaMScZ6Xpndt/"/></p>
+<h3>安装python环境</h3>
+<p>根据cursor 的提示，我们去python的管网   https://www.python.org/downloads/    下载了python3.13 并完成安装</p>
+
+<h3>安装依赖包</h3>
+<p>我们安装完成后就可以根据帖子中的 提示去安装依赖包</p>
+<p>直接把土豆君的那一句代码拿过来粘贴到我们的命令行里面</p>
+<pre>pip install opencv-python numpy</pre>
+<h4>打开命令行</h4>
+<p>打开命令行</p>
+<p>第一步是打开运行</p>
+<p>快捷键是键盘上的 【 菜单键 + R  】 （菜单键就是左下角Ctrl和Alt中间的那个windows键）</p>
+<p><img src="img/72dc0da3e056d89cfa2bdaa797995cb9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/C7LcbHaWioeNzGxm3DxcWAQKnkf/"/></p>
+<p>第二步是输入cmd并按确定</p>
+<p><img src="img/8e512eae5ac41570ab936d7b51db465a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IFKnb3REio8EYNxU6VFcYp6Qn5b/"/></p>
+<p>出来这样一个窗口就对了</p>
+
+<h4>输入安装依赖包的命令</h4>
+<h5>1.检查python环境</h5>
+<p>我们可以先输入</p>
+<pre>   python --version</pre>
+<p><img src="img/955ba34945b82aaf02ddcc3df021aa01.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/KfFmbBkzNoghMTxDgGkczziZnEc/"/></p>
+<p>如果成功显示了版本号，说明我们python安装成功了</p>
+<p>如果没成功的话，继续返回安装python 的步骤，重新安装。并且注意一定要把 Add python to PATH 勾选上</p>
+<h5>2.安装依赖包。输入土豆君帖子中的命令</h5>
+<pre>pip install opencv-python numpy</pre>
+<p><img src="img/7968a8056bb5066da1b6a8825ad23f9d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/BnWKbNuPzoaJR2x3vk2cl0Sansd/"/></p>
+<p>这样就是安装成功了。恭喜你完成了最难的一个部分，接下来就非常的简单了。</p>
+
+<h2>第二步：复制代码并运行</h2>
+<h3>1.复制代码</h3>
+<p>打开cursor</p>
+<p><img src="img/d1ec88f3d2c184e471b0b5a656ee26ba.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SeQ9b8bnnon9NmxJPCacI9b7n1e/"/></p>
+
+<p>左上角文件中有一个新建文本文件</p>
+
+<p><img src="img/4a9252dc27b316f0f19117154ed7c8e8.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UVi5bxE81oo2TQxCdqucMiBCnSe/"/></p>
+
+<p>然后直接复制土豆君的代码来，粘贴到里面，保存</p>
+<p><img src="img/f3196108f7b4fb78c1e5ba02b3b96cca.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DuFObeTSBohN9NxdNO7ccBF1nrh/"/></p>
+
+<p>这么大一个复制，想必大家都能看得到，看不到的把鼠标移动过去试试看。</p>
+
+<p>点击复制以后，直接粘贴到我们的cursor里面</p>
+<p><img src="img/876d65d3a69f2a415ad1682d457bf7db.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TCMHbOlU4owsirxmaIccTYELnGg/"/></p>
+
+<p>然后直接Ctrl + S  保存，或者点击菜单栏的文件，里面有一个保存</p>
+
+<p><img src="img/78d40eb3d8657cbd66a3b48c48e748e9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FRVMb8HMLo2Tg3xtmJCcnthmnIg/"/></p>
+<p>保存的时候找一个方便的地方，可以是自己新建的文件，也可以是桌面。把名字自己随便起一个，后面加上 【 .py】，然后把保存类型选择为 python 即可，都设置好了以后点击保存</p>
+
+<p>2.保存合照大图和头像小图</p>
+<p>分别在鱼丸的帖子 （https://t.zsxq.com/QrzhX） 中保存合照大图</p>
+<p>和自己之前保存的头像小图，起一个简单的名字</p>
+<p><img src="img/558b8d229db87701581fa96d8f43553f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Qu5ybD3w0oeFrDxQA24cJPsWnqc/"/></p>
+<p>比如，我的文件名字叫1.py  我的大图名字叫 2.jpg  我的头像名字叫做 3.jpg</p>
+
+<h3>2.运行代码</h3>
+<p>代码和头像都已经准备好了，接下来就可以直接运行代码了。</p>
+<p>代码的运行其实还是挺简单的，首先我们打开熟悉的命令行</p>
+<p>菜单键 + R 打开运行  输入 cmd  打开命令行窗口</p>
+<p><img src="img/22bb872460f54d557d218d0873fe03b8.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/JsmibZ8xDooJTJxxz4NcdqaZnWb/"/></p>
+<p>接下来我们先把位置去定位到我们刚刚保存代码文件的地方，可以点开代码的属性查看一下文件的位置。</p>
+<p><img src="img/c080c822b6434de10bb02a1dd1fb2a7e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IgHNbXjvno2RRLxKjlvczwGDnJd/"/></p>
+<p>我们找到了他的位置</p>
+<p><img src="img/856b29e04f5521e69d64dd5a061c604a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XNc6bNOqKoF78txJPI5cFmXknIc/"/></p>
+<p>然后我们可以在命令行里面去输入一个命令，进入这个文件的地址</p>
+<pre>cd 你的文件地址</pre>
+<p><img src="img/98398ef004a75332d57010a1530478dc.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AvTRbg2yeoLdVCxzAGhciHhfnof/"/></p>
+<p>比如我就是这个地址【 C:\Users\Administrator\Desktop】</p>
+<p>所以，我输入了 【cd C:\Users\Administrator\Desktop】</p>
+
+<p>进入文件地址以后我们就可以直接运行文件啦</p>
+<p>运行的命令是：</p>
+<pre>python 代码文件名字 大图名字 头像名字</pre>
+<p><img src="img/d5eb8e3c88a894e11e1e822b7b46d23a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/H1HRbdkIJolRXZx9pjWc3Ce5nTd/"/></p>
+<p>因为我们之前直接进入了对应的文件夹，所以直接输入名称就好啦。</p>
+
+<p>最终得到结果</p>
+<p><img src="img/8a73b1e92f444811c18b6afa13c29702.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NvWIb9pnQoeziYxpOzacpDBUnkd/"/></p>
+<p><img src="img/f0f3b5e458be78bcb12becd54a2a5d67.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PQQFbuJtDokKuqxtkdZchXBSnXd/"/></p>
+<p>搞定！</p>
