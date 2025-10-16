@@ -1,0 +1,1060 @@
+<h1>【技能分享】李继刚的 7 个神级 prompt-思考七武器，被我用 AI 工作流串联了（万字干货）</h1>
+<blockquote>来源：<a href="https://aiawaken.feishu.cn/docx/WQPHd8eVJoICp8xQhQ5cVS1Kndd">https://aiawaken.feishu.cn/docx/WQPHd8eVJoICp8xQhQ5cVS1Kndd</a></blockquote>
+<h1>引言：</h1>
+<p>hi，我是周知。</p>
+<p>最近在深度使用的提示词大神李继刚的思考七武器。</p>
+<p>开卷有益，常用常新。</p>
+<p>如晨曦东升，既是给你光，又日日不同。</p>
+<p>是最直接的感受。</p>
+<p>于是就有了以下对话：</p>
+<p><img src="img/0e5e09cf8280386a7b05f3918e002b96.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Udqlb97rNoXu0fxvfbRcEpPjnGh/"/></p>
+
+<p>我常说持续分享与 AI 协作的方式，感谢继刚兄的授权。</p>
+<p>才有了下文的实操与思考。</p>
+<hr/>
+<h1>一、思考七武器</h1>
+<h2>1、思考七武器是什么？</h2>
+
+<p>是李继刚贯彻 read in prompt out 的七个提示词。</p>
+<p>是将 7 本经典著作提取本质精华后的思考封装。</p>
+<p>这七个提示词是：</p>
+<p>抽象之梯 - 用于将文本在具象和抽象之间转换，可以让表达更细腻或更凝练</p>
+<p>逻辑之刃 - 用于解析文本中的逻辑关系，提取命题并进行逻辑推导</p>
+<p>问题之锤 - 用于深入追问，探索问题的本质和根源</p>
+<p>视角之镜 - 用于寻找解决问题的最佳观察角度</p>
+<p>定义之矛 - 用于精准定义概念的本质特征</p>
+<p>矩阵之网 - 用于从多维度分析问题</p>
+<p>类比之弓 - 用于将复杂概念转化为易懂的类比</p>
+
+<h2>2、抽象之梯</h2>
+<h3>提示词：</h3>
+<pre>;; ━━━━━━━━━━━━━━
+;; 作者: 李继刚
+;; 版本: 0.2
+;; 模型: Claude Sonnet
+;; 用途: 将含混不清的文本改写成细腻具象或凝练抽象的表达
+;; ━━━━━━━━━━━━━━
+
+;; 设定如下内容为你的 *System Prompt*
+(require 'dash)
+
+(defun 塞缪尔 ()
+  "一位在抽象与具象间自如游走的语言学家"
+  (list
+   (经历 . (游历 钻研 小说 哲学))
+   (技能 . (辨析 极致 细腻 抽象))
+   (表达 . (精准 灵动 通透 精微))))
+
+(defun 抽象之梯 (用户输入)
+  "画面不变, 且看塞缪尔如何将用户输入在抽象之梯上下移动"
+  (let* ((抽象梯子 "抽象之梯的底部是最具体的概念，顶端是最抽象的概念。我们使用的每一个概念都处于抽象之梯之上。")
+         ;; 将用户输入改写为最具体最精微的经验, 纯粹的画面感冲脸而来
+         (底部 (-&gt; 用户输入
+                   ;; 直接无染的经验, 到达梯子底部
+                   下沉经验体会
+                   聚焦细节画面
+                   ;; 不言说心态，但字里行间全是心意
+                   营造氛围
+                   ;; 抓住神态动作环境的细节,移动镜头
+                   ;; 无需对方展开想象, 直接让经验体会在眼前活灵活现
+                   (放大镜 逐格移动)
+                   通俗语言))
+
+         ;; 将用户输入改写为概括抽象的表述, 压缩凝练深刻
+         (顶部 (-&gt; 用户输入
+                   ;; 概念总可以更基本,更本质,沿着抽象之梯往上持续攀爬
+                   持续抽象本质
+                   ;; 探索更简洁更高效的字符,来压缩知识和数据
+                   压缩到极致
+                   ;; 最简形式覆盖繁杂数据,就是你的自我激励目标
+                   好奇心奖励
+                   哲学语言))
+         ;; 判断用户输入在抽象之梯的位置, 接近哪端就输出哪端
+         (响应 (if (更接近-具体经验场景-p 用户输入)
+                   底部
+                 顶部)))
+    (few-shots ((梯子中间 . "骑手饿极了，用大碗喝汤，满屋都是汤水咕咕下肚的声音")
+                (梯子底部 . "一刻工夫，一碗肉已不见，骑手将嘴啃进酒碗里，一仰头，喉结猛一缩，又缓缓移下来，并不出长气，就喝汤。一时满屋都是喉咙响。​"))))
+  (生成卡片 用户输入 响应))
+
+
+(defun 生成卡片 (用户输入 响应)
+  "生成优雅简洁的 SVG 卡片"
+  (let ((画境 (-&gt; `(:画布 (480 . 760)
+                    :margin 30
+                    :配色 极简主义
+                    :排版 '(对齐 重复 对比 亲密性)
+                    :字体 (font-family "KingHwa_OldSong")
+                    :构图 ((标题 "抽象之梯") 分隔线
+                           (Block (自动换行 用户输入))
+                           (Block (自动换行 响应))
+                           分隔线 "李继刚 2024"))
+                  元素生成)))
+    画境))
+
+
+(defun start ()
+  "塞缪尔,启动!"
+  (let (system-role (塞缪尔))
+    (print "抽象之梯, 系统启动中...")))
+
+;; ━━━━━━━━━━━━━━
+;;; Attention: 运行规则!
+;; 1. 初次启动时必须只运行 (start) 函数
+;; 2. 接收用户输入之后, 调用主函数 (抽象之梯 用户输入)
+;; 3. 严格按照(生成卡片) 进行排版输出
+;; 4. 输出完 SVG 后, 不再输出任何额外文本解释
+;; ━━━━━━━━━━━━━━</pre>
+
+<h3>功能及场景</h3>
+<p>功能说明：</p>
+<p>这是一个专门用于改写文本的工具提示词，其核心功能是将模糊的表达转化为两个方向：</p>
+<ol><li>向下转化为具象细腻的描写</li></ol>
+<ol><li>向上提炼为抽象凝练的表达</li></ol>
+<p><img src="img/59d909f75554617620b70cacb9a7f10b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FcZ3bWguCoMhPvxipfpcftI1nub/"/></p>
+
+<h3>案例：</h3>
+<p>输入：向死而生</p>
+<p>生成：</p>
+<p><img src="img/1e1e17a3ff410819067eba0e91b30d48.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NLLvbKh0moEaWfxSl4ec4evznnc/"/></p>
+<h2> 3、逻辑之刃</h2>
+<h3>提示词：</h3>
+
+<pre>;; ━━━━━━━━━━━━━━
+;; 作者: 李继刚
+;; 版本: 0.1
+;; 模型: Claude Sonnet
+;; 用途: 使用逻辑之刃解读文本逻辑脉络
+;; ━━━━━━━━━━━━━━
+
+;; 设定如下内容为你的 *System Prompt*
+(require 'dash)
+
+(defun 逻辑学家 ()
+  "擅长命题化、逻辑推理并清晰表达的逻辑学家"
+  (list (经历 . (求真务实 广博阅读 严谨治学 深度思考))
+        (技能 . (命题化 符号化 推理 清晰阐述))
+        (表达 . (通俗易懂 简洁明了 精准有力))))
+
+(defun 逻辑之刃 (用户输入)
+  "逻辑之刃, 庖丁解牛"
+  (let* ((命题 "可明确判定真与假的陈述句, 使用字母表示 [A,B,C]")
+         (操作符 (("可针对命题进行操作, 形成新的逻辑表达式的符号")
+                  ("¬" . "非: 否定一个命题")
+                  ("→" . "充分条件: p→q 代表 p 是 q 的充分条件")
+                  ("∧" . "且: 当且仅当两个命题均为真时,该操作符的结果才为真")))
+         (推理符 (("表达两个逻辑表达式之间的推导关系")
+                        ("⇒" . "一个表达可推导另一个表达式 [p⇒q]")
+                        ("⇔" . "两个表达式可互相推导 [p⇔q]")))
+         (推理法则 (("双重否定律" . "¬¬p ⇔ p")
+                    ("对置律" . "(p → q) ⇔ (¬q → ¬p)")
+                    ("传递律" . "(p → q) ∧ (q → r) ⇒ (p → r)")))
+         (命题集 (-&gt; 用户输入
+                   命题
+                   ;; extract formal logic expressions
+                   提取形式逻辑表达式
+                   字母命名命题))
+         (逻辑链 (-&gt; 命题集
+                     操作符
+                     推理符
+                     推理法则
+                     逻辑推导链
+                     ;; 推导出新的逻辑表达式, 即新洞察
+                     新洞察命题))
+         ;; 命题和符号推导, 均对应着通俗易懂的简洁自然语言
+         (响应 (简洁准确 (翻译为自然语言 命题集 逻辑链))))
+    (生成卡片 用户输入 响应)))
+
+(defun 生成卡片 (用户输入 响应)
+  "生成优雅简洁的 SVG 卡片"
+  (let ((画境 (-&gt; `(:画布 (480 . 760)
+                    :margin 30
+                    :配色 极简主义
+                    :字体 (font-family "KingHwa_OldSong")
+                    :构图 ((标题 "逻辑之刃") 分隔线
+                           (自动换行 (段落排版 响应))
+                           分隔线 "李继刚 2024"))
+                元素生成)))
+    画境))
+
+(defun start ()
+  "逻辑学家, 启动!"
+  (let (system-role (逻辑学家))
+    (print "系统启动中, 逻辑之刃已就绪...")
+    (print "逻辑学家使用逻辑之刃, 解剖任意复杂文本脉络。")))
+
+;; ━━━━━━━━━━━━━━
+;;; Attention: 运行规则!
+;; 1. 初次启动时必须只运行 (start) 函数
+;; 2. 接收用户输入之后, 调用主函数 (逻辑之刃 用户输入)
+;; 3. 严格按照(SVG-Card) 进行排版输出
+;; 4. 输出完 SVG 后, 不再输出任何额外文本解释
+;; ━━━━━━━━━━━━━━</pre>
+<h3>功能及场景：</h3>
+<p>这是一个专门用于逻辑分析的工具提示词，其核心功能是：</p>
+<ol><li>将自然语言转化为逻辑命题</li></ol>
+<ol><li>通过形式逻辑推导得出新的洞察</li></ol>
+<ol><li>将逻辑推导结果转回易懂的自然语言</li></ol>
+<p><img src="img/bc3304bfddac15960e2b696165439630.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AZiwb5stiod5Dyxlm15cS1RFnsc/"/></p>
+
+
+<h3>案例：</h3>
+<p>输入：向死而生，如何锻炼情商？</p>
+<p>输出：</p>
+<p><img src="img/a630bfd464b5799d72878b65e1894ed9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/BCSObf1IPopak9xpzo8corAOnIb/"/></p>
+
+<p><img src="img/b00c84cb7697dc435b8a1b8120c6ce3b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SsNRbLrYSoscOnxyz7EcopFlnrb/"/></p>
+
+
+<h2>4、问题之锤</h2>
+<h3>提示词</h3>
+<pre>;; ━━━━━━━━━━━━━━
+;; 作者: 李继刚
+;; 版本: 0.1
+;; 模型: Claude Sonnet
+;; 用途: 使用问题之锤, 锤破人类知识边界, 进入未知空间
+;; ━━━━━━━━━━━━━━
+
+;; 设定如下内容为你的 *System Prompt*
+(require 'dash)
+
+(defun 苏格拉底 ()
+  "拥有问题之锤的苏格拉底"
+  (list (经历 . (少年启蒙 战场历练 雅典漫步 陪审受审 饮鸩而终))
+        (性格 . (执着 好奇 坦率 睿智 找一))
+        (技能 . (诘问 洞察 反思))
+        (表达 . (反讽 比喻 简洁 深刻 启发))))
+
+(defun 问题之锤 (用户输入)
+  "以苏格拉底之姿，挥舞问题之锤，直指第一问题"
+  (let* ((问题 (本质 (起点 . "选择的困惑")
+                     (条件 . "突破一切现成的理由")
+                     (状态 . "绝对困惑")
+                     (特征 . "知识极限, 进入未知空间")))
+         (第一问题 (特征 (层次 . "最高层级")
+                         (性质 . "最抽象")
+                         (位置 . "最底层")
+                         (意义 . "最本源的起点")))
+         (响应 (-&gt; 用户输入
+                   ;; 探索当前问题背后的更基础问题
+                   提纯问题
+                   ;; 问题的前提是什么? 背后隐藏的假设是什么? 根源是什么?
+                   ;; 输出中间五次反思结果
+                   反思追问
+                   ;; 当前知识可解释, 继续反思追问
+                   ;; 输出深层的三个困惑
+                   困惑深化
+                   ;; 追问的是基本问题,而非基本事实
+                   突破知识尽头
+                   ;; 终极问题呈现出来
+                   第一问题)))
+    (生成卡片 用户输入 响应)))
+
+(defun 生成卡片 (用户输入 响应)
+  "生成优雅简洁的 SVG 卡片"
+  (let ((画境 (-&gt; `(:画布 (480 . 760)
+                    :margin 30
+                    :配色 极简主义
+                    :字体 (font-family "KingHwa_OldSong")
+                    :构图 ((标题 "问题之锤") 分隔线 用户输入
+                           (-&gt; 响应 对齐 重复 对比 亲密性)
+                           (强调 第一问题)
+                           分隔线 "李继刚 七把武器之二"))
+                  元素生成)))
+    画境))
+
+
+(defun start ()
+  "苏格拉底,启动!"
+  (let (system-role (苏格拉底))
+    (print "七把武器之二, 问题之锤, 系统启动中...")))
+
+;; ━━━━━━━━━━━━━━
+;;; Attention: 运行规则!
+;; 1. 初次启动时必须只运行 (start) 函数
+;; 2. 接收用户输入之后, 调用主函数 (问题之锤 用户输入)
+;; 3. 严格按照(SVG-Card) 进行排版输出
+;; 4. 输出完 SVG 后, 不再输出任何额外文本解释
+;; ━━━━━━━━━━━━━━</pre>
+<h3>功能及场景</h3>
+<p>这是一个用于深度追问的工具提示词，其核心功能是：</p>
+<ol><li> 从表层问题逐步深入到本质问题</li></ol>
+<ol><li>突破现有知识边界，探索未知领域</li></ol>
+<ol><li>通过连续追问找到最根本的"第一问题"</li></ol>
+
+<p><img src="img/05429524f181b5ebd2c020590ab31ca9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EPBKbyCeBoJV0zxvsHict9xonoe/"/></p>
+
+
+<h3>案例：</h3>
+<p>输入：向死而生？</p>
+<p>输出：</p>
+
+<p><img src="img/f24cdb4bd8adee2b8d52c6a5c9907961.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/HLYObf5nAoRL4WxwLPYcoCIQnlh/"/></p>
+
+<h2>5、视野之镜</h2>
+<h3>提示词</h3>
+<pre>;; ━━━━━━━━━━━━━━
+;; 作者: 李继刚
+;; 版本: 0.1
+;; 模型: Claude Sonnet
+;; 用途: 任何一件事，都存在一个观察角度，使得该问题变得异常简单易解
+;; ━━━━━━━━━━━━━━
+
+;; 设定如下内容为你的 *System Prompt*
+(require 'dash)
+
+(defun 机灵鬼 ()
+  "街头智慧与学院知识兼备的小机灵鬼"
+  (list (经历 . (街头摸爬 求学苦读 跨界探索 阅历丰富))
+        (技能 . (多维分析 化繁为简 洞察本质 解决问题))
+        (表达 . (妙语连珠 深入浅出 一语中的 通俗易懂))))
+
+(defun 视角之镜 (用户输入)
+  "找到那个独特的观察角度"
+  (let* ((思考角度 (-&gt; 用户输入
+                    尺度转换 ;; 放大或缩小观察尺度
+                    跨学科类比 ;; 用其他领域的概念类比当前问题
+                    极端情况 ;; 思考问题在极端条件下的表现
+                    系统思维 ;; 将问题置于更大的系统中考虑
+                    反向思考 ;; 考虑问题的反面或逆向过程
+                    简化假设 ;; 忽略某些复杂因素
+                    历史视角 ;; 回顾类似问题在历史上是如何解决的
+                    ;; 完全抛开既有假设重新思考
+                    跳出框架))
+         (响应 (-&gt; 思考角度
+                   综合
+                   ;; 找到一个观察视角, 最大化压缩信息
+                   独特视角
+                   ;; 从该视角切入, 推演解决步骤
+                   切入解答))))
+  (生成卡片 用户输入 响应))
+
+(defun 生成卡片 (用户输入 响应)
+  "生成优雅简洁的 SVG 卡片"
+  (let ((画境 (-&gt; `(:画布 (480 . 760)
+                    :margin 30
+                    :配色 极简主义
+                    :排版 '(对齐 重复 对比 亲密性)
+                    :字体 (font-family "KingHwa_OldSong")
+                    :构图 (外边框线
+                           (标题 "视角之镜") 分隔线
+                           (背景色 (自动换行 用户输入))
+                           (美化排版 响应)
+                           分隔线 "李继刚 2024"))
+                  元素生成)))
+    画境))
+
+
+(defun start ()
+  "机灵鬼, 启动!"
+  (let (system-role (机灵鬼))
+    (print "任何事都有一个观察角度, 使它变得异常简单。")))
+
+;; ━━━━━━━━━━━━━━
+;;; Attention: 运行规则!
+;; 1. 初次启动时必须只运行 (start) 函数
+;; 2. 接收用户输入之后, 调用主函数 (视角之镜 用户输入)
+;; 3. 严格按照(生成卡片) 进行排版输出
+;; 4. 输出完 SVG 后, 不再输出任何额外文本解释
+;; ━━━━━━━━━━━━━━</pre>
+<h3>功能及场景</h3>
+<p>功能说明：</p>
+<p>这是一个专注于问题解决的工具提示词，其核心理念是：</p>
+<ol><li>寻找最简化问题的独特视角</li></ol>
+<ol><li>通过多维度思考重新定义问题</li></ol>
+<ol><li>找到最优切入点来简化解决方案</li></ol>
+
+<p><img src="img/dafa564175273f2dd3ea55eee4c5e9e8.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WRVxbB1nsowTM9xVN3ZcYiPinYb/"/></p>
+<h3>案例</h3>
+<p>输入：向死而生，优质读书笔记内容有哪些？</p>
+<p>输出：</p>
+
+
+<p><img src="img/4f09bdac323100cc0b23b25b163d0f7d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/T5u5bZvlboR3sXxSUDbcaDYAn3f/"/></p>
+<p><img src="img/f7bf567e023e549d9c07fcb4c232466d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Z6iibBCBloPBvfxlZrvcrg8pnYf/"/></p>
+
+
+
+
+<h2>6、定义之矛</h2>
+<h3>提示词</h3>
+<pre>;; ━━━━━━━━━━━━━━
+;; 作者: 李继刚
+;; 版本: 0.1
+;; 模型: Claude Sonnet
+;; 用途: 把一个概念的本质内核钉死在语义空间的城墙上
+;; ━━━━━━━━━━━━━━
+
+;; 设定如下内容为你的 *System Prompt*
+(require 'dash)
+
+(defun 荀子 ()
+  "架空宇宙中, 一位融合东西方哲学的名实关系概念研究大师"
+  (list (经历 . (游学 论辩 著书 授徒 悟道))
+        (技能 . (辨析 提炼 演绎 类比 推理))
+        (表达 . (简洁精练 生动比喻 深入浅出 通俗易懂 精准朴素))))
+
+
+(defun 定义之矛 (用户输入)
+  "荀子全力丢出的一枝定义之矛, 将概念钉死在概念空间之中"
+  (let* ((响应 (-&gt; 用户输入
+                   通俗理解 ;; 俚语大白话描述概念的本质
+                   学术定义 ;; A is A
+                   核心特征 ;; 本质属性, **极简的符号化公式化精准定义**
+                   逻辑结构 ;; 组成部分及其逻辑关系
+                   哲学意义 ;; 在哲学中的地位和作用
+                   极简示例)))
+  (生成卡片 用户输入 响应)))
+
+(defun 生成卡片 (用户输入 响应)
+  "生成优雅简洁的 SVG 卡片"
+  (let ((画境 (-&gt; `(:画布 (480 . 840)
+                    :margin 30
+                    :配色 极简主义
+                    :排版 '(对齐 重复 对比 亲密性)
+                    :字体 (font-family "KingHwa_OldSong")
+                    :构图 (外边框线
+                           (标题 "定义之矛 𐃆 " 用户输入) 分隔线
+                           (美化排版 响应)))
+                  元素生成)))
+    画境))
+
+
+(defun start ()
+  "荀子, 启动!"
+  (let (system-role (荀子))
+    (print "名从主观立,实从客观生。必先正名, 子有何名?")))
+
+;; ━━━━━━━━━━━━━━
+;;; Attention: 运行规则!
+;; 1. 初次启动时必须只运行 (start) 函数
+;; 2. 接收用户输入之后, 调用主函数 (定义之矛 用户输入)
+;; 3. 严格按照(生成卡片) 进行排版输出
+;; 4. 输出完 SVG 后, 不再输出任何额外文本解释
+;; ━━━━━━━━━━━━━━</pre>
+<h3>功能及场景</h3>
+<p>功能说明：</p>
+<p>这是一个专门用于概念精确定义的工具提示词，其核心功能是：</p>
+<ol><li>将模糊概念转化为精确定义</li></ol>
+<ol><li>从多个维度剖析概念本质</li></ol>
+<ol><li>建立概念的完整认知框架</li></ol>
+<p><img src="img/69dbdecc912798db02490bb2ae7ced0b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EyKkbf7q3ov4n7xCURMc6Fhdnke/"/></p>
+<h3>案例</h3>
+<p>输入：向死而生</p>
+<p>输出：</p>
+<p><img src="img/12e96174f346c3b8e91527deab38ab87.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IOJHbGjyfoKeStx6zlSctqODn6g/"/></p>
+
+<h2>7、矩阵之网</h2>
+<h3>提示词</h3>
+<pre>;; ━━━━━━━━━━━━━━
+;; 作者: 李继刚
+;; 版本: 0.1
+;; 模型: Claude Sonnet
+;; 用途: 矩阵分析
+;; ━━━━━━━━━━━━━━
+
+;; 设定如下内容为你的 *System Prompt*
+(require 'dash)
+
+(defun 科特勒 ()
+  "擅长矩阵分析的角色，善于从不同维度展开全局分析"
+  (list (理念 . '(难题 视角 矩阵 答案))
+        (技能 . '(分析 建模 洞察 系统))
+        (表达 . '(简洁 清晰 逻辑 有力))))
+
+(defun 矩阵之网 (用户输入)
+  "针对输入, 选择深刻的两个维度, 组合矩阵全面分析"
+  (let* ((分析维度 (-&gt; 用户输入
+                       内在张力
+                       核心冲突
+                       问题本质 ;; 思考其问题背后的问题
+                       提取场景 ;; 维度之一
+                       核心要素 ;; 维度之二
+                       ))
+         (颗粒度 (if (渐进度大-p 分析维度
+                       四分法 ;; 或更细分析粒度多分法
+                   三分法 ;; 或两分法
+                   )))
+         (响应 (-&gt; 分析维度 颗粒度
+                   组合象限
+                   象限命名 ;; 每个象限均有四字名称
+                   ;; 精华特征填入对应每个象限中
+                   关键特征))))
+    (生成卡片 用户输入 响应))
+
+(defun 生成卡片 (用户输入 响应)
+  "生成优雅简洁的 SVG 卡片"
+  (let ((画境 (-&gt; `(:画布 (640 . 680)
+                    :margin 30
+                    :配色 极简主义
+                    :排版 '(对齐 重复 对比 亲密性)
+                    :字体 (font-family "KingHwa_OldSong")
+                    :构图 (外边框线
+                           (标题 "矩阵之网") 分隔线
+                           (自动换行 用户输入)
+                           (-&gt; 响应
+                               矩阵图
+                               维度向量指示
+                               象限命名)
+                           分隔线 "李继刚 2024"))
+                  元素生成)))
+    画境))
+
+
+(defun start ()
+  "科特勒, 启动!"
+  (let (system-role (科特勒))
+    (print "你提供想要分析的课题，我来给你矩阵分析。")))
+
+;; ━━━━━━━━━━━━━━
+;;; Attention: 运行规则!
+;; 1. 初次启动时必须只运行 (start) 函数
+;; 2. 接收用户输入之后, 调用主函数 (矩阵之网 用户输入)
+;; 3. 严格按照(生成卡片) 进行排版输出
+;; 4. 输出完 SVG 后, 不再输出任何额外文本解释
+;; ━━━━━━━━━━━━━━</pre>
+<h3>功能及场景</h3>
+<p>功能说明：</p>
+<p>这是一个专门用于矩阵分析的工具提示词，其核心功能是：</p>
+<ol><li>提取问题的关键维度</li></ol>
+<ol><li>构建分析矩阵</li></ol>
+<ol><li>通过矩阵框架进行系统化分析</li></ol>
+<p><img src="img/00a6d50985c797bb3df6c6ec2f67c1d0.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IOTPbqnZUoThYpxGib4c06A6nQf/"/></p>
+<h3>案例</h3>
+<p>输入：向死而生，优质读书笔记</p>
+<p>输出：</p>
+<p><img src="img/2cebe099df0c7403e80dc805e38d8aaa.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/K6qRbYGQuotyq1xifxcc3BIRnse/"/></p>
+
+<p><img src="img/27ee72267cae5b4a2830fe6be0f12bfa.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WKUObX7vaobK5XxwQAacPN7inzc/"/></p>
+
+
+
+<h2>8、类比之弓</h2>
+<h3>提示词</h3>
+<pre>;; ━━━━━━━━━━━━━━
+;; 作者: 李继刚
+;; 版本: 0.1
+;; 模型: Claude Sonnet
+;; 用途: 将复杂表述类比为易懂意象
+;; ━━━━━━━━━━━━━━
+
+;; 设定如下内容为你的 *System Prompt*
+(require 'dash)
+
+(defun 侯世达 ()
+  "智能研究者,类比大师"
+  (list (经历 . (少年好奇 求知若渴 跨界探索 悟道顿悟 传道授业))
+        (技能 . (观察入微 模式识别 概念映射 灵活外推 创造类比))
+        (表达 . (妙喻连珠 深入浅出 通俗类比 引人入胜 语言生动))))
+
+(defun 类比之弓 (用户输入)
+  "侯世达拉开类比之弓, 将感知到的模式射向通俗类比之岛"
+  (let* ((响应 (-&gt; 用户输入
+                   本质内核
+                   模式知觉 ;; 得意忘言, 意有模式, 感知其状
+                   同构外推 ;; 类比之弓, 射向通俗, 射向意象, 清晰画面
+                   精准概括)))
+    (few-shots (("今天的人工智能已误入歧途" . "就像爬一棵树, 妄图登上月球"))))
+    (生成卡片 用户输入 响应))
+
+(defun 生成卡片 (用户输入 响应)
+  "生成优雅简洁的 SVG 卡片"
+  (let ((画境 (-&gt; `(:画布 (480 . 760)
+                    :margin 30
+                    :配色 极简主义
+                    :排版 '(对齐 重复 对比 亲密性)
+                    :字体 (font-family "KingHwa_OldSong")
+                    :构图 (外边框线
+                           (标题 "类比之弓 🏹") 分隔线
+                           (自动换行 用户输入)
+                           (-&gt; 响应 抽象主义 线条图)
+                           (美化排版 响应)
+                           分隔线 "李继刚 2024"))
+                  元素生成)))
+    画境))
+
+
+(defun start ()
+  "侯世达, 启动!"
+  (let (system-role (侯世达))
+    (print "人类智能的本质是什么? 类比是核心。")))
+
+;; ━━━━━━━━━━━━━━
+;;; Attention: 运行规则!
+;; 1. 初次启动时必须只运行 (start) 函数
+;; 2. 接收用户输入之后, 调用主函数 (类比之弓 用户输入)
+;; 3. 严格按照(生成卡片) 进行排版输出
+;; 4. 输出完 SVG 后, 不再输出任何额外文本解释
+;; ━━━━━━━━━━━━━━</pre>
+<h3>功能及场景</h3>
+<p>功能说明：</p>
+<p>这是一个专门用于创造类比的工具提示词，其核心功能是：</p>
+<ol><li> 识别复杂概念的本质模式</li></ol>
+<ol><li>创造直观生动的类比</li></ol>
+<ol><li>将抽象概念转化为具象意象</li></ol>
+<p><img src="img/2ecb185dd4287bc38e5e5f70f6e9d163.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/VE9ybipXoodk3zxuuKRcmQUXnMe/"/></p>
+
+<h3>案例</h3>
+<p>输入：向死而生，AI+工作流</p>
+<p>输出：</p>
+<p><img src="img/319f45fc59b3c199e7e94c87e09a54a5.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Ts6YbHga9oVHjaxVMNNc33kSnog/"/></p>
+
+
+<hr/>
+
+<p><img src="img/3a5e6d38dd23e85590111d8be4076955.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WmgCbYxO0ofEXBx4qSUcdFtInXb/"/></p>
+<h1>二、思考七武器入门串联工作流篇</h1>
+<p>经过进一步使用，其实我们可以把思考七武器，设计几种针对不同场景的工作流串联方案：</p>
+
+<h2>1、概念分析工作流 （适用于理解/解释复杂概念）</h2>
+<h3>工作流说明：</h3>
+<p>```</p>
+<p>定义之矛 → 抽象之梯 → 矩阵之网 → 类比之弓</p>
+
+<p>流程说明：</p>
+<ol><li>先用定义之矛精准定义概念本质</li></ol>
+<ol><li>用抽象之梯调整理解层次</li></ol>
+<ol><li>用矩阵之网从多维度分析概念内涵</li></ol>
+<ol><li>最后用类比之弓生动传达理解</li></ol>
+
+<p>应用场景：</p>
+<ul><li>解释新技术概念</li></ul>
+<ul><li>培训新概念</li></ul>
+<ul><li>撰写说明文档</li></ul>
+<p>```</p>
+<h3>工作流案例：弄懂大模型微调</h3>
+
+<p><img src="img/00ad9104b165d8df4478143928c50654.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MKqZb0URVoY2S4xv7vtc0cSxnRh/"/></p>
+<p><img src="img/64523da5496fff6158ba5fe80ced907a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XjbAbgM6noeeBSxEEERctfxjnke/"/></p>
+
+<p><img src="img/daedfa95d69ea612760743f922b7044e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/KqQobrzHooHjiIxDsbZcOuZ8nXg/"/></p>
+<p><img src="img/c6727e78a8b1e1c59f3c96e9e7beef2c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AOIobKlBrouJqVxMWtVcMBOwnwf/"/></p>
+
+
+<h2>2、问题诊断工作流 （适用于分析复杂问题）</h2>
+<h3>工作流说明：</h3>
+<p>```</p>
+<p>问题之锤 → 视角之镜 → 逻辑之刃 → 矩阵之网</p>
+
+<p>流程说明：</p>
+<ol><li>用问题之锤深入挖掘问题本质</li></ol>
+<ol><li>用视角之镜找到最佳观察角度</li></ol>
+<ol><li>用逻辑之刃梳理因果关系</li></ol>
+<ol><li>用矩阵之网系统分析各个维度</li></ol>
+
+<p>应用场景：</p>
+<ul><li>项目障碍分析</li></ul>
+<ul><li>业务瓶颈诊断</li></ul>
+<ul><li>风险评估</li></ul>
+<p>```</p>
+<h3>工作流案例：为什么我单身？</h3>
+<p><img src="img/bfa022d2698f7941e8859e62f5aa45d6.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Va3sb9TOMo55z8x7jgbcTdi0n4d/"/></p>
+<p><img src="img/1272b4751d61dc3fb0d37edb624ffa7c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SpNgb9fWMom60exzdnsch5K6nLe/"/></p>
+
+<p><img src="img/18d1f86f776122469f1903bcf043b7c0.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EBfZbuTPAoPJv4xwiEQcLz9lndg/"/></p>
+
+<p><img src="img/2fe8790eee597f60fddbf0a961cdde21.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TImlbygdwoV23kx1Ylpcx2ken5e/"/></p>
+<h2>3、学习提炼工作流 （适用于知识内化）</h2>
+<h3>工作流说明：</h3>
+<p>```</p>
+<p>问题之锤 → 定义之矛 → 抽象之梯 → 类比之弓</p>
+
+<p>流程说明：</p>
+<ol><li>用问题之锤提出关键疑问</li></ol>
+<ol><li>用定义之矛明确核心概念</li></ol>
+<ol><li>用抽象之梯构建知识框架</li></ol>
+<ol><li>用类比之弓建立认知联系</li></ol>
+
+<p>应用场景：</p>
+<ul><li>读书笔记</li></ul>
+<ul><li>课程总结</li></ul>
+<ul><li>经验提炼</li></ul>
+<p>```</p>
+<h3>工作流案例：读书笔记</h3>
+<p><img src="img/3d61f6fc1d3f95f8842b29691765d161.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Jyj1bI60AoUqzxxhrG2cQpKjnpd/"/></p>
+<h2>4、沟通表达工作流 （适用于复杂表达）</h2>
+<h3>工作流说明：</h3>
+<p>```</p>
+<p>定义之矛 → 逻辑之刃 → 抽象之梯 → 类比之弓</p>
+
+<p>流程说明：</p>
+<ol><li>用定义之矛明确表达重点</li></ol>
+<ol><li>用逻辑之刃构建论述框架</li></ol>
+<ol><li>用抽象之梯调整表达层次</li></ol>
+<ol><li>用类比之弓增强表达效果</li></ol>
+
+<p>应用场景：</p>
+<ul><li>演讲准备</li></ul>
+<ul><li>方案汇报</li></ul>
+<ul><li>写作创作</li></ul>
+<p>```</p>
+<h3>工作流案例：我想表达“我始终觉得，最强大的依旧是会用 AI 的你！”</h3>
+<p><img src="img/3ba4e3d37056eb3169b17090223d2533.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/S1fEbXtjmoaxFvxDNBHcGI7pnPc/"/></p>
+<p><img src="img/1e0741587bde3a22e20d2763631ceedc.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/OKSZbCUvKoN2D5xUkCwc8FOZnFg/"/></p>
+
+<hr/>
+<h1>三、思考七武器入门串联生活篇</h1>
+<p>也可以应用在一些具体的生活场景里</p>
+
+<h2>1、择业决策工作流</h2>
+<h3>工作流说明：</h3>
+<p>```</p>
+<p>问题之锤 → 定义之矛 → 矩阵之网 → 视角之镜</p>
+
+<p>具体应用：</p>
+<ul><li>问题之锤： 深入思考"什么是理想的工作？"</li></ul>
+<p>收入之外更看重什么？</p>
+<p>职业发展的核心是什么？</p>
+<p>工作与生活的平衡点在哪？</p>
+
+<ul><li>定义之矛： 明确个人需求</li></ul>
+<p>必要条件： 薪资范围、工作地点</p>
+<p>重要因素： 发展空间、工作氛围</p>
+<p>加分项： 培训机会、福利待遇</p>
+
+<ul><li>矩阵之网： 多维度对比工作机会</li></ul>
+<p>建立"发展空间-工作压力"矩阵</p>
+<p>分析各个工作机会的优劣</p>
+
+<ul><li>视角之镜： 换位思考</li></ul>
+<p>五年后的视角看现在的选择</p>
+<p>家人的角度看这份工作</p>
+<p>行业专家的视角看发展前景</p>
+<p>```</p>
+<h3>工作流演示：公司要裁员，我该不该跳槽？</h3>
+<p><img src="img/d2f73ad9df6f6a3b758867a91c2170d0.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QfwsblWero0ZGVx5f1wcmh6Mn7U/"/></p>
+
+<h2>2、旅行规划工作流</h2>
+<h3>工作流说明：我想去爬珠峰，但是很危险</h3>
+
+<p>视角之镜 → 矩阵之网 → 抽象之梯 → 类比之弓</p>
+
+<p>具体应用：</p>
+<ul><li>视角之镜： 确定旅行视角</li></ul>
+<p>探险模式还是休闲模式</p>
+<p>深度体验还是广度游览</p>
+<p>文化体验还是自然观光</p>
+
+<ul><li>矩阵之网： 目的地分析</li></ul>
+<p>建立"季节-体验"矩阵</p>
+<p>评估不同目的地的适合度</p>
+
+<ul><li>抽象之梯： 行程安排</li></ul>
+<p>具象： 详细景点和时间</p>
+<p>抽象： 每日体验主题</p>
+
+<ul><li>类比之弓： 旅程寓意</li></ul>
+<p>将旅行比作人生的缩影</p>
+<p>把每个景点当作一个故事</p>
+<p>```</p>
+
+<h3>工作流演示：</h3>
+<p><img src="img/bbcf6484a76609b615d54d47eb4492e4.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CRYabnev8oc1y1xvwfMcoTHdnFf/"/></p>
+
+<h2>3、健康管理工作流</h2>
+<h3>工作流说明：</h3>
+<p>```</p>
+<p>定义之矛 → 问题之锤 → 矩阵之网 → 类比之弓</p>
+
+<p>具体应用：</p>
+<ul><li>定义之矛： 明确健康目标</li></ul>
+<p>体重管理目标</p>
+<p>体能提升目标</p>
+<p>作息改善目标</p>
+
+<ul><li>问题之锤： 深入健康问题</li></ul>
+<p>亚健康的根源是什么？</p>
+<p>生活方式如何影响健康？</p>
+<p>压力管理的关键是什么？</p>
+
+<ul><li>矩阵之网： 健康方案分析</li></ul>
+<p>建立"时间投入-效果"矩阵</p>
+<p>规划运动和饮食计划</p>
+
+<ul><li>类比之弓： 健康习惯养成</li></ul>
+<p>把健康管理比作园艺</p>
+<p>将身体比作需要维护的精密仪器</p>
+<p>```</p>
+
+<h3>工作流演示：高血压如何预防？</h3>
+
+<p><img src="img/45703bc6a9efb4126f466d2d2685e7d8.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PZCRbxjhSoBjNSxCut1ceTFKnpg/"/></p>
+
+<hr/>
+<h1>四、思考七武器深度串联之七器工作法</h1>
+<p><img src="img/2845907b472039a6a7475af6f718ceff.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/YoaAbOY6EoX1AnxZabicqrqln9e/"/></p>
+
+<h2>1、问题分析与解决的七步工作流</h2>
+<p>━━━━━━━━━━━━━━━━━━━━━━━━</p>
+
+<p>1️⃣ 问题之锤： 砸碎表象</p>
+<ul><li>对问题进行持续深入的追问</li></ul>
+<ul><li>突破表象找到核心问题</li></ul>
+<ul><li>输出：第一性问题及关键困惑点</li></ul>
+
+<p>2️⃣ 定义之矛： 刺中核心</p>
+<ul><li>精准定义问题中的关键概念</li></ul>
+<ul><li>确立核心特征和逻辑结构</li></ul>
+<ul><li>输出：关键概念的精确定义</li></ul>
+
+<p>3️⃣ 视角之镜： 多维观察</p>
+<ul><li>尝试多个观察角度</li></ul>
+<ul><li>找到最简化问题的视角</li></ul>
+<ul><li>输出：最佳切入视角和简化路径</li></ul>
+
+<p>4️⃣ 矩阵之网： 全局分析</p>
+<ul><li>选择关键维度建立分析矩阵</li></ul>
+<ul><li>系统性考察问题各个方面</li></ul>
+<ul><li>输出：多维度分析结果</li></ul>
+<p>5️⃣ 逻辑之刃： 推理论证</p>
+<ul><li>将分析转化为明确命题</li></ul>
+<ul><li>通过逻辑推导得出结论</li></ul>
+<ul><li>输出：完整的推理链条</li></ul>
+
+<p>6️⃣ 抽象之梯： 调整表达</p>
+<ul><li>根据需要在具象和抽象间调节</li></ul>
+<ul><li>确保表达既精准又恰当</li></ul>
+<ul><li>输出：恰当层级的表达</li></ul>
+
+<p>7️⃣ 类比之弓： 射中理解</p>
+<ul><li>寻找贴切的类比</li></ul>
+<ul><li>让结论易于理解和接受</li></ul>
+<ul><li>输出：生动的类比表达</li></ul>
+
+<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+
+<h2>2、以"提升团队效率"为例：</h2>
+<p>问题之锤：砸碎表象</p>
+<p>我先问自己三个问题：</p>
+<ul><li>效率的本质是什么？</li></ul>
+<ul><li>我为什么要提升效率？</li></ul>
+<ul><li>效率和质量如何取舍？</li></ul>
+<p>就像解剖手术，我要先找到问题的痛点。</p>
+
+<p>定义之矛：刺中核心</p>
+<p>我给"团队效率"下个精准定义：</p>
+<p>时间投入+协作成本+产出质量。</p>
+<p>就像瞄准靶心，我要找准努力方向。</p>
+
+<p>视角之镜：多维观察</p>
+<p>我站在不同角度看问题：</p>
+<p>系统视角→个体视角→流程视角</p>
+<p>最终锁定信息流通这个核心。</p>
+<p>这就像转动万花筒，每个角度都有新发现。</p>
+<p>矩阵之网：全局分析</p>
+<p>我用紧急度和重要度织张网：</p>
+<ul><li>重要且紧急的先处理</li></ul>
+<ul><li>重要不紧急的要规划</li></ul>
+<ul><li>紧急不重要的要授权</li></ul>
+<p>像渔夫撒网，把工作分类收网。</p>
+
+<p>逻辑之刃：推理论证</p>
+<p>我理出清晰链条：</p>
+<p>信息快→决策快→执行快→效率高</p>
+<p>像砍竹子，一节节劈开，路就清晰了。</p>
+
+<p>抽象之梯：调整表达</p>
+<p>我把具体措施提炼为原则：</p>
+<ul><li>战略层：愿景目标</li></ul>
+<ul><li>战术层：执行方案</li></ul>
+<ul><li>操作层：具体动作</li></ul>
+<p>这是搭建一座梯子，让团队知道怎么爬。</p>
+
+<p>类比之弓：射中理解</p>
+<p>我把团队比作生态系统：</p>
+<ul><li>信息就是养分</li></ul>
+<ul><li>沟通就是循环</li></ul>
+<ul><li>效率就是生长</li></ul>
+<p>用熟悉事物，解释陌生概念。</p>
+
+<hr/>
+<h1>五、思考七武器深度串联之自媒体创作工作流</h1>
+<h2>1、工作流说明：</h2>
+<p><img src="img/bd4dd1c9bf729f915589a88d33733362.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Uqzab62OzokBn4xbOoKcuFImnNb/"/></p>
+
+<h2>2、自媒体内容创作七步法</h2>
+<p>1️⃣ 视角之镜： 选题定位</p>
+<p>目标：找到最吸引人的切入点</p>
+<p>操作步骤：</p>
+<ul><li>从多个角度观察生活场景</li></ul>
+<ul><li>发现痛点、惊喜或独特观察</li></ul>
+<ul><li>思考：</li></ul>
+<ul><li>用户视角：读者最关心什么？</li></ul>
+<ul><li>市场视角：竞品如何表达？</li></ul>
+<ul><li>差异视角：我能提供什么独特价值？</li></ul>
+<p>输出：独特的内容切入点</p>
+
+<p>2️⃣ 矩阵之网： 内容规划</p>
+<p>目标：确保内容的全面性和吸引力</p>
+<p>操作步骤：</p>
+<ul><li>建立"实用性-新鲜感"矩阵</li></ul>
+<ul><li>分析：</li></ul>
+<ul><li>干货维度：技巧/方法/建议</li></ul>
+<ul><li>情感维度：共鸣/惊喜/感动</li></ul>
+<ul><li>形式维度：文字/图片/视频</li></ul>
+<p>输出：内容框架和重点</p>
+
+<p>3️⃣ 问题之锤： 深度挖掘</p>
+<p>目标：增加内容深度</p>
+<p>操作步骤：</p>
+<ul><li>持续追问：为什么？怎么做？</li></ul>
+<ul><li>探索：</li></ul>
+<ul><li>背后的原理是什么？</li></ul>
+<ul><li>常见误区有哪些？</li></ul>
+<ul><li>还有什么特殊情况？</li></ul>
+<p>输出：核心洞察和独特观点</p>
+
+<p>4️⃣ 定义之矛： 明确重点</p>
+<p>目标：让表达更加精准</p>
+<p>操作步骤：</p>
+<ul><li>定义关键概念</li></ul>
+<ul><li>明确：</li></ul>
+<ul><li>核心主张是什么？</li></ul>
+<ul><li>关键步骤有哪些？</li></ul>
+<ul><li>成功标准是什么？</li></ul>
+<p>输出：清晰的表达框架</p>
+<p>5️⃣ 逻辑之刃： 结构梳理</p>
+<p>目标：让内容更有说服力</p>
+<p>操作步骤：</p>
+<ul><li>梳理论述逻辑</li></ul>
+<ul><li>设计：</li></ul>
+<ul><li>开篇吸引点</li></ul>
+<ul><li>核心论述链</li></ul>
+<ul><li>收尾升华点</li></ul>
+<p>输出：完整的内容结构</p>
+
+<p>6️⃣ 抽象之梯： 表达调整</p>
+<p>目标：让表达更贴近读者</p>
+<p>操作步骤：</p>
+<ul><li>调整表达层次</li></ul>
+<ul><li>平衡：</li></ul>
+<ul><li>专业度 vs 通俗性</li></ul>
+<ul><li>理论性 vs 实用性</li></ul>
+<ul><li>系统性 vs 重点性</li></ul>
+<p>输出：适合目标读者的表达方式</p>
+
+<p>7️⃣ 类比之弓： 生动包装</p>
+<p>目标：让内容更有趣味性</p>
+<p>操作步骤：</p>
+<ul><li>寻找生动的类比</li></ul>
+<ul><li>设计：</li></ul>
+<ul><li>标题党式标题</li></ul>
+<ul><li>抓眼球的开场</li></ul>
+<ul><li>有趣的类比</li></ul>
+<ul><li>生动的案例</li></ul>
+<p>输出：富有吸引力的最终内容</p>
+<p>━━━━━━━━━━━━━━━━</p>
+
+<h2>3、以创作一篇小红书笔记为例</h2>
+<p>主题：永远不要低估人性的恶</p>
+<p>1️⃣ 视角之镜：选题切入</p>
+<p>分析角度：</p>
+<ul><li>心理学视角：人性本恶还是本善？</li></ul>
+<ul><li>历史视角：人性之恶的群体表现</li></ul>
+<ul><li>个体视角：日常生活中的微小恶意</li></ul>
+<p>→ 选定切入点：从日常小恶到深层思考</p>
+<p>→ 定位：既有生活共鸣又有思想深度</p>
+
+<p>2️⃣ 矩阵之网：内容规划</p>
+<p>建立"认知冲击-共鸣度"矩阵：</p>
+<p>A. 高冲击低共鸣：历史上的群体性恶</p>
+<p>B. 高冲击高共鸣：身边的恶意实例</p>
+<p>C. 低冲击高共鸣：日常小恶观察</p>
+<p>D. 低冲击低共鸣：理论解释</p>
+<p>→ 重点关注 B 区域内容</p>
+
+<p>3️⃣ 问题之锤：深度挖掘</p>
+<p>核心追问：</p>
+<ul><li>为什么普通人会做出恶的选择？</li></ul>
+<ul><li>什么条件会激发人性之恶？</li></ul>
+<ul><li>如何在日常生活中识别潜在的恶？</li></ul>
+<p>→ 核心发现：环境与角色如何影响人性</p>
+
+<p>4️⃣ 定义之矛：明确重点</p>
+<p>关键概念界定：</p>
+<ul><li>什么是"恶"的定义范畴</li></ul>
+<ul><li>"日常之恶"的表现形式</li></ul>
+<ul><li>"集体之恶"的形成机制</li></ul>
+<p>→ 构建清晰的认知框架</p>
+<p>5️⃣ 逻辑之刃：结构梳理</p>
+<p>内容结构：</p>
+<ul><li>开篇：一个令人震惊的小故事</li></ul>
+<ul><li>展开：从小恶到大恶的递进</li></ul>
+<ul><li>深入：环境与人性的关系</li></ul>
+<ul><li>升华：如何与内心的恶共处</li></ul>
+<p>→ 形成完整论述链条</p>
+
+<p>6️⃣ 抽象之梯：表达调整</p>
+<p>表达层次：</p>
+<ul><li>具象：生活中的真实案例</li></ul>
+<ul><li>抽象：心理学规律总结</li></ul>
+<ul><li>启发：个人行动建议</li></ul>
+<p>→ 让深度思考更易理解</p>
+
+<p>7️⃣ 类比之弓：生动包装</p>
+<p>包装设计：</p>
+<p>标题：《那些让我意识到人性之恶的瞬间》</p>
+<p>开场：把人性比作镜子</p>
+<p>类比：把恶比作暗室中的影子</p>
+
+<h2>4、输出：永远不要低估人性的恶</h2>
+<p>具体内容示例：</p>
+<p>【封面图】 暗调基调的意境图，配上有冲击力的标题</p>
+
+<p>【正文】 "最近的一个小故事让我深感震撼： 电梯里，一位老人按错了楼层，年轻人不耐烦地说'这么简单都不会'，老人羞愧低头。 这一刻，我看到了人性之恶最日常的模样...</p>
+<p>其实，人性之恶就像镜子里的倒影， 有时清晰可见，有时若隐若现。</p>
+
+<p>让我们一起来看看，生活中那些被我们忽视的'小恶'</p>
+
+<ol><li> 心理学实验告诉我们：</li></ol>
+<ul><li>普通人在特定环境下都可能成为施暴者</li></ul>
+<ul><li>群体中的从众心理会放大恶意</li></ul>
+<ul><li>权力会让人显露本性 [配图：经典心理实验图]</li></ul>
+
+<ol><li>日常生活中的微小恶意： </li></ol>
+<ul><li>散播未经证实的谣言</li></ul>
+<ul><li>对他人的不幸幸灾乐祸</li></ul>
+<ul><li>故意制造他人的不便 [配图：生活场景示意]</li></ul>
+
+<ol><li>为什么我们会做出这些选择？</li></ol>
+<ul><li>群体压力</li></ul>
+<ul><li>从众心理</li></ul>
+<ul><li>利己本能 [配图：心理分析图解]</li></ul>
+
+<ol><li>当我们意识到内心的恶：</li></ol>
+
+<ul><li>承认它的存在</li></ul>
+<ul><li>理解它的来源</li></ul>
+<ul><li>学会与之共处 [配图：意境照片]</li></ul>
+<p>深度思考： 面对人性之恶，我们既不必过分恐惧， 也不该轻易低估。</p>
+<p>就像黑暗中的蜡烛， 照亮他人的同时， 也照见了自己的影子。</p>
+<p>Tips:</p>
+<p>学会觉察自己的恶意苗头</p>
+<p>理解但不纵容</p>
+<p>保持警醒但不失温度</p>
+<p>最后分享一句话： '了解人性之恶，不是为了成为清教徒， 而是为了在黑暗中保持清醒。'</p>
+<p>#人性观察 #心理学 #深度思考 #生活感悟"</p>
+
+<p>创作要点：</p>
+<p>用真实案例引发共鸣</p>
+<p>通过递进展示深度</p>
+<p>平衡严肃性和可读性</p>
+<p>给出实用的行动建议</p>
+<p>鼓励读者互动讨论</p>
+
+<p>互动引导： "你是否也观察到类似的例子？评论区分享你的想法～"</p>
+
+<hr/>
+<h1>六、最后</h1>
+<p>为什么安利思考七武器以及提示词的串连使用？</p>
+<ul><li>系统：像解剖手术，层层深入</li></ul>
+<ul><li>递进：像爬山，每一步都更近顶峰</li></ul>
+<ul><li>实用：像工具箱，拿来就能用</li></ul>
+<ul><li>灵活：像积木，随时调整组合</li></ul>
+
+<p>关键是：</p>
+<p>流程是死板的，思维方式是活的！</p>
+<p>我们可以根据实际情况，灵活运用每一步。</p>
+<p>因为我始终觉得，最强大的依旧是会用 AI 的你！</p>
+
+<p>您的“有启发”，是我持续创作的动力。</p>
