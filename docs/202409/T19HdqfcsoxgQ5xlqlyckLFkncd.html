@@ -1,0 +1,41 @@
+<h1>如何爬取知乎的帖子回答，来辅助文章的人工&amp;AI创作（附效果&amp;实操&amp;源码）</h1>
+<blockquote>来源：<a href="https://vge3py7ug6.feishu.cn/docx/T19HdqfcsoxgQ5xlqlyckLFkncd">https://vge3py7ug6.feishu.cn/docx/T19HdqfcsoxgQ5xlqlyckLFkncd</a></blockquote>
+<h3>前言</h3>
+<p>基于“好的素材导向更好的文章质量”的思想，我做了个知乎的文本采集rpa，它能实现的作用就是把每一个“话题”下面的帖子和回答，都给爬取下来塞到一个word里面，成为某一个话题的很好的素材。</p>
+
+<h3>实现成品及过程如下：</h3>
+<p>成品：</p>
+<p><img src="img/3ed571e017ebf08af21ef2c8273c8ba6.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/G0ZWb1a7Qo0CmlxmWPIcau9Xndg/"/></p>
+
+<p>帖子及回答遍历：</p>
+<p><img src="img/e6e66023ae1a5b57f064f4d669a7953e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Yu09bT5LZooEBnxufgac5d5XnXH/"/></p>
+<p><img src="img/c8706ffc8ea589543f11053ff4db7a43.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MPHibKHnNoeMDkx9iFDc998pnud/"/></p>
+
+<h3>流程思想如下：</h3>
+
+<h3>RPA代码如下：</h3>
+<ul><li>第一部分：前置检测是否有登录上知乎，同时遍历网页的热榜热帖</li></ul>
+<p><img src="img/8c58d10a0a23165b333e74a091367017.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TSKgbs4HAo2Vp8xwTYjcubGQnVe/"/></p>
+<ul><li>第二部分：先循环最外层的帖子，把热榜的帖子全部循环，以准备好打开每一个帖子</li></ul>
+<p>右边的就是先循环最外层的帖子，只有先循环完最外层的，才能够准备好一一打开帖子进去看里面的内容</p>
+<p>具体的RPA代码见下方：</p>
+
+<p><img src="img/2f15d6fceb345bac24818f54fcc76b36.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SI53bu82pocxQtxR3EfchLynnVg/"/></p>
+
+<p><img src="img/48445ede2f556d973e3e180a3dd6460b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EhohbNcGGoCSwGxbpLrc7UAxnWh/"/></p>
+<ul><li>第三部分：循环每一个帖子里面的回答们</li></ul>
+<p>每一个帖子点进去，都要读取对应的帖子内容，和相应的回答</p>
+
+<p>源码见下方：</p>
+
+<p><img src="img/9216fb5f50eeb9939ad0d25d6dded69f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/YGrBbge79o47wHxVLsocWqQinWh/"/></p>
+<p><img src="img/f09d5cfae96416ea1033902c051b4e9f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CrMEbQS54oTzeLxDAoicHgUJnef/"/></p>
+<ul><li>第四部分：整合到word当中去，成为素材</li></ul>
+<p>整合成为word的文件素材：</p>
+<p><img src="img/1e8fd655d08a3ad59705c11ef5e61bd0.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/YOisbf3JPodIBoxmheqcKCFJnte/"/></p>
+<p><img src="img/35f88166838632c2672f001fa184900b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/E0QXbbRV8okwZ1xV7xscWpSxnTb/"/></p>
+<p><img src="img/f2714c14750c6d9592c37717bc1c0904.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TqEubbkNaovX9gxN3rJc0LDMnzb/"/></p>
+
+<p>有人可能问，如果我不想要热榜，而是其他的帖子呢？</p>
+<p>其实是一通百通的，热榜也是帖子的一种，嘿嘿。</p>
+<p>有问题随时交流。</p>
