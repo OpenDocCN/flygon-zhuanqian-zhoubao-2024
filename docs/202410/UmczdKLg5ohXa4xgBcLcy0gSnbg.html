@@ -1,0 +1,267 @@
+<h1>出海网站经验总结手把手实现出海网站收款全流程</h1>
+<blockquote>来源：<a href="https://jkmm9rrxfa.feishu.cn/docx/UmczdKLg5ohXa4xgBcLcy0gSnbg">https://jkmm9rrxfa.feishu.cn/docx/UmczdKLg5ohXa4xgBcLcy0gSnbg</a></blockquote>
+<p>旨在分享在开发海外网站过程中积累的经验。无论您是刚开始计划将业务拓展到海外，还是已经在这个领域有所尝试，希望这里的内容能为您提供有价值的参考。</p>
+
+<p>这个项目源于个人在开发海外网站和设立跨境业务过程中的实践经验。我们深知这个过程中可能遇到的各种挑战和困惑，因此希望通过分享自己的经验，为同样在这条路上探索的朋友们提供一些参考和帮助。</p>
+<p>本内容将持续更新，包括但不限于海外公司注册、银行开户、支付系统对接、法律合规以及网站开发的技术细节等方面。</p>
+
+<h1>海外公司注册</h1>
+
+<ol><li>全流程的概况</li></ol>
+<p><img src="img/83a67cb93a83d670d3a0907bdeaa522c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/R240bGcdvobZHcx7t0kcJrKynTh/"/></p>
+<h3>全流程的全景图</h3>
+<p>要实现海外网站收款全流程，我们需要完成几个重要的前置行动，如图：</p>
+<p>注意：</p>
+<ul><li>「实益所有权信息报告」我注册的时候，只要 9 美元，现在涨价了，需要 25 美元。</li></ul>
+<ul><li>公司备案费用也涨价了，原来是 100 美元，现在需要 104 美元。</li></ul>
+<ul><li>所以上面的图片中，159 美元 -&gt; 179 美元。</li></ul>
+<ul><li>大家需要注册的话，还是尽早行动起来吧。</li></ul>
+<h3>花费时间</h3>
+<p>这是我第一次走完全流程，花费时间比较长，从 6 月 2 日申请注册公司开始，到 7 月 22 日激活 Stripe，一共花费了 51 天！这期间走了不少弯路（尝试了两次水星银行），遇到不少坑（比如 IRS 把公司法人名字写错了），主要时间都是等待上。</p>
+<p>我这种情况比较特殊，大家应该不用这么多时间，下面是正常流程大概花费的时间，仅作参考。</p>
+<p>注意： 以上所列天数均为工作日，不包括周末和法定假日。</p>
+<ol><li>注册海外公司</li></ol>
+<p>在这篇文章中，给大家介绍怎么注册一个海外公司，我注册的是美国的公司，所以这里就以美国公司为例了。</p>
+<h3>（1）注册地址</h3>
+<p>👉 wyomingagents （再推荐一个国内的海外公司注册平台，大家有兴趣可以了解一下 IngStart）</p>
+<p>wyomingagents 是一家提供美国怀俄明州公司注册和管理服务的代理机构，怀俄明州的税收很低，适合小团队或者个人注册公司，成本低。</p>
+<h3>（2）注册流程</h3>
+<ul><li>选择「Form a Company」（成立公司）</li></ul>
+<ul><li>这里显示注册公司只需要 $150，下面有一个「实益所有权信息报告」选项需要加上，届时再做说明。</li></ul>
+<ul><li>不用先注册登录这个网站，在后续的流程中，会让你注册网站的。</li></ul>
+<p><img src="img/9306501f2c9c30f8cd1b18900c819d09.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/W1Bmb2n7JoySfNxBBE4c1VNYnlb/"/></p>
+<ul><li>填写信息</li></ul>
+<p>① Desired Company Name (期望的公司名称)：填写你的公司名称（英语公司名称）</p>
+<p>② Alternative Company Name (备用公司名称)：填写你的公司备用名称，这是为了防止上面的公司名称不可用的情况下，可以选择这个备用公司名称来注册。</p>
+<p>③ Business Entity Type (企业实体类型)：我们是个人公司，所以选择 LLC（单一成员有限责任公司）就可以了。</p>
+<p>④ Notify Your Attorney of a Lawsuit (通知您的律师有关诉讼)：选择 NO，因为我们没有律师。</p>
+<p>⑤ "We'll file your Beneficial Ownership Information for you" (我们将为您提交实益所有权信息)：强烈建议这里直接勾选上，「实益所有权信息报告」是美国联邦法案要求大多数新成立和现有的美国公司向美国财政部的金融犯罪执法网络（FinCEN）报告其实益所有人的信息。另外，提供实益所有权信息可以增加公司的透明度，许多银行在为公司开设账户时会要求实益所有权信息。提前准备这些信息可以使开设银行账户的过程更加顺利。如果这里忘记勾选了，后面公司注册成功之后，可以再申请，或者找第三方渠道申请，这样太麻烦，不如这里直接勾选上。</p>
+<hr/>
+<p><img src="img/b3fe29f0c6bedede8cc1adb041d52bd5.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/BNoubUJ5KovRS0xMbc5cKMwcnLb/"/></p>
+<p>① 费用选项：LLC 的公司就这一个选项，默认即可。涨价了，100 美元 -&gt; 104 美元。</p>
+<p>② Member or Manager Managed (成员或管理者管理)：默认即可。</p>
+<p>③ Member #1 (成员 #1)：我们是一人公司，公司成员自然只有我们自己，填写自己的名字即可，拼音，比如张三，那么，First Name 是 san，Last Name 是 zhang。</p>
+<p>④ 如果有合伙人，点击「Add Member」添加即可。</p>
+<hr/>
+<p><img src="img/c1954a0ccb879c297bbad2cdd452a13b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DWw5bXwXUolZ97xUUpIcuhAOnQg/"/></p>
+<p>① First Name、Last Name（姓名）：跟上面一样，填写自己的姓名拼音。</p>
+<p>② Phone Number（电话号码）：填写自己的真实手机号码。</p>
+<p>③ Country（国家）：China（国籍是哪个国家就选择这个国家）。</p>
+<p>④ Physical Address（物理地址）：填写真实地址，这一步很重要，一定要填写自己的真实地址，我填写的是住址，租的房子。建议把中文地址写一遍（平时收快递的地址），然后用 AI 翻译成英语表达的方式即可。</p>
+<p>⑤ City（城市）：填写自己长期居住的城市，用拼音。</p>
+<p>⑥ State / Province（州/省）：同理，填写自己长期居住的省或者市，用拼音。</p>
+<p>⑦ Zip / Postal（邮编）：同理，填写自己长期居住地的邮政编码。</p>
+<hr/>
+<p><img src="img/14d88fe2da165de6263c9273efdf2f7d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UnmZbn0XLoHzZ1xav4UcYHsDnMg/"/></p>
+<p>① Email（电子邮件）：这个步骤是注册 wyomingagents 网站的。填写自己最常用的邮箱即可。</p>
+<p>② Password（密码）：密码，一定要按照要求填写密码，密码要求比较复杂，自己保存好，别忘了，公司相关的文档都会保存在这个网站，方便随时查卡。</p>
+<ul><li>密码必须至少8个字符</li></ul>
+<ul><li>密码必须包含至少一个大写字母</li></ul>
+<ul><li>密码必须包含至少一个数字</li></ul>
+<ul><li>密码必须包含至少一个特殊字符</li></ul>
+<p>③ Confirm Password（确认密码）：确认密码，要求两次输入密码必须一致。</p>
+<hr/>
+<p><img src="img/313809a81054320fc3a736835ffedd42.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/H1cabToN5o4IVnx13Dwc4EbRnxg/"/></p>
+<p>① Wyoming Business Presence Package（怀俄明州商业启动套餐）：这个套餐包含：</p>
+<ul><li>1 年免费域名（价值最高 25 美元）：后面会让你提供一个公司域名，然后会自动使用 WordPress 搭建一个很简单的公司官网，几乎没法用，需要自己去后台修改。</li></ul>
+<ul><li>电子邮件和电话服务：会提供一个免费试用的美国怀俄明州的电话号码，有 APP，可以接收短信（亲测有效，但是电报的验证码收不到，问了官方，他们说应该是可以的，但我没收到，可能是网络或者其他原因，不纠结了），网络电话好像不太好用，几乎也用不着。</li></ul>
+<p>② Annual Report Compliance（年度报告合规）：默认选上，免费的，这是一项法律要求，每个公司都必须在其成立周年日提交。不遵守可能导致公司被州政府解散，后果很严重。</p>
+<p>③ Tax ID (EIN) Service（税务ID（EIN）服务）：EIN 非常重要！后续申请美国银行卡，激活 Stripe 都用得着。但是这里我就不够选了，太贵了，美国国籍只需要 75 美元，但是非美国籍需要 250 美元，差别太大，太贵了，可以自己去美国国税局官网或者第三方找人申请，后面《2、申请 EIN 税号》文章中会详细说明如何操作和避坑。</p>
+<p>④ 其他的，比如 Corporate Supplies（公司用品）、Trademark Service – $499（商标服务 – 499美元）、Trade Name (DBA) – $225（商业名称（DBA）– 225美元）等，一般都不需要，就不用勾选了。</p>
+<hr/>
+<p><img src="img/6733bc12b724aff8d7a051c1e7a94573.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CEX3b9BAloRhXDxlqYXcSow3nLd/"/></p>
+<p>① 填写支付信息，确认账单，用国内的 Visa 信用卡就行，我用的是招行的 Visa 信用卡。</p>
+<p>② 确认无误之后，点击提交订单，收到扣款短信（今年 6 月是 159 美元，现在涨价了），说明注册公司的订单成功了，接下来只需要等待就行，一般情况 3 天左右就能注册下来了，还是很快的。</p>
+<p><img src="img/1fec6a06d3c5c3611dfc5fd52401df29.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/BkfebuyhRoiRVYx3w3vccr5Lnwe/"/></p>
+<h3>（3）确认注册信息</h3>
+<p>完成以上注册公司订单之后，信息填写部分就完成了，接下来，登录网站，确认订单上填写的公司信息，过程就比较简单了，我就把当时的截图贴一下吧。</p>
+<ul><li>红色框里的内容都是需要确认的。</li></ul>
+<ul><li>接下来，点击「Continue」，验证各种信息。</li></ul>
+<p><img src="img/1fad715dca83d5d40fb4216d237ce73c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DDvybx29OotZTuxj7DNcbvgsn1e/"/></p>
+<ul><li>信息确认完之后，会给一个公司在美国的代理地址，这个地址就是公司注册地址，很多地方都用得到，记下来。</li></ul>
+<p>至此，怀俄明州美国公司的注册申请就算完成了，静静等待就行，过几天来官网看一下，公司注册成功之后，可以在网站上看到公司相关的文档：Operating Agreement（运营协议，重要文件）、Initial Resolution（初始决议）、Formation Document（成立文件）</p>
+<h3>（4）其他</h3>
+<ul><li>上面注册过程中，套餐里包含网站，手机号，商业电子邮件等信息，大家可以登录网站后台查看。</li></ul>
+<ul><li>公司网站是 WordPress 部署和发布的，后台有给账号和密码，自己登录 WP 修改官网，第一年是免费的，后面需要付费，可以在后台取消续费。</li></ul>
+<ul><li>公司邮箱账号也是一样，可以登录邮箱后台，收发邮件。</li></ul>
+<ul><li>美国手机号，下载他们的 APP，登录即可收发短信。</li></ul>
+<ul><li>商业电子邮件、SSL、电话和网站在免费试用期结束后，每月每项收费 9 美元。域名将在 1 年免费试用期后，根据域名的市场价格每年收费 25 美元。续订服务和注册代理服务将按年收费。</li></ul>
+<p><img src="img/b29d7eac8a61d0d86c87e978b36875d5.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Gd8YbjmFXofz5txhRYJcSkxynUF/"/></p>
+<ol><li>说在最后</li></ol>
+<p>以上就是注册美国公司的基本操作流程了，还是挺简单的，如果大家有需要，我建议尽早注册，避免再次涨价，一人公司，能省一点是一点。</p>
+<p>需要注意的是，如果需要开通空中云汇的支付，那么请一定要去注册英国公司，我也是后来才知道的，美国公司申请不下来，除非你有美国身份。但是能够开通美国银行卡，有了银行卡就可以接收 Stripe 的支付了。</p>
+<p>在申请银行卡之前，需要先申请公司的 EIN，请前往 2、申请EIN</p>
+<h1>推荐一个国内的海外公司注册平台</h1>
+<ul><li>网址：IngStart WEB：英格斯特</li></ul>
+<p>我最近了解到 IngStart 这个平台，感觉挺有意思的。它主要是帮人在美国、香港、英国和新加坡这些地方注册公司，还提供一些合规和税务方面的服务。</p>
+<p>用起来好像挺方便的，你可以在网上注册账号，然后就能在线完成整个注册流程。他们还会帮你搞定代理地址和股东信息之类的事情。</p>
+<p>我觉得它的好处就是把所有事情都集中在一起了，管理起来也比较简单。而且它有中文服务，对咱们来说挺友好的，价格也很有竞争力，重点是： 一条龙服务，省事！</p>
+<p>如果你对这个感兴趣的话，可以去他们网站上问问客服，应该能了解更多详细信息。总的来说，感觉是个还不错的选择，特别是对那些想在海外开公司但又不想太麻烦的人来说。</p>
+
+
+
+
+<h1>申请 EIN</h1>
+<ol><li>什么是 EIN？EIN 能干什么？</li></ol>
+<p>EIN 是 Employer Identification Number 的缩写，中文通常翻译为“雇主识别号”或“雇主识别码”。这是一个由美国国税局（IRS）发放的 9 位数字的唯一识别号码，相当于企业的社会安全号（SSN），是企业在美国的税务身份证。我们通常也简称为“税号”。</p>
+<p>EIN 的主要用途：</p>
+<ul><li>税务报告：用于提交联邦税务申报表。</li></ul>
+<ul><li>开设银行账户：大多数银行要求企业提供 EIN 才能开设商业银行账户。</li></ul>
+<ul><li>以上两点，对我们比较重要，EIN 还有其他用途，请自行 Google。</li></ul>
+<p>总之，有了 EIN 之后，好多事情都好办了。</p>
+<ol><li>申请 EIN</li></ol>
+<p>请注意，要想申请 EIN，首先必须要有公司。1、海外公司注册 中说到，申请公司的时候，如果带上 EIN 申请的话，非美国籍公民，费用很贵，秉着“省一笔是一笔”的原则，我们可以通过其他方式来申请 EIN。</p>
+<p>有网友的经验是，自己去 美国国税局（IRS）官网 在线申请，我大概看了下，需要填写的信息还挺多的，比较麻烦，好处是免费，并且据说如果申请符合所有要求，系统能够自动验证通过的话，能够立即收到 EIN。</p>
+<p>我没有去自己申请，是在 Fiverr 上找人办理的，输入关键词 “EIN”，就能找到很多办理 EIN 申请的代理人，找一个评分比较多且高的代理人就行。大部分价格相差不大，有的可以办理其他业务，所以显示价格比较高，点进去选择仅申请 EIN 就行。</p>
+<p>联系上之后，代理人都会告诉你需要提供哪些材料，其实就是注册公司成功之后的一些资料信息。提交完成之后，先付一部分费用，等完成之后再付剩余的费用，接下来只需要等待即可，一般情况下，7 个工作日左右就能下来。但是我这次就遇到了一个“坑”。</p>
+<p>我是 6 月 4 日提交的材料，代理人说大概需要 8～12 天能申请下来 EIN。</p>
+<p>6 月 13 日，代理人说 IRS 在确认信上把公司的法人名字写错了，代理人说之前遇到过类似问题，但比较少，说是 IRS 那边的工作人员工作压力比较大，会出现各种问题，但是代理人名字写错还是很罕见的，不好解决。</p>
+<p>6 月 13 日 ～ 6 月 20 日，这期间代理人不断跟 IRS 的工作人员进行沟通，一开始是写邮件说明，后来又要求写纸质邮件进行补充说明，前后花费了 8 天时间。</p>
+<p>6 月 21 日，代理人告诉我 EIN 终于申请下来了！</p>
+<p>前前后后一共用了 18 天，不过倒没有耽误啥事，因为这期间我一直在开发网站，暂时还用不上 EIN。</p>
+<ol><li>说在最后</li></ol>
+<p>其实在 Fiverr 上找代理人申请 EIN 挺合适的，价格不贵，关键是省事，而且还有人帮你检查一些重要信息，Fiverr 平台挺靠谱的，在这个平台能找到很多可以代办的事情，比如公司注册 + EIN 全套服务等。</p>
+<p>好了，至此公司和 EIN 都下来了，接下来就是申请一张美国商业银行卡了。请前往 3、申请美国银行卡</p>
+
+
+<h1>申请美国银行卡</h1>
+<ol><li>为什么要申请美国商业银行卡？</li></ol>
+<ul><li>激活 Stripe 要求是商业银行卡，不建议使用个人银行卡。</li></ul>
+<ul><li>分离个人和商业财务，可以规避一些税收等问题。</li></ul>
+<ul><li>还有其他好处，请自行 Google。</li></ul>
+<ol><li>选择开通银行卡的机构</li></ol>
+<p>对于出海同学来说，可能听到最多的是“水星银行”了，“水星银行”其实不是银行，是一家靠谱的金融机构，水星的卡特别适合小团队和个人公司，便捷且费用低。</p>
+<p>但是现在水星银行对国内的用户好像越来越严格了，我申请了两次，都没有通过，邮件询问官方，也没有给出具体原因，资料都是按照要求提交的。</p>
+<p>后来，我放弃了申请水星银行。了解到“空中云汇”也可以开通美国商业银行卡，于是就去申请了。</p>
+<ol><li>开通“空中云汇”的美国商业银行卡</li></ol>
+<p>请注意，如果需要开通“空中云汇”的支付功能的话，请一定要申请英国或香港公司，或者申请之前跟官方人员沟通一下。</p>
+<h3>（1）地址</h3>
+<p>👉 Airwallex 空中云汇</p>
+<p><img src="img/68e236ffcdfbd645724b6289b99d08ad.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DXHebwqIgo1U9xxZ5vacmLH7nGb/"/></p>
+<h3>（2）开通流程</h3>
+<p>① 注册公司所属国家：美国</p>
+<p>② 和 ③ 公司的法人姓名，也就是你自己的名字，这里填写中文姓名即可。</p>
+<p>④ 手机号：填写自己正在使用的手机号即可。</p>
+<p>⑤ 密码：登录“空中云汇”的密码，牢牢记住。</p>
+<p>⑥ 企业邮箱：我填写的是注册公司的时候申请的邮箱。</p>
+<hr/>
+<p><img src="img/9a599ea99afd5a19be585ba1b0f556d3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/N0K3bvT04o7n6wxJV3Ucew7Ynmh/"/></p>
+<p>选择开通“空中云汇”的用途，一般情况下，选择「收单、接收转账、多币种换汇」这 3 个就够了。</p>
+<hr/>
+<p><img src="img/0099f6032663a63fd060bc288e786462.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PLJpbUiT4oqSygxjThZcjD1Ansf/"/></p>
+<p>① 验证邮箱：比较简单，点击进去，然后去验证就行了。</p>
+<p>② 激活账户：这一步有一些繁琐，一共分为 10 个小模块，需要填写的信息比较多，下面来一一介绍。</p>
+<hr/>
+<p><img src="img/64291d356f40ba553b6e601b6c175746.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IprubejEYoq4eQxW8klcJzrTnMb/"/></p>
+<p>① Entity（实体类型）：选择「Company」。</p>
+<p>② Legal entity name（法定实体名称）：公司的名称，比如：ABC LLC。</p>
+<p>③ EIN（雇主识别号）：这里就是 申请 EIN 中申请的税号了。</p>
+<p>④ Principal place of business address（主要营业地址）：填写当前自己常住的有效地址，跟申请注册公司一样就行。</p>
+<p>⑤、⑥、⑦ 很简单，填写地址对应的城市，省/市和对应的邮政编码即可。</p>
+<hr/>
+<p><img src="img/019d9d0a313c3d46bf11e9a11267db6e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XdHsbl8ewoUP8ExStufcj2BSngf/"/></p>
+<p>① 这一步就是需要上传 海外公司注册 里的公司注册文件，下载下来，上传即可。</p>
+<p><img src="img/7a8a56f78bc86c2e2c9968e79f5988e1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LgApbzAK3ovuOGxYw2BcyInvnGh/"/></p>
+
+<hr/>
+<p>① 选择你的公司主要经营的行业，根据自己主营的行业来选择就行。</p>
+<hr/>
+<p><img src="img/697d1f43e8f98f585785a52f046de972.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Alsfb9Nzmo9SnxxyywPceFKKn2e/"/></p>
+<p>① 这里填写你的公司产品或服务描述，按照实际情况填写就行，按照例子的写法，简单清晰明了即可。</p>
+<p><img src="img/4ca7250e7cfe7e380f751692388acd7f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Irr4bkyAVoEdbdxtU0EcE82HnwB/"/></p>
+
+<hr/>
+<p>① 填写你的网站地址，注意是已上线的网站，可以是自己公司官网，网站不要过于简陋，像个正常的网站，最好是跟自己前面填写的业务相关。也可以是电子商务平台上的在线商店、应用商店下载链接和社交媒体资料。可以添加多个网站，毕竟是人工审核，资料越详细越真实，就越容易通过。</p>
+<p><img src="img/4d90c1129a445ca255c68e552229d73e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LJTGbDwSWoemy8xiywEcMUhlnZb/"/></p>
+
+<hr/>
+<p>① 选择你的公司产品或者服务的月收入或者营业额，如果还没有收入，选择第一个最少的那个就行了。</p>
+<p><img src="img/b23861cc582bf608b7a7789d8cd6ecbb.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ALAubXavJoxQUixdQkMc8SL6nrT/"/></p>
+
+<hr/>
+<p>① 选择你的业务开展的地区，最多选择 5 个地区，如果是面向全球的业务，选择几个主要国家即可。</p>
+<hr/>
+<p><img src="img/14eb261ca13ab1f42fb5aa6ae9b8e624.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Gvj4bVxK3ouIoXxsVJfcSD5sn1b/"/></p>
+<p>① 填写你的公司实际控制人，一人公司就填写自己的名字，如果还有合伙人，继续添加即可。</p>
+<hr/>
+<p><img src="img/142906d2975deccf9526048a133b238a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/M2oabfwY7oHWMLx6h8HcxNorn6b/"/></p>
+<p>这里填写的是申请人的信息。作为申请人，我们还需要完成在线实时身份确认步骤。点击 “Submit” 后，系统会引导我们上传身份证复印件，并通过简单的视频互动来验证我们的身份。</p>
+<p>①～⑤ 填写自己的姓名。，职位，出生日期和国籍等信息，不再赘述。</p>
+<p>⑥～⑨ 填写政府身份证件：“空中云汇”目前只接受中国公民的中国身份证。如果不是中国公民，需要提供中国境外发行的身份证件。我们直接提选择个人身份证即可，这里选择，等到在线实时身份确认的时候，会让你拍照的。</p>
+<p>⑩～⑭ 填写我们当前常住的地址信息，这里可以直接填写中文地址。</p>
+<p>⑮ 点击「Submit」提交之后，会跳转到在线身份验证部分，按照提示进行操作验证即可，比较简单。</p>
+<p><img src="img/21e7b89436bae8cad928dcf0aed35767.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EelwbTNYZo6jJrxSQbJc9Ipnncd/"/></p>
+
+<hr/>
+<p>上面的信息填写完成之后，我们就可以看到“激活账户”变成「审核中」状态了。</p>
+<ol><li>说在最后</li></ol>
+<p>再啰嗦一下，如果需要“空中云汇”的支付功能，那么请注册英国或香港公司，美国公司几乎行不通（除非你有美国籍），这是我跟官方沟通过的结果。</p>
+<p>不过，我们一般也不用“空中云汇”的支付功能，能开通美国银行来收款就可以了，支付功能我们直接激活 Stripe 就行。</p>
+<p>申请填完“空中云汇”流程之后，我们接下来等待就行，一般 3～5 个工作日，“空中云汇”的工作人员会打电话给你，就是确认一些信息，以及说明美国公司要想开通“空中云汇”的全部功能，需要哪些条件和资料。</p>
+<p>我们当时没有沟通清楚，我以为美国公司不能开通“空中云汇”了，正准备去找其他替代方案了呢，结果过了几天之后，收到短信，账号开通成功了。</p>
+<p>然后，我们登录“空中云汇”网站，去后台开通选择和开通美国商业银行卡就可以了。</p>
+<ol><li>至此，我们终于完成了美国商业银行卡的开通，接下来就是出海网站收款全流程的最后一步了，请前往 激活Stripe</li></ol>
+
+<h1>激活 Stripe</h1>
+<p>相信大家如果做出海网站，多少都听说过 Stripe 了吧，Stripe 安全可靠，容易上手，费用相对较低，客户支付体验好，可以说是出海网站支付首选了。</p>
+<p>看到这的同学应该都已经准备好公司，EIN 和海外商业银行卡了吧，如果还没有准备好，请先看下下面的 3 篇文章参考一下吧。 1、海外公司注册 2、申请EIN 3、申请美国银行卡</p>
+<p>下面我们开始一步一步来激活 Stripe 吧。</p>
+<ol><li>激活 Stripe</li></ol>
+<h3>（1）地址</h3>
+<p>👉 Stripe 官网</p>
+<h3>（2）激活 Stripe</h3>
+<p><img src="img/9cdb81879bbac44ec79db87fcb47802c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FeuObwNmkoubPsxGFKXcaWR9nRb/"/></p>
+<p>① 业务所在地：美国，选择自己注册公司真实所在国家。</p>
+<p>② 商家类型：选择 Company 即可。</p>
+<p>③ 公司结构：Single-member LLC，选择实际公司的类型。</p>
+<p><img src="img/abff8a03d856f5503faef010d72e05b0.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Wz2Lbkh3xoJhXyx7CS8cILQDn8d/"/></p>
+
+<hr/>
+<p>① 法定商家名称：填写自己注册的公司名称。</p>
+<p>② 雇主识别码（EIN）：填写公司的税号 EIN。</p>
+<p>③ 商家注册地址：这里填写注册海外公司时给的公司海外地址。</p>
+<p>④ 行业：选择公司实际的业务或服务所属的行业。</p>
+<p>⑤ 公司网站：这里可以填写申请公司时搭建的公司官网，但是太简单的话不行，可以是已上线的其他网站，我填写的是刚上线不久的 AI 图片网站：https://imgai.ai</p>
+<p>⑥ 产品描述：填写网站提供的功能，如实简洁描述即可。</p>
+<hr/>
+<p><img src="img/2a434f4b02c7a6009a1362c0862647ef.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SpTVbel8uoGqdexstYXcDVXPnAb/"/></p>
+<p>① 法定名称：这个步骤是来验证公司法人信息的。这里填写自己的姓名，中文就行。</p>
+<p>② 邮件地址：填写自己常用的邮箱即可，建议 Google 邮箱。</p>
+<p>③ 出生日期：填写自己的出生日期，和身份证上的保持一致即可。</p>
+<p>④ 家庭住址：填写自己当前常住地址即可。</p>
+<p>⑤ 电话号码：这里我填写的是注册公司时买的美国号码，如果没有，填写中国手机号应该也可以。</p>
+<p>⑥ 个人身份证号码：选择中国（CN），然后填写自己的身份证号码。</p>
+<hr/>
+<p>这部分是对客户提供的公司公开详情，这些信息可能会显示在付款说明、账单或者收据上。</p>
+<p>① 对账单描述符：直接填写公司名称就行。</p>
+<p>② 客服电话：我填写的是公司的电话，可以关闭在收据和账单上显示。</p>
+<p>③ 客服地址：我填写的是公司的美国注册地址。</p>
+<hr/>
+<p><img src="img/843b89e1044edd2bb6c47d4345a9eab6.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/KaOkbJlMsonalXx6mNDcRQdxnnf/"/></p>
+<p>① 选择您的银行账户：这里直接填写 3、申请美国银行卡 申请开通的美国商业银行卡信息即可。</p>
+<p>② 选择您的提现计划：自定义选择提现计划，自动或手动都可以。</p>
+<hr/>
+<p><img src="img/02c52334ff451dcf4c97591cdb9141f2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/HpdZbnwPWoWsOnxn1bMcNzWPnSh/"/></p>
+<p>① 这一步是 Stripe 账号的两步验证，按照要求进行操作就行了，挺简单的。</p>
+<p><img src="img/d32b9519ce739c4e71d9987d7f9282dd.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/R3N2bPsT6onTRYx96O6cDN7WnlN/"/></p>
+
+<hr/>
+<p>① 选择税款计算方式，我选择的默认方式：一般 - 以电子方式提供的服务。你也可以看一下其他方式，哪种适合自己就选择哪种，不知道哪种合适，就选择默认的。</p>
+<p><img src="img/3abf1e7c1e2c97c0bdc802655599aaaa.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/YLsPbr4b9ossFsxueb1ca8rFnEf/"/></p>
+
+<hr/>
+<p>截止到这一步，信息填写部分基本就完成了，直接点击「同意并提交」，然后应该就会跳转到一个「补充身份验证资料」的页面，前面还记得填写过身份证号吗？这里就需要上传或者拍照上传身份证照片了。</p>
+<p><img src="img/f6d6c1903102ce337a185595423d08de.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Amz6bvWXcoHHWpxgKV4c6Gqknif/"/></p>
+
+<hr/>
+<p><img src="img/abcf5914767c51f7bb1ffbda222dc9ab.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/JNB5brLwAod19pxK2JYcYNKwnLe/"/></p>
+<p>这一步就是「补充身份资料验证」了，选择自己方便的方式上传身份资料就行，最好是提前准备好身份证的正反面照片，然后直接上传即可。</p>
+<p><img src="img/a80ca1fa4eb091bb947d5cbe439be48f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UVtwbjmaooUE8ixhXLzcm4gbnyh/"/></p>
+
+<hr/>
+<p>完成以上所有步骤之后，就会跳转到「激活成功」页面，这时候我们的 Stripe 激活就算是完成了！剩下的就是我们自己按照 Stripe 文档，把支付对接到我们的网站就可以啦！</p>
+<ol><li>说在最后</li></ol>
+<p>好了，到这里，我们就走完了出海网站收款的全流程了，走之前感觉挺麻烦的，但自己必须要走，走的过程中，我遇到各种问题，各种意外情况，尝试摸索着，走完整个流程，前后花费了一个多月时间。</p>
+<p>现在回过头来看，这些经历挺值得的，只有自己走过一遍，才知道是这么回事，下次再走，就简单了许多。</p>
+<p>如果这些经历能够对你有所帮助，那我可就太开心啦！</p>
+<p>最后的最后，祝大家也祝自己：出海之路，乘风破浪，一帆风顺，收获满满！</p>
