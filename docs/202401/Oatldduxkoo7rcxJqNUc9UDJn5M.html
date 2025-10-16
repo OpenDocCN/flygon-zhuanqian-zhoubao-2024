@@ -1,0 +1,196 @@
+<h1>小红书影刀手机自动化爬取数据分享</h1>
+<blockquote>来源：<a href="https://ivbbfbvrsr5.feishu.cn/docx/Oatldduxkoo7rcxJqNUc9UDJn5M">https://ivbbfbvrsr5.feishu.cn/docx/Oatldduxkoo7rcxJqNUc9UDJn5M</a></blockquote>
+<h1>一、小红书项目梳理</h1>
+<h1>一、搜索模块</h1>
+<h2>1.1功能以及流程介绍</h2>
+<p>主要完成手机的连接、点击小红书APP、完成指定关键词的搜索功能</p>
+<h2>1.2模块流程</h2>
+<p>1、连接手机；2、打开手机APP(打开小红书APP)；3、点击元素（点击小红书的搜索放大镜）4、向搜索内输入自己要搜索的内容（例如：红包封面）5、点击元素（选择商品分类）6、点击元素（按照销量排序）7、点击元素（切换浏览商品模式）</p>
+<h2>1.3模块总览</h2>
+<p><img src="img/d29956f0addb181dc11c44908df08831.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/J5vgbTwKRoKwVOxfDgAcYnfEnGe/"/></p>
+<h2>1.4步骤拆解介绍</h2>
+<h3>1.4.1连接手机和打开手机APP</h3>
+<p>这步主要是建立和手机的联系，其次打开我们需要操作的小红书APP，这里的【连接手机】命令直接点确认就好。然后将手机的小红书APP打开，然后再去点【打开手机APP的命令】，这里的APP包名配置可以直接点获取即可。</p>
+<p>小红书的APP包名：com.xing.xhs</p>
+<p>需要用到的指定：【连接手机】、【打开手机APP】</p>
+<p><img src="img/f0340c6031d0978da30a024bc25a6afe.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UWP9bGk5KoO9OzxcWZqcYREknZK/"/></p>
+<p>连接手机</p>
+<p><img src="img/716b16a2a5db7050e1d17ef8f9edaacb.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/KBVrbpnWpoilvuxWPBOcYGZ7nIc/"/></p>
+<p>打开手机APP</p>
+<h3>1.4.2搜索指定关键词</h3>
+<p>这步比较基础简单，主要是完成指定关键词的搜素输入，并同时按照商品、销量排序，这里需要特殊注意的是选择列表浏览模式浏览，这样选择的好处是每个商品链接的块状尺寸统一，方面我们后面程序的设计，避免BUG的出现。</p>
+<p>需要用到的指定：【点击元素】、【输入文本】</p>
+<p><img src="img/aa7492facaa398e325c4e747cb12eb0d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WYI5bqwcVoVGSnxAWSLcsfhNnVd/"/></p>
+<p>【点击元素】</p>
+<p>1.获取小红书</p>
+<p>搜索放大镜</p>
+<p><img src="img/3fc6aeac881dcc8ae35d4060f863b936.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UsufbFRJXoxzHhxuYOocxQvxnZc/"/></p>
+<p>【输入文本】</p>
+<p>2.输入自己需要</p>
+<p>搜索的内容</p>
+<p><img src="img/8126a9ebaa0d5ee2049a62c55285a463.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Vi3IbJoWtolRzFxzA2icWF3Bntf/"/></p>
+<p>【点击元素】</p>
+<p>3.点击商品分类</p>
+<p><img src="img/c9399a701f0126bba36f474fbbb41ae6.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CuTGbhJdaoB1NqxH59TcNI6snMh/"/></p>
+<p>【点击元素】</p>
+<p>4.按照销量排序</p>
+<p><img src="img/c2505f3a90e11af8d6d4b8828eee5361.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UXT4b4zNPov8gXxrkXncpv44ndd/"/></p>
+<p>【点击元素】</p>
+<p>5.选择按照</p>
+<p>列表浏览模式</p>
+<h2>1.5搜索模块流程参数</h2>
+<p><img src="img/bcd12fdc6cb2e11ca59a785cb743200a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XZcNbiL0voauj9xo0yPcfRrJnKe/"/></p>
+<h1>二、主流程模块</h1>
+<h2>2.1功能以及流程介绍</h2>
+<p>这个模块主要是先调用搜索模块获取指定关键词的搜索，其次设置一个count变量，这个变量用来计算循环爬取了多少次。下面是【无线循环】和【循环相似元素(手机)】的嵌套使用。用来遍历获取每个商品链接，并对获取到的商品做处理。</p>
+<h2>2.2模块流程</h2>
+<h2>2.3模块总览</h2>
+<p><img src="img/8ef5c9c760cd62a927d2117c478605d1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NPIvba8hToXgUxxHvOFchjILnMh/"/></p>
+<h2>2.4步骤拆解介绍</h2>
+<h3>2.4.1调用搜索模块</h3>
+<p>这个模块主要是调用搜索模块，完成指定关键词的搜索。这个在搜索模块已经具体介绍，这里不再过多赘述。</p>
+<p>需要用到的指定：【调用流程】</p>
+<p><img src="img/aee0db11b147539b9eec07c9b92e53c7.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MYeTbhkc5o7jqNxcFzGcquEynmf/"/></p>
+<h3>2.4.2获取当前页面商品标题链接</h3>
+<p>这个部分主要使用了【循环相似元素(手机)】的命令，首先获取商品的标题元素，然后再通过捕获相似元素获取当前页面包含的所有相似元素。将每次循环到的商品元素保存到单个笔记链接中。</p>
+<p>需要用到的指定：【循环相似元素(手机)】、【if多条件】、【设置变量】、【调用流程】</p>
+<p><img src="img/b5b1f3eccdc89aa0fda1258704c96e95.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WQnRbAcEpoL6BvxkUcsc3I24n0d/"/></p>
+<p><img src="img/8eedf9a64184e2a1ac6be8249cfa2304.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UPiSbVsHToMU8pxBkDvcUjhbnOf/"/></p>
+<h4>2.4.2.1避免点击'筛选年货节'</h4>
+<p>【if多条件判断】命令中，if多条件判断中有两个变量，第一个是mobile_element_index,这个变量是循环相似元素的一个循环变量，从0开始计数。count是我自己设置的一个变量，用来计算当前循环商品的次数。</p>
+<p><img src="img/d8bfefa0a862ee90c3e144b54650fb3c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XzV8bt8bno6B4mxnBfRckxTXnSd/"/></p>
+<p>因为在循环点击每个相似元素的时候，容易误点"筛选年货节"的按钮，这里加了一个判断，在第一次获取到相似元素的第一个商品正常点击。当获取到第二页的相似元素时，跳过当前页面的第一个商品，这里用的是继续下一次循环。</p>
+<p>第10行用到的【设置变量】命令主要是实现count=count+1，完成累加计数。</p>
+<h3>2.4.3调用低粉爆款模块</h3>
+<p>用来获取符合低粉爆款的店铺</p>
+<h3>2.4.4滑动手机屏幕</h3>
+<p>滑动手机屏幕主要是获取到下一页的相似元素，完成继续循环。因为【循环相似元素】命令只能获取到当前页面的所有相似元素，没有办法获取到下一页，所以需要使用滑动手机屏幕重新获取新的一页数据。</p>
+<p>需要用到的指定：【滑动手机屏幕】</p>
+<p><img src="img/93c721286c5c8dd66450eb34afe21149.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/GExNbw2cFofpSDxmnnAckZw7nhe/"/></p>
+<p><img src="img/8413a31f9e9e18f752459b5016ee92aa.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IFoWbnPiRo4RuOxWaWIcVIaSnnb/"/></p>
+<p>这里的滑动坐标根据自己的手机不同型号去做合理的配置，另外在高级配置页面中，滑动时间设置3000毫秒，执行后延迟2秒，主要是为了防止滑动过快，导致略过很多符合条件的商品。</p>
+<h1>三、低粉爆款模块</h1>
+<h2>3.1功能介绍</h2>
+<p>首先调用销售量模块获取商品的销售量，然后调用粉丝数量获取店铺的粉丝数量。如果销售量大于等于500，粉丝数量小于等于500时，则调用分享店铺 。</p>
+<h2>3.2流程如下</h2>
+<p>1、调用流程(销售量模块)；2、调用流程(粉丝数量)；3、判断销售量和粉丝量是否符合标准；4、退出个人店铺主页；5、退出商品页</p>
+<h2>3.3模块总览</h2>
+<p><img src="img/8d06aa97f78ffa34f71d014a64fea9be.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NwGhbR5fgoUZf1xjg9RcumMqnMd/"/></p>
+<h2>3.4步骤拆解</h2>
+<h3>3.4.1调用销售量模块、粉丝量模块</h3>
+<p>这个步骤主要是调用我们写好的模块程序来获取商品的销售量和该店铺的粉丝量，然后该流程以下的程序可以通过参数访问的方式得到这两个模块处理好的销量和粉丝量数据。</p>
+<p>需要用到的指定：【调用流程】</p>
+<h3>3.4.2判断销售量和粉丝量</h3>
+<p>这个部分主要是判断该商品的销售量是否大于等于500，粉丝量是否小于等于600，如果满足条件则调用分享店铺模块，将该店铺分享到我们的微信群。如果不满足条件则打印输出说：当前商品不符合低粉爆款。</p>
+<p>判断结束后需要退出店铺界面，退出商品界面回到筛选界面进行下一个商品的点击。</p>
+<p>需要用到的指定：【if多条件】、【点击元素(手机)】</p>
+<h2>3.5低粉爆款模块流程参数</h2>
+<p><img src="img/3612f6cf4d4ec38ebe554104b3fe259d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ERO5bRjVkoCZ7HxBHYQcHHXOnFd/"/></p>
+<h1>四、获取销售量模块</h1>
+<h2>4.1功能以及流程介绍</h2>
+<p>这个部分主要是完成点击商品链接之后，采集本商品的已售数据。</p>
+<h2>4.2流程如下</h2>
+<h2>4.3模块总览</h2>
+<p><img src="img/4e10131bc5850e9936ddcfbdee454fb4.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QBSYbTkbqoz2SHxAXwvcZljqnge/"/></p>
+<h2>4.4步骤拆解介绍</h2>
+<h3>4.4.1进入到商品链接</h3>
+<p>使用【循环相似元素（手机）】的命令，获取到当前页面所有的相似元素，并循环取出，</p>
+<p>使用【点击元素（手机）】命令点击单个商品，进入到商品页面</p>
+<p>需要用到的指定：【点击元素（手机）】</p>
+<p><img src="img/f7d89408923b43f7f140bc88c328b141.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Jfucb1O4DoRMu5xy4zYcwWuknMg/"/></p>
+<h3>4.4.2使用xpath获取商品已售数据</h3>
+<p>这里使用了【获取元素对象（手机）】的命令，其中的定位方式选择xpath定位，这种定位方式比较准确，具体学习可以参考【学习资料中的xpath学习资料】</p>
+<p>已售数据xpath参考语法：//*[contains(@text,'已售')]</p>
+<p>根据获取到的已售数量对象，使用【获取手机元素信息】去获取该对象的文本内容。根据以上两个命令就可以获取到该商品的已售数据。</p>
+<p>需要用到的指定：【获取元素对象（手机）】、【获取手机元素信息】</p>
+<p><img src="img/1dc316e10062293833e24c1cbfab9842.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CaHCb3mr3oBla1xL0Idckb8WnHf/"/></p>
+<p><img src="img/b82c1c047893aa37bd655725ec552b66.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IvLCbhn2LoyJZBxJqXScCCCnnXg/"/></p>
+<p>获取已售数量对象</p>
+<p><img src="img/74729aeb5fb57ff64e0dcecc62025a76.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NeKbbVrdIodRhsxv3zAcYOL4nDc/"/></p>
+<p>获取已售数量对象的元素文本内容</p>
+<h3>4.4.3对销量数据进行二次处理</h3>
+<p>对于小红书的商品销量分为两种类型，一种是销售量小于1w的，一种是销量大于1w的商品。商品销量高于1w时会出现万字样。例如：已售2.3万+。对于销量过万的商品，需要去除里面的万字同时乘以10000。</p>
+<p>需要用到的指定：【从文本中提取内容】、【设置变量】、【打印日志】</p>
+<p>销量过万：例如：'已售2.3w+'</p>
+<p>从文本中提取内容：已售数量文本的内容为：'已售2.3万+'，我们要提取其中的2.3，就需要这个命令。注意，这里提取到的数字依然是文本格式，我们需要float函数进行格式转换。</p>
+<p>设置变量：已售量=float(已售量)*10000，这里的float是浮点数，也就是小数。float(),是强制类型转化函数。</p>
+<p>销量小于1万：直接使用【从文本提取内容】提取其中的销量数据即可。</p>
+<p><img src="img/65abd374d49f1e5b4499b1b33260644f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/KusMb42H9oIfX8xoeClcGnsAnmf/"/></p>
+<p><img src="img/0fe387af3924cf34fa86e1b1dd75864c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IFcSbZZ42omDmzxVoeuco9ZOnKg/"/></p>
+<p>如果获取商品的界面出现错误的时候，再尝试判断界面是否含有'已售'字样，如果依然没有就跳过这个商品，点击屏幕退出当前商品。</p>
+<h2>4.5销售量模块流程参数</h2>
+<p><img src="img/cca8ea6ebe36e7af34e83fa12e871653.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ZmSGb95HLojAvMxBiI3cDkOmnDL/"/></p>
+<h1>五、获取粉丝模块</h1>
+<h2>5.1功能以及流程介绍</h2>
+<p>首先点击手机的店铺头像，在店铺主页上面使用【获取元素对象(手机)】命令获取粉丝数量对象。获取的方式使用xpath方式。然后使用【获取手机元素信息】命令获取粉丝量的文本数据。</p>
+<p>粉丝数据xpath参考语法：//*[contains(@content-desc,'粉丝')]</p>
+<h2>5.2模块流程</h2>
+<h2>5.3模块总览</h2>
+<p><img src="img/3aed6379486c93c90d7d8c33ecced196.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/V1bjbt5XToEIFYxQED9cbUKPnpc/"/></p>
+<h2>5.4步骤拆解</h2>
+<h3>5.4.1获取粉丝量数据</h3>
+<p>首先点击屏幕右下角店铺的头像按钮，进入到个人主页，使用【获取元素对象(手机)】的命令获取粉丝量对象，然后使用【获取手机元素信息】命令获取该对象的属性'contentDescription',此时我们可以取到粉丝的数据了。</p>
+<p><img src="img/d1bd5cb825ce1bc7033eff9687c725ae.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/U4zVbceC6o8jjcxsulwcq0bUn9f/"/></p>
+<p>获取元素对象（粉丝量对象）</p>
+<p><img src="img/0450d1a9cbeddd5e072ddbada3ab8787.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TcGvbFljioMWaKxpdgHc1p8jnUc/"/></p>
+<p>获取手机元素信息（粉丝量文本）</p>
+<h3>5.4.2粉丝量数据二次处理</h3>
+<p>因为粉丝量和销量类型都会出现包含万字的数据，这里就不过多赘述，具体可以参考销量模块已售量数据的处理方式：</p>
+<h2>5.5粉丝模块流程参数</h2>
+<p><img src="img/066bf7122bc536e956f8295af10810ef.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Q7jrbcMjpoMNecx1MoRcbvPCnlf/"/></p>
+<h1>六、分享店铺模块</h1>
+<h2>6.1功能以及流程介绍</h2>
+<p>这个步骤主要是将筛选出来的低粉爆款的店铺分享到微信群，这个模块功能步骤比较简单主要使用到了【点击元素(手机)】【输入文本(手机)】的命令。</p>
+<h2>6.2模块流程</h2>
+<h2>6.3模块总览</h2>
+<p><img src="img/c1088524f9fdcafbcc0949618b8b927a.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/GWwyb0rfroyI3Zx52hsc3hWInOl/"/></p>
+<p><img src="img/d8273a8a0150e5b917494fb6caac8786.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XIQKbAPAQo9GKgxm93ZcCyjunHc/"/></p>
+<p>点击右上角三个点</p>
+
+<p><img src="img/49b7993de86a82a1db982ca1c215de83.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WpKobBwNZopTjZxK2CCcYQinn9f/"/></p>
+<p>点击选择微信分享</p>
+
+<p><img src="img/1ea1018344388d3f6324f63a3d74ee48.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/THo2b2qgbooCtfxWsY8c1j4Jnmc/"/></p>
+<p>在微信搜索中输入</p>
+<p>"小红书选品测试群"</p>
+<p><img src="img/72d0b629c0d234de95655a1969dd43fc.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SwelbpvLso0VKNxK3iYc3HEgnmf/"/></p>
+<p>点击'分享'按钮</p>
+
+<p><img src="img/9829a705be42a77dadc770e35e751255.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/HjqEbNRlIo8SVgxWvKNciGdTn9g/"/></p>
+<p>点击'返回小红书'</p>
+
+<h2>6.4分享店铺模块流程参数</h2>
+<p><img src="img/045b1f38481e8dafe12d288ae5fd694d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/RTjTb0h7JolRNVxbcPIcOKcZnuP/"/></p>
+<h1>二、学习资料：</h1>
+<h2>2.1本项目需要掌握知识点</h2>
+<h3>2.1.1手机基本配置：</h3>
+<p>影刀中级教程-手机自动化（1节-4节）：1-认识手机自动化_哔哩哔哩_bilibili</p>
+<h3>2.1.2手机元素操作</h3>
+<p>影刀中级教程-手机自动化（6节）：6-手机元素操作_哔哩哔哩_bilibili</p>
+<h3>2.1.3xpath定位：</h3>
+<ol><li>影刀RPA高级课程（2023版）08：XPath - 定位元素的终极秘诀？_哔哩哔哩_bilibili</li></ol>
+<ol><li>影刀中级教程-手机自动化（7节）7-手机数据获取_哔哩哔哩_bilibili</li></ol>
+<h3>2.1.4流程模块封装</h3>
+<p>流程的封装（73节-78节）：第73_第十课-前言_哔哩哔哩_bilibili</p>
+<h3>2.1.5各指令的使用</h3>
+<table><tr><th>点击元素(手机)</th><th>获取元素对象(手机)</th><th>调用流程</th><th>无限循环</th><th>连接手机</th><th>打开手机APP</th></tr><tr><td>获取手机元素信息</td><td>输入文本(手机)</td><td>循环相似元素(手机)</td><td>设置变量</td><td>if多条件</td><td>try和catch</td></tr></table>
+
+<h2>2.2飞书学习资料</h2>
+<p>飞书开放平台：https://open.feishu.cn/app?lang=zh-CN</p>
+<p>审核自建应用：https://open.feishu.cn/document/best-practices/intro-to-custom-app-review</p>
+<p>飞书开发文档：https://open.feishu.cn/document/home/index</p>
+<h2>2.3Uibot学习</h2>
+<p>UiBot初级开发指南：https://docs.uibot.com.cn/guide/d1/?0.7032214474897422</p>
+<p>UiBot中级开发指南https://docs.uibot.com.cn/guide/d2/?0.1287339022662165</p>
+<p>UiBot命令手册：https://documents.laiye.com/rpa-command-manual/docs/</p>
+<p>UiBot教程汇总：https://forum.laiye.com/thread-50.htm?tdsourcetag=s_pcqq_aiomsg</p>
+<h2>2.4影刀学习资料</h2>
+<p>影刀IT速成课程（上）：编程入门到精通，全程详解：影刀IT速成课程（上）：编程入门到精通，全程详解。轻松掌握核心知识，助你飞跃成长，开启IT人生新篇章！_哔哩哔哩_bilibili</p>
+<p>影刀帮助中心：https://www.yingdao.com/yddoc/language/zh-cn/?</p>
+<h3>2.4.1学习拓展</h3>
+<p>adb命名列表：https://yingdao.yuque.com/gikgtl/cco6gf/us9i3c2tkixdzklo#vvuP6</p>
+<p>mac偏移：https://www.yuque.com/pengzhiqiang999/xiaokenai/fubpdho05yckgikf?singleDoc#</p>
+<h2>2.5Xpath学习资料</h2>
+<p>影刀xpathB站教程：影刀RPA高级课程（2023版）08：XPath - 定位元素的终极秘诀？_哔哩哔哩_bilibili</p>
+<p>xml教程：https://www.w3school.com.cn/xml/index.asp</p>
+<p>xpath基础知识教程：https://www.w3school.com.cn/xpath/index.asp</p>
