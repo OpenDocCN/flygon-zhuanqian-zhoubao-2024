@@ -1,0 +1,109 @@
+<h1>0编程基础，通过cursor打造出excel自动化匹配工具</h1>
+<blockquote>来源：<a href="https://qnfoes1o78.feishu.cn/docx/QDnsd1MZVoieAzxQwuUcOxs1n2e">https://qnfoes1o78.feishu.cn/docx/QDnsd1MZVoieAzxQwuUcOxs1n2e</a></blockquote>
+<h2>背景：</h2>
+<p>目前在无忧传媒做MCN商务，</p>
+<p>主要工作内容：需要根据合适的项目，推荐自家合适的达人。</p>
+
+<p>每一次提报账号吧，要填写的资料非常繁琐，</p>
+<p>举个例子，</p>
+<p><img src="img/8dc79ac3a19735e7213811cca5af716b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PFtSbn7euob0elxB9y8cg3W5n7s/"/></p>
+<p>非常细致，包括但不限于达人昵称、主页链接、粉丝量级、星图八大人群、男女粉丝画像分布等等...</p>
+<p>提上去之后，能否中号，不确定因素多，且无法人工把控。</p>
+
+<p>这种背景下，多次让媒介部门填写详细资料，但无法保证产出，会使人消极，降低配合度，</p>
+<p>虽然嘴上不说，我也不好意思强迫他们第一时间配合。</p>
+
+<p>因此，在思考，能否打造一款自动匹配的工具，</p>
+<p>让AI帮我自动化完成，</p>
+<p>一来效率高，</p>
+<p>二来不求与人，</p>
+
+<h2>说干就干，先说结论：</h2>
+<p>成功打造出来了，且运行的很流畅，当时成果是直接发朋友圈去宣发，</p>
+
+<h2>打磨过程：</h2>
+
+<h2>思考匹配的运行逻辑，</h2>
+<p>提供2个表，</p>
+<p>1个总表（sheet1），包含所有数据</p>
+<p>1个待补充表（biao2），需从总表中通过行、列，一一对应到该框数据后，将数据补充完整。</p>
+
+<p>刚开始，因为完全没有过编程基础，</p>
+<p>只能用自然语言跟cursor沟通，</p>
+<p>好在跟上了好时代，完全可以用最白痴的沟通方式弥补0基础的缺陷。</p>
+<p>eg.配置环境出错，直接将显示错误的各种看不懂的英文代码，一字不落复制粘贴，他的分析速度非常高效；</p>
+<p><img src="img/263d409452a95dee0eb054ce5d8bb962.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QGkSbosJ1o65zzxJorXcUt4Znjc/"/></p>
+<p><img src="img/13a1996a2491954a39cd0e09a2e73782.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DTCkbPDl1oz92Nxml4GcB6k7nLg/"/></p>
+
+<p>最初沟通出来的代码逻辑非常死板。</p>
+<p>biao2的行、列必须跟sheet1保持一致，字数、顺序都要一模一样才可，否则直接报错。</p>
+<p>例如在中间穿插1个总表没有的【家里是否有电梯？】</p>
+<p>都会导致运行出错。</p>
+<p><img src="img/fbe3e560d498bd039bbcb28e603923d9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AZN1bU6vPoWwhhxyDrZc4U55nGc/"/></p>
+<p><img src="img/186b1df3c29fccb521af4dc1eecbb8dd.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XhvlbIZTZo0yqnxtovlcYczVnPc/"/></p>
+<p>用最朴素的方式来迭代优化，</p>
+<p>出错之后，直接把错误代码复制到cursor的对话框中，进一步分析。</p>
+
+<p>陆陆续续，摸索前进，更新迭代了几个版本；</p>
+<p>例如，</p>
+<p>1、遇到sheet1中没有的，需要跳过，不填写即可；</p>
+<p>2、是否可以增加模糊匹配的代码，来快速试错；提高筛选匹配数据的速度。</p>
+<p><img src="img/478859c2f4de12a3cdad84b76c9a8492.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Egwzbpyo2oezAcx7wE1cDuD2nSc/"/></p>
+
+<p>满足基本功能之后，</p>
+<p>思考如何更加便捷应用在工作场景中。</p>
+<p>这会是，</p>
+<h2>V1：只能macOS的终端，通过代码命令执行匹配数据。</h2>
+
+<p>那，是否可以打造成应用程序，直接放在桌面，双击打开之后，自运行里头代码软件，</p>
+<p>在没有任何网络的情况下也可操作？</p>
+
+<h2>升级V2：思考，制作成可直接运行的软件，</h2>
+<p>1、左边总表，右边待补充表；</p>
+<p>2、拖拽进入</p>
+<p>3、设置输出桌面</p>
+<p>4、等待匹配完整的表格</p>
+<p>自动化完成填表即可；</p>
+<p><img src="img/641832306b365e0525764f7a16870055.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/L9i7bEzv4oKcnkx9P75cV9I5nXd/"/></p>
+<p><img src="img/15d78ad81622cbca230fd7d29c841ed9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/JChAbVo3Dor1QKxFWMvcyeSVnne/"/></p>
+
+<p>以下是我的具体操作过程：</p>
+<p>我想要在此基础上进行升级，制作成软件。</p>
+<p>可以实现如下的流程：</p>
+<p>1、界面有两个方框，左边放入sheet1（总表），右边放入biao2（待补充表）</p>
+<p>2、用户拖拽文件。</p>
+<p>3、进行数据匹配。</p>
+<p>4、默认输出文件到桌面。</p>
+<p><img src="img/06895e784ae9784f885b444aec5f286b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QE5fbscWCoJ8BFxt7q9ciJnJnYc/"/></p>
+
+<h2>优化V3：实现直接拖拽，而不是文件夹路径上传。</h2>
+<p><img src="img/0cd9bdb5e75eb6caa56e627fcac25d0d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Z7w3bbI9zoFRLsxArdjcoz9Enbg/"/></p>
+<p>升级成优化框，实现可以直接拖拽，匹配的非常完美！</p>
+<p><img src="img/e7382dcf665627b872197a612ecc846c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Fb8Abab7Moa9wexbwWLcDz26n9d/"/></p>
+
+<p>突然想到，可运行的前提下，是需要配置系统环境，涉及到py代码环境，</p>
+<p>这个步骤也是折腾了我挺久，非常繁琐麻烦。</p>
+
+<p>如果，这个软件只能在已经配置好的电脑环境中运行，</p>
+<p>那么，我无法对外分享，</p>
+<p>于是乎，</p>
+<h2>V4版本：打造成软件包，其他设备可直接使用。</h2>
+<p>引导话术1：我想要把这个功能，设置成在win或者macOS上，都可以独立运行的软件。不需要在安装代码插件的繁琐步骤。可以实现吗？</p>
+<p><img src="img/de0fc627483f7cc5cca309af5e31f9d3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FmNZbFfTIo83x5x6OD5c8i3LnTe/"/></p>
+<p>引导话术2：最终要的效果：在没有安装Python环境的电脑上独立运行。</p>
+<p><img src="img/6f601dda15b5f9b22e07e64e2606da63.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FEcAbqWiBoLSK3xIKpTcUDptnDo/"/></p>
+
+<h2>V5：优化细节，添加自己的联系方式</h2>
+<p>这会想的是：工具配置好之后，对外免费分享，或者售卖给同行，</p>
+<p>添加一个我的联系方式，让更多的人看到我。</p>
+<p><img src="img/80870c3a8db83ebc494bb03ce37d0a48.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/GsqmbO9Uho7jIKxDr0tcIm6enXd/"/></p>
+<p>没办法发图片，但是能用文字呈现出效果，我都惊呆了。</p>
+
+<h2>最终成果展示</h2>
+<p><img src="img/20cee01eabaaba90f243d4ae7f9f6d0c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ZU7fbXma7oXXJfxbdwIcYmaxnR9/"/></p>
+<h2>感悟：</h2>
+<p>1、个人无需编程，完全可以根据自己的需求，通过朴素到极致的小白语音，聊天式打造产品。</p>
+<p>赶上了时代的红利。</p>
+<p>至于能否变现，变现到什么程度，</p>
+<p>就看需求挖的有多准、有多痛了。</p>
+<p>2、通过这次简单的试手，让我对cursor变现空间，有着非常大的想象力，且，是完全可以自己操控。</p>
