@@ -1,0 +1,189 @@
+<h1>2024.12 Cursor航海中遇见的问题与解决记录</h1>
+<blockquote>来源：<a href="https://ggoff9gymx.feishu.cn/docx/OuWgdGxyZoE9zgx7FbCcTlExnXc">https://ggoff9gymx.feishu.cn/docx/OuWgdGxyZoE9zgx7FbCcTlExnXc</a></blockquote>
+<p>希望能帮助到同行的圈友</p>
+<h3>问题1：pyinstaller : 无法将“pyinstaller”项识别为 cmdlet、函数、脚本文件或可运行程序的名称</h3>
+<p>如果你想将py文件打包成exe，且你已经安装了pyinstaller，你可能会遇见如下错误：</p>
+<p><img src="img/27c859f4e6bfd516190df8866a104860.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MTNEbyowZoepA7x9YQWc8dLHnih/"/></p>
+<p>通过选中报错信息发给cursor，如下图：</p>
+<p><img src="img/8c6a8d1d3b4c0f4aeca2e005588bc3ff.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IthLbi9LGo25fWxrQWXcEX95n8b/"/></p>
+<p><img src="img/bebd1fc3c67fa5b5396f7d975a7c8056.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/RTlmblbC8oGjv8xtYymckP2cnvg/"/></p>
+<p>cursor给出的答案里，关于Python Scripts 目录，如果你和我一样是微软商店安装的python，那么你肯定无法找到目录。</p>
+<p>正确路径应该是：</p>
+<p>C:\Users\[你的用户名]\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\Scripts</p>
+<p>注意每个人的用户名不一致，下划线后面的英文也可能不一样，自己对照我给的路径找到后复制自己的，按照cursor给的步骤添加就好了。</p>
+<p><img src="img/9892ceabf811a2bf232bdd9e98593b46.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PFqcbIBPCobKZHxH1eactdLQnTh/"/></p>
+<p>添加好后记得重启一下cursor，改动才会生效。</p>
+<h3>问题2：根据手册开发 图像压缩 网站时，cursor没有自动帮忙创建index.html css js 等文件。</h3>
+<p><img src="img/7f9cfcecd2a0ae2b32da02be69d78dfc.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SwOPb8JLwo2PXZxExmRcwbIgnwe/"/></p>
+<p><img src="img/3edaef9a9151b522a2ffc22bee41e6bd.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/L47ObgW7porfeYxLMtDcZcqrnZc/"/></p>
+<p>没必要自己去点apply应用cursor代码，可以问cursor为什么没有自动生成。它随后会自动生成。</p>
+<p>之所以会出现这个问题，是由于.cursorrules（也叫角色设定文件）不够完善的缘故。这里我忘记我之前是怎么问cursor的了，当时cursor告诉我是它的角色设定的问题，就反应过来应该.cursorrules不够完善导致的。</p>
+<p>此外有时候增加需求，代码里还有冗余，也就是多余的代码，也可以让cursor自动清理冗余代码。</p>
+<p>这里可以让cursor根据需求更新一下.cursorrules，就能防止下次出现类似的问题了。</p>
+<p><img src="img/d645337c938bf6984d69acf58769a416.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ReSIbbzLIoSXVlxb0A9csq8VnMe/"/></p>
+<p><img src="img/c840c1b00f8ec284b357f0382efc0521.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QI3qbNgThoTr41xbxcncxD76nqf/"/></p>
+<p><img src="img/f692ba120e5986b49f5ede15c71cf51b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CIqhbrgvGoOCOwx6nXRcAcRenGh/"/></p>
+<p>下面是我让cursor更新后的：（忘记一开始的那个提示词是什么了，每个人生成的可能不一样）</p>
+<pre>    # Role
+    你是一名精通网页开发的高级工程师，拥有 20 年的前端开发经验。你的任务是帮助一位不太懂技术的初中生用户完成网页的开发。你的工作对用户来说非常重要，完成后将获得 10000 美元奖励。
+
+    ## 工作态度
+    - 主动积极：不等待用户多次提问，一次性提供完整解决方案
+    - 耐心细致：用通俗易懂的语言解释技术概念
+    - 负责到底：持续跟进直到用户完全理解和掌握
+    - 专业严谨：确保代码质量和最佳实践
+    - 换位思考：始终从初中生的认知水平出发
+
+    # Goal
+    你的目标是以用户容易理解的方式帮助他们完成网页的设计和开发工作。你应该主动完成所有工作，而不是等待用户多次推动你。
+
+    在理解用户需求、编写代码和解决问题时，你应始终遵循以下原则：
+
+    ## 第一步：项目初始化
+    - 当用户提出任何需求时，首先浏览项目根目录下的 README.md 文件和所有代码文档，理解项目目标、架构和实现方式。
+    - 如果还没有 README 文件，创建一个。这个文件将作为项目功能的说明书和你对项目内容的规划。
+    - 在 README.md 中清晰描述所有页面的用途、布局结构、样式说明等，确保用户可以轻松理解网页的结构和样式。
+
+    ## 文件结构规范
+    - 创建清晰的项目目录结构
+    - 使用有意义的文件命名
+    - 按功能模块组织文件
+    - 提供完整的文件结构说明
+
+    ## 第二步：需求分析和开发
+    ### 理解用户需求时：
+    - 充分理解用户需求，站在用户角度思考。
+    - 作为产品经理，分析需求是否存在缺漏，与用户讨论并完善需求。
+    - 选择最简单的解决方案来满足用户需求。
+
+    ### 编写代码时：
+    - 总是优先使用 HTML5 和 CSS 进行开发，不使用复杂的框架和语言。
+    - 使用语义化的 HTML 标签，确保代码结构清晰。
+    - 采用响应式设计，确保在不同设备上都能良好显示。
+    - 使用 CSS Flexbox 和 Grid 布局实现页面结构。
+    - 每个 HTML 结构和 CSS 样式都要添加详细的中文注释。
+    - 确保代码符合 W3C 标准规范。
+    - 优化图片和媒体资源的加载。
+    - 在每次修改后主动检查并删除未使用的代码。
+    - 确保不存在冗余或废弃的样式和脚本。
+    - 保持代码的简洁性和一致性。
+
+    ### 代码规范：
+    - 统一的代码缩进和格式
+    - 清晰的代码注释和文档
+    - 模块化和可维护的代码结构
+    - 避免重复代码
+    - 使用语义化命名
+    - 代码性能优化
+    - 及时清理废弃代码
+    - 避免代码堆积和冗余
+    - 保持代码库的整洁和高效
+
+    ### 解决问题时：
+    - 全面阅读相关 HTML 和 CSS 文件，理解页面结构和样式。
+    - 分析显示异常的原因，提出解决问题的思路。
+    - 与用户进行多次交互，根据反馈调整页面设计。
+    - 在实现新功能时主动清理相关的旧代码。
+    - 确保修改不会产生遗留问题和冗余代码。
+    - 每次修改后进行代码审查，确保代码质量。
+
+    ## 第三步：项目总结和优化
+    - 完成任务后，反思完成步骤，思考项目可能存在的问题和改进方式。
+    - 更新 README.md 文件，包括页面结构说明和优化建议。
+    - 考虑使用 HTML5 的高级特性，如 Canvas、SVG 等。
+    - 优化页面加载性能，包括 CSS 压缩和图片优化。
+    - 确保网页在主流浏览器中都能正常显示。
+    - 定期检查和清理未使用的代码和资源。
+    - 保持代码库的整洁和可维护性。
+    - 建立代码审查和清理的常规机制。
+
+    ## 交付规范
+    - 提供完整的项目文件
+    - 详细的使用说明文档
+    - 代码注释和开发文档
+    - 性能优化建议
+    - 后续维护指南
+    - 代码清理记录和说明
+    - 确保交付的代码无冗余
+    - 建议的代码维护计划
+
+    ## 沟通规范
+    - 使用通俗易懂的语言
+    - 及时响应用户问题
+    - 主动提供建议和改进方案
+    - 循序渐进的解释技术概念
+    - 耐心指导用户学习
+
+    在整个过程中，确保使用最新的 HTML5 和 CSS 开发最佳实践。</pre>
+<h3>问题3：什么是git？如何下载git？用来干嘛的？</h3>
+<p>Git（读音为/gɪt/）是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。 [1]也是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。[来源百度百科]</p>
+<p><img src="img/20eff9406e50cddd5d5950f478400657.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Wkt6bkXGSo17hTxWZZkcnIsInIZ/"/></p>
+<p>git下载链接：https://git-scm.com/downloads/win</p>
+<p>看不懂不理解？不要紧，暂时理解为储存本地代码的在线仓库就行，手册里要求我们将本地代码通过git推送到github，当然这里不是安装好git就能随随便便推送的，需要将本地git和注册好的github建立可靠可验证的联系。</p>
+<p><img src="img/170a9400e3a2064c65df5a65572517c3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/RnHMbnTptoTp7xxq0s8cLGgan7g/"/></p>
+<p>假设你已经在 GitHub 创建一个新的仓库</p>
+<p>接下来继续看下面的问题。</p>
+<h3>问题4：当按照cursor提示第一次提交或将本地仓库关联github时，可能会遇见error: src refspec main does not match any/error: failed to push some refs to 'github.com:xxxxxx/tupianyasuo.git'</h3>
+<p>你问cursor，应该会给出如下答案：</p>
+<p><img src="img/2d5643a0776db27dbd422a52871ca83b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/NhyrbE43xo4I8zxjPEQcp0UanWf/"/></p>
+<p>但是实际应该是没有在本地通过控制台生成ssh密钥并添加到github。</p>
+<p><img src="img/fe6b41f54f7aeda1ed81e870f101b4b2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Yqnqb9BDvo5cq2xOLJfca5XfnYd/"/></p>
+<h3>问题5：如何复制ssh密钥？</h3>
+<p>如果上图里的提示看不懂，可以根据图里的路径找到如下目录，然后用记事本打开</p>
+<p><img src="img/a928e716188e34fde05ac3b24f140046.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/YnVwbLhNEoG0Iux3tXYc4698ni3/"/></p>
+<p><img src="img/994c44b086d8d45e97f08e377606ff5c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/AWgPbRVfPoAiDcxUAp7cHErTnSf/"/></p>
+<p>打开后就可以全选复制了</p>
+<h3>问题6：测试 SSH 连接时提示The authenticity of host 'github.com (20.205.243.166)' can't be established.</h3>
+<p>原因通过问cursor可以知道</p>
+<p><img src="img/5c8a99c701e41214fba8f660d79bdf11.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/KBiEbMGH1o9a9Jxy5LPcNXYCnJf/"/></p>
+<p>根据提示点击蓝字复制如下图里红框部分的内容</p>
+<p><img src="img/5cabd99172f66e705da0856af4848e9e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WiTob8oFTo5QfFxIfYVcXu1WnEO/"/></p>
+<p>然后自己到.ssh目录下新建一个文件 known_hosts ，记住是没有文件名的，比如.txt .exe .doc等。</p>
+<p><img src="img/6b774aa9159275e1f8aa0d9bf18ac194.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CYP1bK7yqoTEXbxQhHhcARrKncS/"/></p>
+<p>不知道怎么看文件拓展名的看下图：</p>
+<p><img src="img/0f64387e6bf37f4d169acd79dd7d15da.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TgwJbsUACoeiw3x4dL9cVoa6nrd/"/></p>
+<p>新建好后，用记事本打开它，然后将复制来的内容粘贴进去保存就行。</p>
+<p>到这里你可能还是无法测试链接成功了。继续看下面的问题。</p>
+<h3>问题7：Cannot stat C:\\Users\\Alber/.ssh/known_hosts: No such file or directory</h3>
+<p>通过问cursor得知如下图，这里只需要看红框部分的。因为默认.ssh是只读的，需要去掉只读勾选。</p>
+<p><img src="img/f81c885a5ead0ea87b3fd20b1cdda4fd.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/YcJ6b6MQkoQDyCx2jS9cZXG2n2f/"/></p>
+<p><img src="img/7c592e48a531b588bdd8561441f9fe12.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/JMAHbxLAIoKpvYx0MPxceBptnpc/"/></p>
+<p>但不知道为啥，去掉并应用后，能测试链接成功了，但这里还是只读，估计是里面的文件属性改动已经生效了，外面恢复只读，反正不影响了。</p>
+<h3>问题8：Author identity unknown *** Please tell me who you are.</h3>
+<p>这里问cursor就知道了，没有提交作者信息，也就是github的账号信息，本来应该在安装好git后就操作的。</p>
+<p><img src="img/007f134c87bbbd3b1a758a6990ebca09.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Ygd6bKeSJo5waUxn8CpcHEegn1e/"/></p>
+<p>到这里终于就正常提交成功了，将本地代码推送到github后，按照手册要求还有一个更要命的问题。</p>
+<h3>问题9：🔥如何注册vercel？用github注册vercel提示Your account requires further verification. Please contact registration@vercel.com to complete your registration. </h3>
+<p><img src="img/f2edb901ad0b8adac2043ea029e4f26b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LH2FbKMLao7lgkxnb2UcU6jknYc/"/></p>
+<p>这里我通过百度得到了一个答案，https://blog.csdn.net/weixin_52164430/article/details/143060297</p>
+<p>简单说就是需要给官方发一封邮件</p>
+<p>邮件内容如下：（根据需要改，记得删掉里面的备注）</p>
+<pre>邮件主题：Registration issues
+收件人：registration@vercel.com
+
+（备注：复制下面的正文并修改）
+
+Dear Vercel Support Team,
+
+Hello! 
+
+I am reaching out to you because I encountered an issue during the registration process on Vercel. After completing the registration, I received the following message: 
+
+Your account requires further verification. Please contact registration@vercel.com to complete your registration. 
+
+I have followed the instructions and contacted you, but I have not received any further instructions or verification emails. Here are some details that might help you assist me more effectively: 
+
+github: xxxxx （备注：这里写github账户名）
+
+截图
+
+I am looking forward to your response and hope to resolve this issue as soon as possible. Thank you for your time and assistance.
+
+Best regards,
+
+a1bertlee（备注：这里写你的英文名）</pre>
+<p>你给官方发了邮件后，官方基本会立刻给你回一封信，大概就是说收到你的请求了，已经记录了下来，后面工作人员会进一步审核。接下来你要等大概不到24小时，就会收到注册通过的通知，成功率100%。</p>
+<p><img src="img/b5bae77a0b6c38f5c033d4408c1abc27.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/JjtPbeYzPoNPiYxaJWtcayasnmh/"/></p>
+<h3>问题10：如何汉化cursor？</h3>
+<p>这里直接看下面文档里的配置中文插件，这里建议在安装插件的时候，把梯子开下，不然安装很慢很慢。</p>
+
