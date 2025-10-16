@@ -1,0 +1,362 @@
+<h1>以小说 AI 工作流为例， Cursor和Windsurf ，我为什么选择Cursor（万字长文）</h1>
+<blockquote>来源：<a href="https://aiawaken.feishu.cn/docx/ZmGXd6FzHoTXFrxAOldcvqXFnig">https://aiawaken.feishu.cn/docx/ZmGXd6FzHoTXFrxAOldcvqXFnig</a></blockquote>
+<p>深入使用 Cursor 后，</p>
+<p>它又一次加速了我的工作流，</p>
+<p>不得不说：Cursor 这波更新实在太强了，</p>
+<p>直接在多个核心功能上完成了对 Windsurf 的超越，</p>
+<p>来看看具体的重大改进。</p>
+<p><img src="img/a7a50e6e6d53923f3677cd706f86d442.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PNpwbKiB8oC9zqxmjtrcZvi7nNf/"/></p>
+
+<p>本文分享路线：</p>
+<p>cursor 新功能 ==&gt; cursor 工作流分享  ==&gt; 和 windsurf 功能点对比</p>
+<p>单个功能的讲解在没有基础的理解上，是晦涩的。</p>
+<p>我倾向于直接向你展现效果。</p>
+<p>知道自己需要的部分是什么，再详细了解细节。</p>
+<p>Cursor 工作流涉及两部分：编程 和 写作</p>
+<p>建议：</p>
+<p>有编程基础关注————我的 Cursor 工作流：编程</p>
+<p>无编程基础关注————我的 Cursor 工作流：写作</p>
+<p>建议收藏，慢慢吸收。</p>
+
+<hr/>
+<h1>Cursor 新功能速览：</h1>
+<p>具有功能点：</p>
+<ol><li>Yolo模式：即可以自动运行终端命令，不用每一步都确认，赋予 AI 更大的权限
+（windsurf 目前需要注意确认命令）</li></ol>
+<ol><li>@docs、@git、@web 和 @folder能在 Agent 下使用了</li></ol>
+<p>也就是@docs可以引用远程仓库，@git可以分析分支代码，自动 commit&amp;push</p>
+<p>@web可以联网搜索内容，@folder可以直接引用整个文件夹内容</p>
+
+<p>Agent 可以并发式的修改多个文件内容（windsurf 目前只能同时修改单个文件）</p>
+
+<p>Composer 的更改有 checkpoints了，也就是一个时间切片，不想要修改的部分，可以直接回退版本了。</p>
+<p>Agent 的修改可以自动保存到磁盘，不用担心数据丢失了。</p>
+
+<hr/>
+<h1>我的 Cursor 工作流：编程</h1>
+<p><img src="img/7f2d2c2943aaffdb4aa31acc662102e3.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/YBRKbenJSowU7kxxtgbcTsj6nFc/"/></p>
+<h3>给 AI 设定规则</h3>
+<p>最常用四个工具：</p>
+<p>全局规则 + 项目规则（.cursorrules）+ .gitignore补充（.cursorignore）+ notepad</p>
+
+<p>讲人话·：</p>
+<p>使用全局规则回复为中文，我不用担心看不懂英文</p>
+
+<p>使用.cursorrules能让 AI 深入理解我们项目的选型（一定程度上弥补了全文记忆的缺陷）</p>
+
+<p>使用.cursorignore能自定义 Ai 不能访问的代码库</p>
+
+<p>使用notepad随意引用切换提示词编写</p>
+
+<p>四个配合是为了 使用 composer Agent yolo模式下的 AI 自动编码更精准</p>
+<p>而 windsurf 则缺少了最后两个功能，</p>
+<p>而notepad虽然可以使用普通文件引用的方式，但是更方便。</p>
+
+<h4>全局规则</h4>
+<p>其实就是我们在编写代码的时候，最通用的一些规则，</p>
+<p>比如 AI 和我们对话用中文，就可以在这里设置</p>
+<p>在单个文件里使用 ctrl/cmd + k 的时候也会使用该提示词</p>
+<p><img src="img/453e7943909dab93e756eff21b5716a1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/EnIybNtY8o2r6zxlX5Vc63RdnJg/"/></p>
+<h4>项目规则（.cursorrules）</h4>
+<p>针对整个项目的技术栈的设定，更方便 AI 理解我们的项目</p>
+<p>主要是对当前项目的各个角度的描述（比如，项目结构，前后端交互逻辑，函数命名规则等等）</p>
+<h4>.gitignore补充（.cursorignore）</h4>
+<p>AI 默认是可以索引我们当前打开项目的所有文件的，</p>
+<p>.gitignore 文件里是不会索引的，</p>
+<p>而.cursorignore就是对它的补充，</p>
+<p>可以自定义禁止 cursor 访问哪些文件，</p>
+<p>这时候 cursor 就不会自动索引到这些文件</p>
+<p><img src="img/5065c8669d10d4c746c1da425d0e5e96.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CfdcbHDdloOchNxoNjec4i2Uned/"/></p>
+<h4>notepad</h4>
+<p>这样理解：这也是一个存放提示词的地方，</p>
+<p>方便引入提示词的地方</p>
+<p>也就是针对于重复使用的提示词可以放在这，</p>
+<p>方便引用</p>
+<p><img src="img/23a7cf3ccfdb675ec942b962da723d02.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/INBibUDWOoiHTcxV9ClckLjUnLf/"/></p>
+
+<h3>三种模式切换</h3>
+<p>三种模式：</p>
+<p>ctrl/cmd + k + chat + composer Agent Yolo（下面有详细解释）</p>
+<p>PS：这里只展开对于最常用功能的分析，详细的功能介绍在后面</p>
+
+<h4>Yolo模式</h4>
+<p><img src="img/2d467a0623d39040af3eb4d7e1426407.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UNE0bYfD9oFEj2xHpkvcuiCDnce/"/></p>
+<p><img src="img/516315de005a67eab3526deeda08749f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/IQ7PbuKz6o5ChXxgNX2cFqC5njb/"/></p>
+
+<p>我在使用 windsurf 的时候，</p>
+<p>一个很明显钝感是：</p>
+<p>为什么Write模式不能一次性帮我执行完所有的命令？</p>
+<p>而 cursor 的Yolo模式就可以自动的执行一连串的命令，</p>
+
+<p>举个例子：</p>
+<p>我需要让 claude 自动帮我在终端运行命令，</p>
+<p>并且运行完成之后还有其他的命令接着运行，</p>
+<p>这时候，它就能自动等待我的终端命令执行完之后再继续执行，</p>
+<p>这一点特别针对于终端命令运行报错之后，它自动修改重新运行特别有用。</p>
+
+<p>这里也可以设定 Prompt ，</p>
+<p>允许执行的命令，</p>
+<p>不允许执行的命令，</p>
+<p>甚至直接禁止删除文件</p>
+<p>是的，我给它很多权限的同时，</p>
+<p>你必须得有所约束，要按照我的想法来，</p>
+<p>因为目前 AI 不能替代的就是我们的思维。</p>
+
+<p>有了Yolo模式做铺垫，那么就很好解释这三种模式的联动了：</p>
+<h4>针对于单个代码文件的编写：</h4>
+<p>ctrl/cmd + k我们可以直接原子化操作，</p>
+<p>也就是编写一个函数，或者一个类，</p>
+<p>可以直针对于一个代码文件操作</p>
+
+<p><img src="img/56045ca99b90ab33f8aa1b05ce0616db.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Eby6bRkecoFKq9xN98hcBPLPnMO/"/></p>
+<p>ctrl/cmd + k按下之后会出现：</p>
+<p>5 个选项（如下图） 先着重分析最后两个功能：Definitions Web</p>
+<p><img src="img/09803f54d8af0a3d7336da4848e79569.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/DOUTbypzyo5c3ex2VTwc291pndb/"/></p>
+<p>我常使用Definitions功能先帮我熟悉这个函数或者类的功能，</p>
+<p>然后针对于这个点，做修改；然后Web其实就是提供的一个联网搜索的入口，</p>
+<p>又提供了很多思路。</p>
+<p><img src="img/b49a79128b6a61a6b8fa1b79c47a994e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XqeobpLRcogoPKx0dfjcEQUAnlb/"/></p>
+<h4>针对于整个项目或者局部文件的理解：</h4>
+<p>使用Chat模式配合上述的各种规则去快速理解项目，或者分析 bug</p>
+<p><img src="img/8c3fc4abc0b46d54a9ff4e418353c1bf.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/LJsFbynhJoMURnx5PsfcPdgKnm6/"/></p>
+<p>反过来思考，我们的各种规则文件也可以通过这种方式快速生成</p>
+<p>使用@ 会有很多的功能出现，这里常使用 git，</p>
+
+<p>我们可以直接通过这个功能去理解某个版本的改动是什么，</p>
+<p>这一点对于团队协作十分有帮助</p>
+<p>当然这里也可以配合 notepad 直接帮我们提交一个 commit 和 push，</p>
+<p>这就是和Yolo模式配合起来使用的效果</p>
+<p>总之，思路要打开，想象力越丰富越能使用 AI 提效</p>
+<p><img src="img/ebfc7c5eb64b8c61812894742a2fd99d.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/MOVhbWvYQoHSlFxsMmccz2UJnSe/"/></p>
+<h4>开始快速编码</h4>
+<p>使用composer Agent Yolo，拆开来：其实是composer功能下，使用agent功能，并且开启Yolo模式的组合结果，我愿意给 AI 更多的权限去编码，去试探它的边界，这里大家也可以关闭Yolo模式</p>
+<p><img src="img/5b5119ea4c060dc64f3040e2835d8d38.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Qu9RbDnvpod3pUxGGp4cAbzjn8g/"/></p>
+<p>这里也同样可以使用很多功能（相比 windsurf 那匮乏的聊天框，希望它赶紧更新吧！）着重分享@Files的功能：侧边和待选项都可以展示你当前想要引用的代码文件是在哪个路径下的</p>
+<p><img src="img/1371f476378a26790868d261a6cf5297.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Ze0lbnOSOoGQwrxYiIGcMC1Tnjc/"/></p>
+<p>感受：</p>
+<p>AI 时代的编程，其实单从应用上面来分析，</p>
+<p>采用规范的规则，能让 AI 编写一些中等及以下的任务了</p>
+<p>也就是纯使用prompt编程的时代来了</p>
+<p>任何新事物的出现都有其两面性，</p>
+<p>我属于激进派，我愿意去尝试 AI，</p>
+<p>去探索 AI 编码的边界</p>
+<p>换个角度思考，</p>
+<p>编码也是重复性的工作，</p>
+<p>大家经常也调侃造轮子这个事</p>
+<p>重复性的劳动会被效率性的工作替代（大部分）</p>
+<p>包括面向google编程为什么不能面向 AI 编程呢？</p>
+<p>编码的本质：通过代码去实现思维逻辑，</p>
+<p>那借助 AI 就能快速去验证这个逻辑，</p>
+<p>融，百家之长，补己之短</p>
+<p>cursor 本质上也只是个工具，</p>
+<p>就像 IDE 没有出来前大家传统编码一样的</p>
+<p>会用工具+用好工具=&gt;解放重复性劳动</p>
+<hr/>
+<h1>我的 Cursor 工作流：写作</h1>
+<h2>误区：AI 编程只有程序员才能用！</h2>
+<p>AI时代之前，这些 IDE（也就是各种编程工具）确实只有程序员使用更好。</p>
+<p>但在AI时代，所有技术都是应该有普世性。</p>
+<p>我要重新定义 cursor ：</p>
+<p>它本质上就是个</p>
+<p>记事本，</p>
+<p>一个备忘录，</p>
+<p>一个草稿本；也就是一个用来记录的东西</p>
+<p>同时也想和你分享一个观点：</p>
+<p>从不同角度去看待事物，会有不同的意外收获</p>
+<p>我这类普通人也能把它当做魔法。</p>
+
+<h3>中篇文章撰写</h3>
+<p>是的，也可以撰写文章，而且是claude-3-5-sonnet-20241022加持下的，没有 AI 味的文章</p>
+<h4>中篇文章：</h4>
+<ol><li>不限于公众号文章，知乎回帖，技术分析， 番茄小说，年度报告；甚至是个人建立润色等等内容</li></ol>
+<ol><li>中篇：受限于 claude 一次输出的 token 上限，所以一次性生成类似 20 万字的中长篇小说还是比较困难的</li></ol>
+<p>总结：一切使用文字创作的部分都可以通过它写</p>
+
+<h4>本质：</h4>
+<p>其实是使用了 claude 的文字能力</p>
+<p>在这一点上，使用 cursor 或者 windsurf 其实都是可以的，</p>
+<p>因为两者都有 Agent 模式（这个功能用于连续的生成文章），</p>
+<p>都能自动创建文件（这个用于自动创建大纲等）</p>
+
+<h4>怎么写？</h4>
+<p>cursor/windsurf 都能引用文件，</p>
+<p>或者引用文件夹，有思路了吗？</p>
+<p>再思考一下，你平常写文章的思路是什么？</p>
+<p>进一步思考，写文章没有灵感怎么把？</p>
+<p>终极问题，我写的文章字数不够，</p>
+<p>难以达到我的目标字数</p>
+
+<h2>举例：</h2>
+<h3>先思后想：</h3>
+<ol><li>写作没有思路，但是我有相关材料，想基于这部分展开</li></ol>
+<ol><li>我想一键生成 4000 字文章</li></ol>
+<ol><li>文章写好后，我整个都不满意</li></ol>
+<ol><li>我只想修改文章的局部内容</li></ol>
+<ol><li>我想发表到某平台（类似公众号）我想美化排版</li></ol>
+<ol><li>一切你对文字生成，改动的需求</li></ol>
+
+<h3>分步解析：</h3>
+<h4>文章灵感</h4>
+<p>写作的基础材料总有吧，放在同一个文件夹里，引用他们（最好是。txt 或者。md 格式，其他格式可以自行转换）然后告诉 claude，你要干什么，甚至只要你正确的和 claude 对话了，它也能找到文件并阅读，但是最好是引用，这样更精准；通过这种方式就可以得到写作灵感了</p>
+<p><img src="img/7ce08c11ae7cd5b95c9d302303aff4a1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/QqCabsxpGouMfBxmD8ScqQNJnOf/"/></p>
+<h4>主体创作：</h4>
+<p>有了灵感（或者大纲）就可以进一步引用这些创造好的文件，</p>
+<p>作为 claude 的上下文，就可以根据你的需求开始写文章了！！！</p>
+<h4>润色：</h4>
+<p>局部润色：</p>
+<p>直接引用某一部分的内容，选中之后，</p>
+<p>直接选中之后，ctrl/cmd + k或者ctrl/cmd + L润色局部即可</p>
+<p><img src="img/8203075f527adaeeee6d5c9162adb2b2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/TYQobMwSmoyJs3xhD5KcjbaKnhc/"/></p>
+<p>全局润色：直接引用整个文件，然后输入你的想法，让它帮你修改文章即可！！</p>
+
+<p>总体回顾：</p>
+<p>想 + 要 = 想要 =&gt;成品</p>
+<p>不要限制了自己的想象力，</p>
+<p>溯源 AI 的本质能力，</p>
+<p>最强的是文字功底</p>
+<p>所有通过文字作为底层核心构建的事物，</p>
+<p>都可以通过 AI 提效，而我们只要有想法</p>
+<p>就大胆和 AI 沟通，一步步实现自己的需求即可</p>
+<p>分享的只是思路</p>
+<p>文字作为地基，成品有很多类：公众号文章，知乎回帖，技术分析， 番茄小说，年度报告等</p>
+<p>不同类型的文字作品有不同的写法，</p>
+<p>但是通用的思路是，</p>
+<p>我有一堆材料，我不想读，就可以通过文件引用的方式交给 cursor，</p>
+<p>让它替代我们阅读，我们只需要限定它的写作手法，</p>
+<p>行文思路，文章架构，成品微调，就能实现想要的效果</p>
+<p>cursor 作为你的提示词库是不是很香？</p>
+<hr/>
+
+<h2>禁止 cursor 保存代码</h2>
+<p>对于实际的开发中，项目的代码是保密的，</p>
+<p>因此使用 cursor 开发时，难免会担心代码泄露的问题</p>
+<p>但是 cursor 官方至少提供了一个选项：</p>
+<p>我们可以开启这个选项，避免代码的泄露（虽然这里有选择，但是核心的业务代码最好还是不用第三方 AI）</p>
+<p>这一点目前没有在 windsurf 里找到</p>
+<p><img src="img/3d842067298de6a9280fc63b7bd94c5b.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/FF1Kb6J8aoqdGCxAhUxcZCeWnqC/"/></p>
+
+<h2>新版 Cursor 工作流 本质：</h2>
+<p>配置。cursorrules，notepads， 以及 Agent 模式的本质上是给 AI 限定范围，</p>
+<p>也就是在某个领域的具体场景下，</p>
+<p>AI 应该如何和我协作</p>
+<p>但，编程本质上就是对于某些功能的思维显现。</p>
+<p>我觉得，</p>
+<p>人写或者 AI 写代码，没有实质上的差别，</p>
+<p>实质上人写代码，</p>
+<p>就是一个重复性的工作，</p>
+<p>是可以被替代的</p>
+<p>而不能替代的，</p>
+<p>是人的思想，是运用在编程上的思想</p>
+<p>同一个功能的实现，有很多种解法，</p>
+<p>但符合业务场景的，可能是少数</p>
+<p>因此，只要告诉 AI 在某个环节应该怎样做，</p>
+<p>它将给你最佳解决方案，而我们需要做的，就是筛选逻辑</p>
+<p>这一点，是我更推荐 Cursor 理由。</p>
+<hr/>
+<h1>小说工作流cursor 和 windsurf 对比</h1>
+<p>用cursor 和 windsurf 写小说的话，都能实现万字小说一键成文的效果</p>
+<h2>小说创作流程：</h2>
+<h4>生成一万字左右小说，</h4>
+<p>可以只需要一个大纲提示词，分至少 5 次输出，就可以完成</p>
+<h4>10 万字小说流程：</h4>
+
+<h2>windsurf 万字小说一键成文效果：</h2>
+<p><img src="img/5199547fa5e74370c68430b39cab55e5.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CZWwbzTzio1QmoxINHqc6YDQnMb/"/></p>
+
+<h2>Cursor 万字小说一键成文效果：</h2>
+<p><img src="img/a8b6602f222d572591a35b7d0d4f13d4.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/ZgSCbsgvJoLQ0pxb8wLcXISSnQh/"/></p>
+
+<p>如果想要一键生成 10w 字中篇小说，</p>
+<p>也可以用同样的方式</p>
+<p>先让它生成大纲，再根据大纲写每一章节</p>
+<p>一直循环，就能实现一键生成 10w 字中篇小说</p>
+
+<hr/>
+<h1>Cursor 对比 Windsurf 核心优势</h1>
+<h2>命令行操作的多样性</h2>
+<pre>实现了稳定的命令行操作
+实测整体的响应速度要快于 windsurf
+cursor支持多文件并发修改
+cursor的Yolo模式可以不用确认，自动执行命令
+支持 pop out terminal，也就是在命令行窗口预览</pre>
+
+<h2>git 索引</h2>
+
+<p><img src="img/cd02a5733921e34155e02e50ab149732.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/PzJ8bo4aNoqMuCxIeiZcCptKnQe/"/></p>
+<pre>cursor可以自动commit / push代码
+@Git 允许 Cursor 的扫描差异并查找可能由差异引起的错误或问题
+@工作状态差异@Diff of Working State 从你当前的差异中生成提交消息
+windsurf暂不支持以上的git操作</pre>
+
+<p>在 AI 与系统深度集成这条路上，</p>
+<p>命令行操作的稳定性就像是一把通向未来的钥匙</p>
+<p>看着 Cursor 在这个领域的突破</p>
+<p>我越发确信：AI 不仅要懂代码</p>
+<p>更要理解开发者的工作流</p>
+<p>当它能稳定地执行命令行操作时</p>
+<p>我们就离真正的 AI 辅助编程更近了一步</p>
+
+<p>在辅助编程上，</p>
+<p>AI 应该对业务的逻辑有深度理解，</p>
+<p>能读懂我们真正想要什么</p>
+<p>节省新人上手项目的时间，</p>
+<p>节省代码改动的 debug 时间等等</p>
+<p>能自动帮我们去修改一些重复性引用的地方，</p>
+<p>特别是跨文件的函数调用，业务逻辑的理解</p>
+
+<h2>上下文智能检索能力</h2>
+<p>还记得早期版本的 cursor 支持上下文 200k 的 claude3.5-sonnet 长文本阅读，</p>
+<p>在那时，我就曾让它去阅读几万行被混淆之后的代码（也就是很不容易阅读的代码）</p>
+<p>它很快的帮助我找出了我想要修改的地方，</p>
+<p>并且基于对上下文的理解，直接帮我生成了想要实现的功能。</p>
+
+<p>但是由于超出了 10000 tokens 的限制，</p>
+<p>并不能直接 apply，但是也很强了，</p>
+<p>现在的 cursor，在 Agent 模式的加持下，</p>
+<p>能分析代码更全面，能更快速地索引到需要修改的地方，</p>
+<p>上下文理解能力的提升，让我想起了人类学习编程的过程，</p>
+<p>就像我们需要理解整个代码库的上下文才能写出好代码，</p>
+<p>因此，上下文的整体的理解是非常重要的。</p>
+
+<p>Cursor 也在这条路上不断进化，</p>
+<p>追平了 Windsurf 引以为傲的这项技术，</p>
+<p>让我看到了 AI Agent 加持下的工作流，</p>
+<p>真正理解代码的希望。</p>
+
+<h2>记忆</h2>
+<p>在多轮对话的指令遵循能力上，Cursor 表现十分出色：</p>
+<ul><li>能持续记住首次对话的指引</li></ul>
+<ul><li>支持.cursorrules .cursorignore notepads 持久化记忆</li></ul>
+<ul><li>只需要在项目根目录新建一个.cursorignore 文件，</li></ul>
+<p>就能更准确的帮助编程，避免索引大量第三方代码</p>
+<p>同时，对于一些组件的编写，使用notepads快速引用</p>
+<p>这样的预设能显著提高 Curosr 生成代码的准确性和相关性，</p>
+<p>使其更好地符合项目需求。</p>
+<hr/>
+<h1>我选 Cursor，它更适合没有编辑基础的我</h1>
+<ul><li>Windsurf 的模型数量提供不足</li></ul>
+<ul><li>Windsurf 后端并发能力明显不足</li></ul>
+<ul><li>Windsurf 响应速度较慢</li></ul>
+<ul><li>Cursor 的@功能支持更多的选择</li></ul>
+<ul><li>Windsurf 没有及时支持 Claude 最新模型</li></ul>
+<ul><li>Cursor 自动 Lint 检查</li></ul>
+<ul><li>Yolo命令行自动执行</li></ul>
+<ul><li>Cursor 支持远程库索引</li></ul>
+<ul><li>适合没有编程基础，但能知道或者找到真需求的小白。</li></ul>
+
+<p>虽然 Windsurf 目前提供免费的 Pro 版本，但综合体验来看，</p>
+<p>我已经完全转向推荐 Cursor。</p>
+<p>对大多数 没有编程基础用户而来说，</p>
+<p>Cursor 现在是更稳定、更可靠的选择，</p>
+<p>当然，如果你是进阶用户，比如资深开发。</p>
+<p>依然可以尝试同时使用两款产品，取长补短，</p>
+<p>Windsurf 的并行和调用编程，</p>
+<p>它设计逻辑更符合程序编程思维。</p>
+<hr/>
+<p>作者介绍周知：</p>
+<p>AI 觉醒派主理人，AI 工作流专家</p>
+<p>AI 觉醒派 COZE 代表作品：</p>
+<p>小觉醒思维助手，Suno 音乐歌词专家、智能笔尖，</p>
+<p>未来想成为超级个体的你，链接我，</p>
+<p>一起探索成为 AI 作家，AI 歌手，AI 艺术家。</p>
+
