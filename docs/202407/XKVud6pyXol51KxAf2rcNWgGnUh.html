@@ -1,0 +1,663 @@
+<h1>分享主题：爬虫实战 - 如何用Python爬虫技术获取酷狗音乐TOP500的歌曲信息</h1>
+<blockquote>来源：<a href="https://k0xx7qf6hkk.feishu.cn/docx/XKVud6pyXol51KxAf2rcNWgGnUh">https://k0xx7qf6hkk.feishu.cn/docx/XKVud6pyXol51KxAf2rcNWgGnUh</a></blockquote>
+<p>滴滴滴~ 各位晚上好，感谢大家的热烈欢迎，星星点点的代码汇聚成知识的海洋。</p>
+
+<p>我是大刘哥，AI编程航海船员，公众号#刘哥聊技术 主理人，与大家一起携手航行在AI编程航海上。</p>
+<p>很荣幸能在生财分享一下自己的学习过程，也很荣幸被大家认可，喜欢我分享的内容。</p>
+
+<p>今晚，我们要一起探索的主题是——如何用Python爬虫技术获取酷狗音乐TOP500的详细信息。</p>
+<p><img src="img/6659e41ece4b9aeed6f3dc421292df09.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/KtY0bLfqtoMiZaxmhHdceIjnnCe/"/></p>
+
+<h3>AI项目实战 - 深入解析《酷狗TOP500歌曲》信息</h3>
+<p>分享人：[刘哥聊技术] - AI编程航海船员</p>
+<p>分享形式：群内图文直播</p>
+
+<h2>一、项目背景</h2>
+
+<p>音乐是生活中不可或缺的调味品，而了解当下流行音乐的动态，更是许多音乐爱好者的兴趣所在。</p>
+<p>同时刚好学习了航海中的爬虫技术，想着是否可以通过爬取下酷狗的歌曲信息来作为练习呢？有时候有趣的练习，能提升编程的乐趣，不然面对一堆字母的机器会显得很无聊的。</p>
+
+<p>今晚的分享，将带大家一步步实现一个Python爬虫项目，获取酷狗音乐TOP500的歌曲信息，包括歌曲名称、歌手、排名和时长。</p>
+<h2>二、实现思路与步骤</h2>
+<h3>2.1 导入相关库</h3>
+<p>在Python中，我们首先需要导入一些强大的库来帮助我们完成任务：</p>
+<ul><li>requests：用于发送网络请求。</li></ul>
+<ul><li>BeautifulSoup：用于解析HTML页面。</li></ul>
+<ul><li>csv：用于写入CSV文件，方便存储数据。</li></ul>
+<ul><li>time：用于控制爬虫的请求频率。</li></ul>
+<ul><li>io和sys：用于处理标准输出的编码。</li></ul>
+
+<pre>import csv
+
+import requests  # 用于请求网页获取网页数据
+from bs4 import BeautifulSoup  # 用于解析网页数据
+import time  # 让程序暂停
+import io
+import sys</pre>
+<h3>2.2 编码设置</h3>
+<p>有时候获取的数据，会显示乱码，为了确保中文字符能够正确显示和处理，我们设置了Python的默认编码：</p>
+<pre>sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')</pre>
+<h3>2.3 用户代理设置</h3>
+<p>如果不添加这个请求头的话，反爬机制会不返回信息，所以可以设置下简单请求头伪装成浏览器访问，可以提高我们的爬虫在访问网页时的稳定性和成功率：</p>
+<pre>headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 '
+                  'Safari/537.36'
+}</pre>
+<h3>2.4 获取网页信息并输出</h3>
+<p>定义一个函数get_info，它将负责获取和解析网页，提取我们需要的歌曲信息，并将其保存到CSV文件中：</p>
+<ul><li>使用requests.get发送请求，并传入我们的headers。</li></ul>
+<ul><li>使用BeautifulSoup解析响应的文本内容。</li></ul>
+<ul><li>提取排名、歌曲名称、歌手和时长。</li></ul>
+<ul><li>将提取的数据写入CSV文件。</li></ul>
+
+<p>网页结构</p>
+<pre><div class="pc_temp_content">
+                        <div class="pc_temp_container">
+                                <div class="pc_rank_title clear_fix">
+                                        <div id="pc_temp_title" class="pc_temp_title">
+                                                <h3>酷狗TOP500</h3>
+                                                                                                <span class="rank_update">2024-07-01 更新</span>
+                                                                                                <a href="javascript:;" class="pc_temp_btn_s02 pc_temp_bicon_play" title="播放全部" data-active="play" data-index="" hidefocus="true"><span><i class="t2"/>播放全部</span></a>
+
+                                        </div>
+                                </div>
+                                <div id="rankWrap">
+                                        <div class="pc_temp_songhead clear_fix">                                        
+                                                <span class="pc_temp_btn_check pc_temp_btn_checked checkedAll"/>全选
+                                        </div>
+                                        <div class="pc_temp_songlist ">
+                                                <ul>
+                                                                                                                <li class=" " title="吉星出租 - 暮色回响" data-index="0" data-eid="agc2wm13">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="0"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        <strong>1</strong>
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/agc2wm13.html" data-active="playDwn" data-index="0" class="pc_temp_songname" title="吉星出租 - 暮色回响" hidefocus="true">
+                                                                        暮色回响
+                                                                                                                                                <span style="color: #999;"> - 吉星出租</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="0" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="0" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="0" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        2:58
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="怪阿姨 - 放纵L" data-index="1" data-eid="73j41y19">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="1"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        <strong>2</strong>
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/73j41y19.html" data-active="playDwn" data-index="1" class="pc_temp_songname" title="怪阿姨 - 放纵L" hidefocus="true">
+                                                                        放纵L
+                                                                                                                                                <span style="color: #999;"> - 怪阿姨</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="1" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="1" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="1" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:27
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="Cristian Marchi、Reverend Haus - Fast Cars &amp; Superstars" data-index="2" data-eid="9m5x7ve9">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="2"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        <strong>3</strong>
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/9m5x7ve9.html" data-active="playDwn" data-index="2" class="pc_temp_songname" title="Cristian Marchi、Reverend Haus - Fast Cars &amp; Superstars" hidefocus="true">
+                                                                        Fast Cars &amp; Superstars
+                                                                                                                                                <span style="color: #999;"> - Cristian Marchi、Reverend Haus</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="2" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="2" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="2" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        2:53
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="王睿卓、Damn5z - 重生之我在异乡为异客" data-index="3" data-eid="a9mv4k7a">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="3"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        4
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/a9mv4k7a.html" data-active="playDwn" data-index="3" class="pc_temp_songname" title="王睿卓、Damn5z - 重生之我在异乡为异客" hidefocus="true">
+                                                                        重生之我在异乡为异客
+                                                                                                                                                <span style="color: #999;"> - 王睿卓、Damn5z</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="3" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="3" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="3" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:17
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="曲婉婷 - Jar Of Love (Album Version)" data-index="4" data-eid="nrtz24c">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="4"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        5
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/nrtz24c.html" data-active="playDwn" data-index="4" class="pc_temp_songname" title="曲婉婷 - Jar Of Love (Album Version)" hidefocus="true">
+                                                                        Jar Of Love (Album Version)
+                                                                                                                                                <span style="color: #999;"> - 曲婉婷</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="4" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="4" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="4" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:50
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="郭采洁 - 你在，不在" data-index="5" data-eid="j5t4ce2">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="5"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        6
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/j5t4ce2.html" data-active="playDwn" data-index="5" class="pc_temp_songname" title="郭采洁 - 你在，不在" hidefocus="true">
+                                                                        你在，不在
+                                                                                                                                                <span style="color: #999;"> - 郭采洁</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="5" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="5" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="5" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        4:23
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="王宇宙Leto、乔浚丞 - 若月亮没来 (若是月亮还没来)" data-index="6" data-eid="9rv7necb">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="6"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        7
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/9rv7necb.html" data-active="playDwn" data-index="6" class="pc_temp_songname" title="王宇宙Leto、乔浚丞 - 若月亮没来 (若是月亮还没来)" hidefocus="true">
+                                                                        若月亮没来 (若是月亮还没来)
+                                                                                                                                                <span style="color: #999;"> - 王宇宙Leto、乔浚丞</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="6" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="6" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="6" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        2:53
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="王睿卓 - 重生之我在异乡为异客 (纯享版)" data-index="7" data-eid="ag5gll7a">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="7"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        8
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/ag5gll7a.html" data-active="playDwn" data-index="7" class="pc_temp_songname" title="王睿卓 - 重生之我在异乡为异客 (纯享版)" hidefocus="true">
+                                                                        重生之我在异乡为异客 (纯享版)
+                                                                                                                                                <span style="color: #999;"> - 王睿卓</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="7" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="7" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="7" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        2:38
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="杨宗纬、宝石Gem、王宇宙Leto - 若月亮没来 (Live)" data-index="8" data-eid="ahw72o18">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="8"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        9
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/ahw72o18.html" data-active="playDwn" data-index="8" class="pc_temp_songname" title="杨宗纬、宝石Gem、王宇宙Leto - 若月亮没来 (Live)" hidefocus="true">
+                                                                        若月亮没来 (Live)
+                                                                                                                                                <span style="color: #999;"> - 杨宗纬、宝石Gem、王宇宙Leto</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="8" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="8" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="8" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        4:11
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="刘阳阳 - 人间半途" data-index="9" data-eid="agh85i30">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="9"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        10
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/agh85i30.html" data-active="playDwn" data-index="9" class="pc_temp_songname" title="刘阳阳 - 人间半途" hidefocus="true">
+                                                                        人间半途
+                                                                                                                                                <span style="color: #999;"> - 刘阳阳</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="9" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="9" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="9" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:50
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="薛之谦 - 我好像在哪见过你" data-index="10" data-eid="nmgsq13">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="10"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        11
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/nmgsq13.html" data-active="playDwn" data-index="10" class="pc_temp_songname" title="薛之谦 - 我好像在哪见过你" hidefocus="true">
+                                                                        我好像在哪见过你
+                                                                                                                                                <span style="color: #999;"> - 薛之谦</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="10" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="10" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="10" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        4:39
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="阿YueYue、刘兆宇 - 冬眠·2023" data-index="11" data-eid="9m4msi0c">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="11"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        12
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/9m4msi0c.html" data-active="playDwn" data-index="11" class="pc_temp_songname" title="阿YueYue、刘兆宇 - 冬眠·2023" hidefocus="true">
+                                                                        冬眠·2023
+                                                                                                                                                <span style="color: #999;"> - 阿YueYue、刘兆宇</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="11" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="11" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="11" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:11
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="杨坤、王赫野、王睿卓 - 异客 (Live)" data-index="12" data-eid="aknr7lb8">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="12"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        13
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/aknr7lb8.html" data-active="playDwn" data-index="12" class="pc_temp_songname" title="杨坤、王赫野、王睿卓 - 异客 (Live)" hidefocus="true">
+                                                                        异客 (Live)
+                                                                                                                                                <span style="color: #999;"> - 杨坤、王赫野、王睿卓</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="12" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="12" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="12" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:47
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="佑龙 - 石沉大海" data-index="13" data-eid="7r7lv29c">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="13"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        14
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/7r7lv29c.html" data-active="playDwn" data-index="13" class="pc_temp_songname" title="佑龙 - 石沉大海" hidefocus="true">
+                                                                        石沉大海
+                                                                                                                                                <span style="color: #999;"> - 佑龙</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="13" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="13" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="13" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:44
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="Naughty Boy、Sam Smith - La La La" data-index="14" data-eid="j3a0h33">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="14"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        15
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/j3a0h33.html" data-active="playDwn" data-index="14" class="pc_temp_songname" title="Naughty Boy、Sam Smith - La La La" hidefocus="true">
+                                                                        La La La
+                                                                                                                                                <span style="color: #999;"> - Naughty Boy、Sam Smith</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="14" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="14" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="14" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:40
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="就是南方凯 - 离别开出花 (弹唱版)" data-index="15" data-eid="9ndelhf2">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="15"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        16
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/9ndelhf2.html" data-active="playDwn" data-index="15" class="pc_temp_songname" title="就是南方凯 - 离别开出花 (弹唱版)" hidefocus="true">
+                                                                        离别开出花 (弹唱版)
+                                                                                                                                                <span style="color: #999;"> - 就是南方凯</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="15" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="15" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="15" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        2:52
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="南征北战NZBZ - 原来" data-index="16" data-eid="gj0vt82">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="16"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        17
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/gj0vt82.html" data-active="playDwn" data-index="16" class="pc_temp_songname" title="南征北战NZBZ - 原来" hidefocus="true">
+                                                                        原来
+                                                                                                                                                <span style="color: #999;"> - 南征北战NZBZ</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="16" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="16" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="16" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:53
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="张碧晨、李承铉 - 暮色回响 (Live)" data-index="17" data-eid="ao6u0676">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="17"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        18
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/ao6u0676.html" data-active="playDwn" data-index="17" class="pc_temp_songname" title="张碧晨、李承铉 - 暮色回响 (Live)" hidefocus="true">
+                                                                        暮色回响 (Live)
+                                                                                                                                                <span style="color: #999;"> - 张碧晨、李承铉</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="17" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="17" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="17" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:56
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="宝石Gem、一哩哩一 - 执子之手" data-index="18" data-eid="7k9qga58">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="18"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        19
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/7k9qga58.html" data-active="playDwn" data-index="18" class="pc_temp_songname" title="宝石Gem、一哩哩一 - 执子之手" hidefocus="true">
+                                                                        执子之手
+                                                                                                                                                <span style="color: #999;"> - 宝石Gem、一哩哩一</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="18" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="18" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="18" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:11
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="h3R3 - 先说谎的人" data-index="19" data-eid="5xog3u80">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="19"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        20
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/5xog3u80.html" data-active="playDwn" data-index="19" class="pc_temp_songname" title="h3R3 - 先说谎的人" hidefocus="true">
+                                                                        先说谎的人
+                                                                                                                                                <span style="color: #999;"> - h3R3</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="19" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="19" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="19" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        2:48
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="汪苏泷、单依纯 - 如果爱忘了 (Live)" data-index="20" data-eid="9x9yaz0f">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="20"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        21
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/9x9yaz0f.html" data-active="playDwn" data-index="20" class="pc_temp_songname" title="汪苏泷、单依纯 - 如果爱忘了 (Live)" hidefocus="true">
+                                                                        如果爱忘了 (Live)
+                                                                                                                                                <span style="color: #999;"> - 汪苏泷、单依纯</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="20" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="20" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="20" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        4:05
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                                <li class=" " title="周深 - 小美满" data-index="21" data-eid="9upjnc1d">
+                                                                <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="21"/>
+                                                                <span class="pc_temp_coverlayer"/>
+                                                                <span class="pc_temp_num">
+                                                                                                                                                                                                                        22
+                                                                                                                                        </span>
+                                                                                                                                <a href="https://www.kugou.com/mixsong/9upjnc1d.html" data-active="playDwn" data-index="21" class="pc_temp_songname" title="周深 - 小美满" hidefocus="true">
+                                                                        小美满
+                                                                                                                                                <span style="color: #999;"> - 周深</span>
+                                                                                                                                        </a>
+                                                                <span class="pc_temp_tips_r">
+                                                                                                                                                <a href="javascript:;" data-active="play" data-index="21" class="pc_temp_btn_listen" title="播放" hidefocus="true">播放</a>
+                                                                        <a href="javascript:;" onclick="_hmt.push(['_trackEvent', 'hidedown', 'hidecilick', 'hidepc']);" data-active="download" data-index="21" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+                                                                        <a href="javascript:;" data-active="share" data-index="21" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+                                                                        <span class="pc_temp_time">
+                                                                                                                                                                                                                        3:34
+                                                                        </span>
+                                                                </span>
+                                                        </li>
+                                                                                                        </ul>
+                                        </div>
+                                </div>
+                                <div class="download" id="download">查看更多内容，请下载客户端 <span><a target="_blank" href="https://download.kugou.com/download/kugou_pc">立即下载</a></span></div>
+                                <div class="fans_login"/>
+                                <div class="pc_temp_nvg"><span id="mypage"><a style="visibility:hidden" id="page_first" title="首页" class="direct btnPage" href="javascript:void(0)" onclick="GotoNext(1,22);return false;">首页</a><span style="visibility:hidden" class="PrePageSpan"><a id="page_pre_" href="javascript:void(0)" title="上一页" class="direct btnPage" return="" false="">上一页</a></span><span id="page_1" class="current">1</span><a id="page_2" href="javascript:void(0)" onclick="GotoNext(2,22);return false;">2</a><a id="page_3" href="javascript:void(0)" onclick="GotoNext(3,22);return false;">3</a><a id="page_4" href="javascript:void(0)" onclick="GotoNext(4,22);return false;">4</a><a id="page_5" href="javascript:void(0)" onclick="GotoNext(5,22);return false;">5</a><span class="NextPageSpan" style="border:0px;padding:0px;"><a id="page_next_2" href="javascript:void(0)" title="下一页" class="direct btnPage" onclick="GotoNext(2,22);return false;">下一页</a></span><a id="page_last_23" title="尾页" href="javascript:void(0)" class="direct btnPage" onclick="GotoNext(23,22);return false;">尾页</a></span></div>
+                        </div>
+                </div></pre>
+
+<p>这个地方大家观察下网页的规律</p>
+<p><img src="img/7194b12474e8f9d830cd47c571f3bd9f.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UIXEbT1hHo0m6NxrZQrctLden5e/"/></p>
+
+<p>get_info 函数介绍</p>
+<pre>def get_info(url):
+    wb_data = requests.get(url, headers=headers)  # 传入url后进行请求和解析。
+    soup = BeautifulSoup(wb_data.text, 'lxml')
+    # 歌曲排名
+    ranks = soup.select('span.pc_temp_num')
+    # 歌曲名称
+    titles = soup.select('div.pc_temp_songlist &gt; ul &gt; li &gt; a')
+    # 时长
+    times = soup.select('span.pc_temp_tips_r &gt; span')
+
+    with open('kugou_top500.csv', 'a', newline='', encoding='utf-8-sig') as csvfile:
+        writer = csv.writer(csvfile)
+
+        for rank, title, time in zip(ranks, titles, times):
+            # 去除title中的空白字符，包括换行符和制表符
+            singer = title.get_text().strip().split('-')[0].strip()
+            song = title.get_text().strip().split('-')[-1].strip()
+
+            # 去除song中的换行符和制表符
+            song = song.replace('\n', '').replace('\t', '')
+            duration = time.get_text().strip()
+            rank = rank.get_text().strip()
+            data = {
+                '排名': rank,
+                '歌手': singer,
+                '歌曲名称': song,
+                '时长': duration
+            }
+            # print(data)
+            # 将数据写入CSV文件
+            writer.writerow([rank, singer, song, duration])
+            print(f"已保存: {rank}, {singer} - {song}, {duration}")</pre>
+
+<p>首先，分别获取排名，歌曲，时长存入变量中</p>
+<pre> # 歌曲排名
+    ranks = soup.select('span.pc_temp_num')
+    # 歌曲名称
+    titles = soup.select('div.pc_temp_songlist &gt; ul &gt; li &gt; a')
+    # 时长
+    times = soup.select('span.pc_temp_tips_r &gt; span')</pre>
+
+<p>其次，通过获取的数据进行循环获取标签里面的信息，并且去掉无用的字符，拆分和分隔。</p>
+<pre># 去除title中的空白字符，包括换行符和制表符
+singer = title.get_text().strip().split('-')[0].strip()
+song = title.get_text().strip().split('-')[-1].strip()
+
+# 去除song中的换行符和制表符
+song = song.replace('\n', '').replace('\t', '')
+duration = time.get_text().strip()
+rank = rank.get_text().strip()</pre>
+
+<p>最后，把获取到的数据存入到csv中。</p>
+<pre>data = {
+    '排名': rank,
+    '歌手': singer,
+    '歌曲名称': song,
+    '时长': duration
+}
+# print(data)
+# 将数据写入CSV文件
+writer.writerow([rank, singer, song, duration])
+print(f"已保存: {rank}, {singer} - {song}, {duration}")</pre>
+<h3>2.5 程序主入口</h3>
+<p>在程序的主入口部分，我们构造了23个URL（因为酷狗TOP500分布在23个页面上），并逐个调用get_info()函数来获取每个页面的歌曲信息。</p>
+<pre>if __name__ == '__main__':
+    urls = ['http://www.kugou.com/yy/rank/home/{}-8888.html'.format(str(i)) for i in range(1, 24)]
+    for url in urls:
+        get_info(url)
+        time.sleep(1)  # 每循环依次，让程序暂停1秒，防止请求网页频率过快而导致爬虫失败</pre>
+<h2>三、代码解析</h2>
+<p>让我们来深入看看这段代码是如何工作的：</p>
+<ul><li>导入库：准备工作，导入所需的Python库。</li></ul>
+<ul><li>设置编码：确保中文输出不会乱码。</li></ul>
+<ul><li>用户代理：伪装浏览器，提高爬虫稳定性。</li></ul>
+<ul><li>get_info函数：</li></ul>
+<ul><li>发送网络请求，获取网页内容。</li></ul>
+<ul><li>使用BeautifulSoup解析HTML，提取所需元素。</li></ul>
+<ul><li>清洗和处理数据，比如去除歌曲名称中的换行符。</li></ul>
+<ul><li>将数据写入CSV文件，并打印出保存的信息。</li></ul>
+<h2>四、实操演示</h2>
+<p>接下来，我会演示如何运行这段代码，并展示如何查看结果。你可以在自己的计算机上尝试运行，亲自体验数据抓取的过程。</p>
+
+<p>完整代码</p>
+<pre># coding:utf-8
+# 第一步：导入相关库
+import csv
+
+import requests  # 用于请求网页获取网页数据
+from bs4 import BeautifulSoup  # 用于解析网页数据
+import time  # 让程序暂停
+import io
+import sys
+
+# 第二步：编码设置
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')  # 改变标准输出的默认编码
+
+# 第三步：用户代理设置，伪装浏览器进行访问，便于爬虫的稳定性
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 '
+                  'Safari/537.36'
+}
+
+
+# 第四步：用于获取网页信息并输出信息
+def get_info(url):
+    wb_data = requests.get(url, headers=headers)  # 传入url后进行请求和解析。
+    soup = BeautifulSoup(wb_data.text, 'lxml')
+    # 歌曲排名
+    ranks = soup.select('span.pc_temp_num')
+    # 歌曲名称
+    titles = soup.select('div.pc_temp_songlist &gt; ul &gt; li &gt; a')
+    # 时长
+    times = soup.select('span.pc_temp_tips_r &gt; span')
+
+    with open('kugou_top500.csv', 'a', newline='', encoding='utf-8-sig') as csvfile:
+        writer = csv.writer(csvfile)
+
+        for rank, title, time in zip(ranks, titles, times):
+            # 去除title中的空白字符，包括换行符和制表符
+            singer = title.get_text().strip().split('-')[0].strip()
+            song = title.get_text().strip().split('-')[-1].strip()
+
+            # 去除song中的换行符和制表符
+            song = song.replace('\n', '').replace('\t', '')
+            duration = time.get_text().strip()
+            rank = rank.get_text().strip()
+            data = {
+                '排名': rank,
+                '歌手': singer,
+                '歌曲名称': song,
+                '时长': duration
+            }
+            # print(data)
+            # 将数据写入CSV文件
+            writer.writerow([rank, singer, song, duration])
+            print(f"已保存: {rank}, {singer} - {song}, {duration}")
+
+
+# 第五步：程序的主入口。通过对网页进行观察，利用列表的推导式构造23个URL，并依次调用get_info()函数
+if __name__ == '__main__':
+    urls = ['http://www.kugou.com/yy/rank/home/{}-8888.html'.format(str(i)) for i in range(1, 24)]
+    for url in urls:
+        get_info(url)
+        time.sleep(1)  # 每循环依次，让程序暂停1秒，防止请求网页频率过快而导致爬虫失败</pre>
+
+<h2>五、后期优化与思考</h2>
+<p>这个项目虽然基础，但提供了很多优化和拓展的空间：</p>
+<ul><li>异常处理：让爬虫更加健壮，能够处理网络请求失败等异常情况。</li></ul>
+<ul><li>用户代理池：使用多个用户代理，进一步模拟浏览器行为。</li></ul>
+<ul><li>数据可视化：将爬取的数据通过图表展示，提供更直观的分析结果。</li></ul>
+<h2>六、邀请讨论</h2>
+
+<p>我相信，通过今晚的分享，大家一定能够有所收获。如果在实操过程中遇到任何问题，或者有任何想法和建议，欢迎在讨论区留言，我们一起探讨。</p>
+<h2>结束语</h2>
+<p>希望今晚的分享能够帮助大家打开爬虫世界的大门，激发大家对编程和数据探索的兴趣。动手实操是学习编程的最佳方式，期待看到大家的作品和成果。</p>
+
+<p>拍拍我以表信心，让我们一起在编程的海洋中乘风破浪！</p>
+
+
+
+
+
+
