@@ -1,0 +1,66 @@
+<h1>文本类AI做海报设计</h1>
+<blockquote>来源：<a href="https://gq3338qf45y.feishu.cn/docx/Tg5zdLY8iorXL7xoDkLcQh5Anrc">https://gq3338qf45y.feishu.cn/docx/Tg5zdLY8iorXL7xoDkLcQh5Anrc</a></blockquote>
+<p>不懂设计的人，做海报是真头疼。</p>
+<p>不具备审美，做出来的海报更是在审美之下。</p>
+
+<p>但是又不得不做。</p>
+<p>自媒体引流、社群招新、课程发布都需要用得上。</p>
+<p>图片形式显得更有诚意，而且能有效突出重点。</p>
+
+<p>受到两位大佬的启发，我开始尝试用AI做海报，达到了超预期的效果。</p>
+<p>李继刚（有提示词第一人之称，Lisp语言风格提示词）</p>
+<p>很多人都是通过汉语新解prompt认识的他，见识到了原来Claude对于汉语能有这么深刻的理解。</p>
+<p>另一个点是使用了svg输出，原来文本类AI也是可以生成图片的，</p>
+<p><img src="img/eb3908dcb1297aa403310fc8602772c2.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/RU6wbpQaxoq9Gpx9juHcRsKfntD/"/></p>
+<p>涂津豪（17岁高中生，一个提示词在github获得8.2K star)</p>
+<p>通过涂津豪，我知道了思维链的说法，向AI展示详细的思考模式、思考步骤，可以使得AI的输出更像人类的输出。</p>
+<p>有人用这段prompt直接写了一个可以玩的flappy bird。</p>
+<p><img src="img/259cff6fe1fe352468b49e82a2730ba8.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/H6gvbNJdvoZkiHxqEFCcxqO3nAg/"/></p>
+<p>所以，想要用AI做个海报应该不在话下吧？</p>
+
+<p>以下是做海报的调试思路：</p>
+<p>（使用的是claude-3.5 sonnet模型）</p>
+<p>1、大致说出自己的想法，看看AI是怎么理解的</p>
+<p>Prompt：帮我做一张海报。包含标题，主理人介绍，社群权益，适合人群，价格，二维码</p>
+<p><img src="img/9f895f875115d6304a536423eca34f85.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Cg5Cb5uz1oqd0yxnj8OcpU0Yn4e/"/></p>
+<p>emmmm....缺点很明显，留白太多，内容显得不够紧凑，颜色、样式需要丰富一点。</p>
+<p>把缺点告诉claude，再来一张。</p>
+<p><img src="img/e3843bce13872aa906d190b23820196c.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/SUQebpCdOoOB67xQnGJcoV2dnWg/"/></p>
+<p>效果是好了，但是还没有达到目标。</p>
+
+<p>2、让claude自己调整</p>
+<p>Prompt：一张优秀的海报需要具有哪些特点？</p>
+<p><img src="img/491af477815432ca00c0f2a2e0c82561.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/CKdGb3rLCoDt7xxQrM0cwOZinGc/"/></p>
+<p>综合一下，调整提示词</p>
+<p>Prompt：帮我做一张海报。</p>
+<p>1、包含标题，主理人介绍，社群权益，适合人群，价格，二维码；</p>
+<p>2、视觉重点突出 清晰的主视觉元素 合理的视觉层次 内容紧凑；</p>
+<p>3、设计专业规范 色彩搭配协调 字体选择得当 比例布局平衡；</p>
+<p>4、不同的信息选择合适的字体、大小等去表达；</p>
+<p>5、海报背景带有主题样式，显得丰富，不要平淡；</p>
+<p>6、内容部分使用相同的背景颜色，但是要与海报主题颜色区分开；</p>
+<p><img src="img/5d8a6dfacb8db369a6a3612798c50ae1.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/BQ1tbaAzNoEg6DxQ6j2cl8KTnwd/"/></p>
+<p>看起来有那么回事了，但是还没到能发布的程度。</p>
+
+<p>3、按自己的想法进一步优化</p>
+<p>首先是颜色搭配上不协调</p>
+
+<p>Prompt：海报主体使用红色，内容部分使用奶白；</p>
+<p><img src="img/3ec89fda25c11b0c2bdacb32a019e786.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/WiP5bhUyAoFbG2xmXYecaj3Dnxg/"/></p>
+<p>突然就有那么回事了</p>
+<p>课程价格和适合人群两部分相隔太近了</p>
+<p>Prompt：课程价格板块与适合人群板块相隔太近了，需要分开一点</p>
+<p><img src="img/802a73b38f824a3b7c2a3264930face7.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/N0KMbMOwfoAd2AxWOCpctQ26nie/"/></p>
+<p>立竿见影</p>
+<p>Prompt：海报使用直角，不使用圆角，内容模块使用圆角。海报背景加上条纹装饰</p>
+
+<p><img src="img/955b8cb1a244f394812f2db72fb8c47e.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/UEc1bqTwtozQmoxV2tPcRdCAn8d/"/></p>
+
+<p>已经达到我想要的效果了，不知道大家觉得怎么样？</p>
+<p><img src="img/4fd8dfeb45213124f70f53929fcd79e9.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/McNjb9jF5ooAN7xBTaOcN1o9nps/"/></p>
+
+<p>4、修改文字内容</p>
+<p>claude会给出一段代码，里面会找到图片上的文字，改成自己想要的。</p>
+<p>然后发给claude，就能得到想要的效果了。</p>
+<p>或者复制到txt文件里面，然后把txt后缀改成html，用浏览器打开。</p>
+<p><img src="img/885f83527c90a756e837f3978c491a36.png" data-original-src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/XRKMb37BgoffmHxyRxocqhiMnZd/"/></p>
