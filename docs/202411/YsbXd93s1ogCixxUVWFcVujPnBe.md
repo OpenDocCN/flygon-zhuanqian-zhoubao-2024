@@ -1,0 +1,420 @@
+# 海螺AI图生视频RPA工作流
+
+> 来源：[https://ktnwm6ohjn.feishu.cn/docx/YsbXd93s1ogCixxUVWFcVujPnBe](https://ktnwm6ohjn.feishu.cn/docx/YsbXd93s1ogCixxUVWFcVujPnBe)
+
+大家好，我是土豆君，一个程序员。
+
+自从亦仁老大发了一个AI视频的风向标后，大家都在尝试用各种工具生成视频。比如 Runaway、可灵AI、海螺AI等。
+
+我在使用海螺AI的时候，发现生成视频的速度很慢，我想要自动化，所以就研究了几天并写了个RPA工作流。可以参考我的工作流去实现其他AI视频自动化的工作流。
+
+如果你购买了海螺AI的会员或者有购买批量的邮箱账号（一个谷歌邮箱1-3元左右）用来注册海螺AI（国内版一天免费，国际版三天免费），那就可以使用这个工作流进行无限生成。
+
+![](img/82e0ff9b4bc9480713a6d72f47e57693.png)
+
+首先既然是RPA，大家肯定都熟悉影刀，对这个 Automa 都很陌生。其实我也是一样的，最开始我是在研究比特浏览器（一个指纹浏览器可以多开 https://www.bitbrowser.cn/）的时候，发现居然可以用RPA，我就稍微研究了下。
+
+而这个RPA相比影刀好处在于只是个插件，可以用在任何一个浏览器当中，比如结合指纹浏览器就可以实现10个窗口自动化操作。用影刀当然是做不到的。
+
+比特浏览器集成了这个 Automa 的开源扩展插件，使用这个插件就可以做到多个窗口自动化控制，而开源插件意味着工作流可以随便复制，当然缺点就是上手难度相比影刀比较大。
+
+Automa 官网：https://www.automa.site/
+
+如果你也想学习如何制作 Autom RPA 工作流，可以看下这个中文文档：https://automa.wiki 并且参考下各大视频网站的攻略，光靠文档上手会有点困难。
+
+接下来先介绍一下我做的这个工作流的使用说明和设计思路吧。
+
+## 工作流逻辑
+
+工作流使用一个固定的提示词，上传一个目录下的图片（要用来跑视频的目录图片），循环上传到hailuo，如果有多个窗口比如使用比特浏览器，那么每个窗口都可以自动化，效率直接X10.
+
+## 工作流展示
+
+![](img/6cd944da6018e7d1ca79eefc01846534.png)
+
+Automa 网页显示：
+
+![](img/295c1a6585a0a7cdcd1cc6276b67fc71.png)
+
+点击 ▶ 按钮就会运行，正在运行会在扩展显示一个 1️⃣ 的下标。
+
+![](img/f43c549a86e006ab8694cbd2e51736ab.png)
+
+如果没有显示 1️⃣ 的下标，需要检查下日志是否运行出现了错误。查看日志的方法移步：Tips - 查看日志
+
+![](img/625213dc431dca9bf523d319061986eb.png)
+
+然后看下工作流的运行效果吧：
+
+## 视频效果展示
+
+## 设计思路
+
+这部分内容讲下工作流原理，只需要了解下如何使用的话可以跳过。
+
+我们想要在海螺官网能实现自动化上传图片生成视频，最关键的是要能自动上传图片，而自动点击按钮就比较简单了。
+
+#### 图片处理
+
+上传图片，我这里用 Cursor 写了一个图片路径转化工具来解决这个问题，通过传入文件夹或图片会生成一个图片路径的列表。
+
+![](img/afa4f74ef533febf5e6a07c93d1b68c0.png)
+
+生成内容是这样的json格式：
+
+![](img/c7dc33eb1a5d38b12693c9cb13d1a6e5.png)
+
+#### 工作流原理
+
+触发器开头，必要的。然后需要找到一个页面执行操作，这里使用切换页标签匹配要自动化的网址。
+
+![](img/dcb7f6e5301a73bdd0f1300e6e4dd53c.png)
+
+然后是循环数据，这个用来读取多个图片，按路径读取。执行完一个图片后又会从这里开始。
+
+![](img/9526e1207800b58f873e6a6631a29ec0.png)
+
+循环数据的结束是通过循环断点判断的。
+
+![](img/dcd688feec679d65e183104bcaa739c6.png)
+
+这一段逻辑都是根据网页的UI判断是否有3个/5个视频正在生成，如果排满了就等待3分钟再次检测。
+
+![](img/4491e2d4e4452cb5e6acee09a7c1db7f.png)
+
+接下来是输入提示词、上传图片。
+
+![](img/e41ba59156a7bf99098d3553e58e5a09.png)
+
+这里是上传图片后延迟5秒检测是否上传成功，检测到上传失败会重新点击上传一次。
+
+![](img/af67cde69a780740137c6feee5bb9780.png)
+
+最后点击上传按钮，并结合一些判断机制：判断上传是否成功、点击生成按钮是否开始生成。
+
+![](img/45d8daf9840d73606f3a59ef74e4f8de.png)
+
+#### 基本用法
+
+以这个提示词为例讲解下这些元素大概的用法。
+
+表单元素可以用来输入，CSS 选择器右边这个定位📍图标功能是选择一个网页元素，✔图标是验证这个网页元素的选择器是否生效。
+
+![](img/931eedefd49568c382394288a9d04c16.png)
+
+选择元素可以自动框选，自动识别，可以使用 CSS 选择器 / Xpath 选择器。
+
+![](img/602e342e4e7cc4d256cde906252cb15e.png)
+
+![](img/99beb79a680e9fd630a22e36f8aad7f1.png)
+
+之后在文本域填入要自动填写的提示词到相应位置。
+
+![](img/f66fbf738bc543b0ab87e78213770404.png)
+
+## 使用步骤
+
+#### 1 获取图片列表
+
+文末有附件。解压缩，有两个文件，先打开：图片处理工具V1.0.exe
+
+![](img/23786e77bf5f7c7fbfaa397d9f149a0d.png)
+
+点击选择图片文件夹 或 把图片文件夹拖放进来
+
+![](img/99602092cacd30e3b0f5686604eab45f.png)
+
+图片处理工具新做了一个网页版，可以直接使用这个：
+
+https://imgtool.tudoujunha.parts/
+
+![](img/003f65c1dc859a8d419c7dfca1e4b2e9.png)
+
+注意不要把图片路径藏得太深，以免上传失败。可以把图片文件夹拷贝到磁盘根目录或者放在桌面。
+
+然后点击生成图片列表，会在目录生成一个image_list_时间.json ，然后这个程序可以关闭了。
+
+![](img/1d98db66d72e84a6f56e632517479c1f.png)
+
+#### 2 安装 Automa RPA
+
+Chrome / Edge 浏览器可以访问这个链接添加
+
+https://chromewebstore.google.com/detail/automa/infppggnoaenmfagbfknfkancpbljcca
+
+![](img/5206c269f78f90eeadedc0d9149bfbc1.png)
+
+如果访问不了Chrome Web Store 那直接用比特浏览器，扩展中心这里可以直接添加。
+
+![](img/6e7428a68b94fbbd83e2e7426b4edcd1.png)
+
+需要中文可以这里修改
+
+![](img/b57a92a6f4f9dd2dcd5f6a3b31844841.png)
+
+#### 3 开启 Automa 访问文件权限
+
+使用 Chrome / Edge 浏览器不要忘记开启 Automa 插件的文件访问权限（比特浏览器我测试过会自动打开）。
+
+复制下面这个链接到 Chrome / Edge 浏览器地址栏打开 Automa 插件配置
+
+```
+chrome://extensions/?id=infppggnoaenmfagbfknfkancpbljcca
+```
+
+或者在扩展管理中找到 Automa 插件方法：
+
+![](img/b10668ed74adce1c4602363da689ea0e.png)
+
+![](img/992904fed41230faa6493105f356dbc0.png)
+
+开启权限：允许访问文件URLs
+
+![](img/016575f7dde62c095e473d7af6309fb3.png)
+
+如果未开启权限会提示：Automa 无权访问文件
+
+![](img/bc274891ba60c28e473af63e7880edf1.png)
+
+#### 4 修改界面为中文
+
+找到设置，修改语言。
+
+![](img/0189e34891975dce56dc81f814c62411.png)
+
+#### 5 导入工作流
+
+打开后可以导入RPA工作流文件，这里导入：hailuo_auto.automa.json
+
+![](img/2018711110e5cf09aed967d50f387a6c.png)
+
+工作流默认使用的是海螺国际版，如果你用的是国内版，需要看下面 Tips：切换国内/国际版 如何修改。
+
+#### 6 修改提示词
+
+双击这个Forms 填写你要设置的固定提示词。
+
+![](img/36aff9b08af7fa6e2844f7b22f508826.png)
+
+最新的工作流填写的是{{variables.prompt_text}}，如果你只需要使用固定一个提示词，那么直接删除填入自己的提示词就可以了。（这个变量是用来控制多提示词的情况，有兴趣可以看下 Tips - 使用多个提示词）
+
+![](img/440da230054e6be6f06b67268ef6a6e2.png)
+
+如果不需要填写提示词可以删除文字，或者把这个开关关闭，那么运行就会跳过这个功能。
+
+![](img/f5fdbac21056ac0ae7c6835ac8b43337.png)
+
+#### 7 修改图片列表数据
+
+导入之后点击工作流卡片，进入工作流界面，找到 Loop data 图片列表。双击卡片或点击右上角的✏图标：
+
+![](img/3245d0cf39f5a59962effe78808c52db.png)
+
+之后左侧会显示 Loop Data 详情页，点击 Insert data :
+
+![](img/d049232fe59fb2732d352355a470c9e5.png)
+
+点击 Import file, 选择 image_list.json:
+
+![](img/ebf04ac52ad9c36207ccfca770f94e23.png)
+
+导入之后是这个样子，点击右上角的❎图标
+
+![](img/7f46a9303522c7cad4867a78b2165183.png)
+
+最后千万不要忘了点击 Save , 保存才会生效
+
+![](img/420f29c2a3246f676b24853bbbda1bc8.png)
+
+先打开网页：https://hailuoai.com/video
+
+点击▶图标就可以测试一下。
+
+注意：
+
+1.  RPA运行后不要再动这个浏览器，可以缩小窗口，但不能操作打开新页面，不能激活其他页面标签窗口，否则运行会报错。当然，可以使用谷歌浏览器新开一个用户，也可以使用指纹浏览器开10个浏览器，这样不会有影响。
+
+1.  使用步骤演示以海螺AI国内版为准，国际版步骤基本一样，但还需要改动下设置，请看下 Tips - 切换国际版 的部分。
+
+### Tips
+
+#### RPA多窗口自动运行
+
+进入比特浏览器，进入流程设计，这里可以配置RPA自动化任务。点击会自动打开浏览器和Automa扩展，设计RPA工作流。
+
+![](img/06f1f5cb00bf3c8aa2ea5364bf5724c4.png)
+
+复制 Automa 工作流的 ID
+
+![](img/e9512086a6a5536aa7af4190831218ee.png)
+
+在RPA自动化页面，新建RPA任务，输入工作流ID，就可以多个窗口自动运行。
+
+![](img/aff84df33854499a6160f64f90dc772f.png)
+
+![](img/9aed6491017d3f66d2f6fc309a1e76f1.png)
+
+如果自动运行的方式不方便修改工作流配置，那么开启多个窗口分别配置Automa扩展的工作流也是可以的，可以选择部分窗口或全部窗口使用 Automa。
+
+![](img/af57628f4b51701dc76912377ffd0f47.png)
+
+#### 修改检测延迟
+
+这个延时默认是3分钟检测一次生成图片的按钮是否能点击（延时卡片的单位是毫秒millisecond），能点击就尝试上传图片点击。
+
+![](img/1f70c6ef672a8bbf5f469c9a06739d57.png)
+
+#### 查看日志
+
+点击日志，会显示当前工作流的日志，点击hailuo_auto 会显示运行的日志/错误。而日志的右边会显示运行的状态，正在运行中的情况也可以停止运行。
+
+![](img/0d365059074ba11d215b16cd960dcad6.png)
+
+点击 Stop 可以停止运行的工作流
+
+![](img/5e0830dd4f1d02d962b751c89ea48fc6.png)
+
+点击标题可以查看详细日志
+
+![](img/a80b1044a1b5d57b76dcfc7ce02574e5.png)
+
+#### 切换国内/国际版
+
+国内版：https://hailuoai.com/video/create
+
+国际版：https://hailuoai.video/create
+
+切换国内/国际版需要把标签页对应的链接修改下。
+
+以下的示例是国内版切换为国际版，并且是原来的链接，新的海螺官网链接需要/create
+
+![](img/8f932cf2133dc2549fd38ea48081d8fe.png)
+
+国内版 https://hailuoai.com/video/create 改为国际版：https://hailuoai.video/create
+
+![](img/9985bca6fe35d8e8b11fc7135cb09e19.png)
+
+然后注意网页标签要切换到 Image to Video 后再运行工作流：
+
+![](img/133e73bd4a4182cc15776ef088da512b.png)
+
+#### F12查看进度
+
+在海螺AI要运行RPA的页面，按F12可以打开开发者模式，找到控制台，可以查看输出的打印。
+
+这些错误信息忽略就好，找到控制台最下面的打印日志：loop-index: 0 image_xxx_0.png
+
+loop-index: 0 表示目前是第几张图片，从0开始计数。后面的图片的名称。
+
+![](img/67079ea31a71f38a57016fb90f791c0a.png)
+
+#### 图片上传失败
+
+比如像下面这张生成的视频不是上传图片时的尺寸，就是属于文生视频。
+
+![](img/5f98fd7e2203959a6c019240674fd059.png)
+
+出现这种情况的原因是图片上传失败。如果真遇到了图片上传失败变为文生视频的情况（应该概率比较低），可以尝试把工作流中这两个延迟5秒改为10秒试试。
+
+![](img/1387f3e33d862ac4a9ca4ccc62ff0cef.png)
+
+#### 使用多个提示词
+
+目前工作流是固定一个提示词然后批量跑图。最新的工作流做了稍微修改，支持设置多个提示词，比如一个提示词跑前99张图，另一个提示词跑后面第100-299的图，有更多的图依此类推。
+
+先找到这个 JavaScript，双击
+
+![](img/6e4a1e707ce91683b59f9368d02d3817.png)
+
+点击这个代码块位置
+
+![](img/1b8507c9a3ac897e16e7daa970e49661.png)
+
+把自己的多个提示词填入到相应的位置：第？个提示词，注意不要删除""引号。
+
+```
+automaSetVariable("prompt_text", 
+  loopData.$index < 100 ? "第一个提示词" : 
+  loopData.$index < 300 ? "第二个提示词" :
+  loopData.$index < 450 ? "第三个提示词" :
+  loopData.$index < 500 ? "第四个提示词" :
+  "超过500的提示词"  // 当索引大于等于500时使用的默认值
+)
+```
+
+这句代码意思是当前是跑的图片第0-第99张图，都使用第一个提示词。第100-第299张图，都使用第二个提示词。
+
+依此类推，大于等于第500张图使用最后第五个提示词。
+
+![](img/c39a4d7d8b02c8987357b0e438e41737.png)
+
+然后在找到这个填写prompt表单，把这个变量填入进去：{{variables.prompt_text}}
+
+![](img/23e571c0a56eadc21f033f4482195f0d.png)
+
+## 附件
+
+#### 海螺AI工作流
+
+下载链接：https://gitee.com/tudoujunha/rpa-gpt/releases/download/v1.0/hailuo_auto.automa_v1.0.json
+
+#### 图片处理工具 Web 版
+
+图片处理工具我做了一个网页版，可以优先使用这个，更方便：
+
+imgtool.tudoujunha.parts
+
+![](img/33ed5fe7b8ee5afa1681bda4812330b9.png)
+
+#### 图片处理工具 Windows 版
+
+软件下载位置，只打包了 Windows 版本的 exe，如果需要 mac 版可以留言后面抽空更新一下。
+
+![](img/27733476d828004b480a9f8fb554bc60.png)
+
+Win版图片处理工具下载🔗
+
+#### 图片处理工具 Mac 版
+
+由于Mac不能直接打包软件，所以我贴下源码，可以直接运行或者自行打包下。
+
+Mac版打包好了，可以试下
+
+Mac版图片处理工具下载🔗
+
+#### 图片处理工具源码
+
+Python源码：
+
+![](img/711d6f930549cd1da04ac88237cd15e2.png)
+
+运行命令：
+
+```
+# 创建虚拟环境
+python -m venv .venv
+
+# 激活虚拟环境
+# Mac/Linux:
+source .venv/bin/activate
+# Windows:
+.venv\Scripts\activate
+
+# 然后安装依赖
+pip install pillow
+
+# 运行脚本
+python filepath2json.py
+
+# 打包命令
+#### Windows
+pip install pyinstaller
+pyinstaller --onefile --windowed filepath2json.py
+
+#### MacOS
+pip install py2app
+py2applet --make-setup filepath2json.py
+python setup.py py2app
+```
+
+链接：https://gitee.com/tudoujunha/rpa-gpt/blob/master/filepath2json.py

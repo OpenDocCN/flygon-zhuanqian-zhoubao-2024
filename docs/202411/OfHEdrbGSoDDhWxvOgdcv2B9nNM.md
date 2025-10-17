@@ -1,0 +1,11 @@
+# AI猫咪做饭快速起号玩法配套资料
+
+> 来源：[https://svj4gxvm0v3.feishu.cn/docx/OfHEdrbGSoDDhWxvOgdcv2B9nNM](https://svj4gxvm0v3.feishu.cn/docx/OfHEdrbGSoDDhWxvOgdcv2B9nNM)
+
+1、AI绘画提示词细节填充智能体：https://www.coze.cn/store/agent/7411848747497553932?bid=6eb1rki8o4g1k
+
+2、AI绘画工具：https://www.recraft.ai/project/1f51f7d2-3a87-4290-8ecd-3d0d7cea60c7
+
+3、AI图生视频工具，可灵AI：https://klingai.kuaishou.com/
+
+这里是【高鹏圈】，更多项目玩法，欢迎找我聊聊呀~

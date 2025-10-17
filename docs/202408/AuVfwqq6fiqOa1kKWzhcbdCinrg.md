@@ -1,0 +1,5 @@
+# 抖音小店(高客单)航海实操分享
+
+> 来源：[https://ccnyfn9r9jqr.feishu.cn/docx/YREAdZ0x0oC1QoxCWDec9lSmn2f](https://ccnyfn9r9jqr.feishu.cn/docx/YREAdZ0x0oC1QoxCWDec9lSmn2f)
+
+应Rice的邀请，给大家分享下我在抖音小店(高客单)航海中每天的实操演示，希望能给航海中的圈友们一些帮助。也欢迎大家多多交流，共同进步。
